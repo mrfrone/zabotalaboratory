@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>zabotalaboratory.Admin.Datamodel</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\zabotalaboratory.Auth.Database\zabotalaboratory.Auth.Database.csproj" />
+    <ProjectReference Include="..\zabotalaboratory.Common.AutoMapper\zabotalaboratory.Common.AutoMapper.csproj" />
+  </ItemGroup>
+
+</Project>

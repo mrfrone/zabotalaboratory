@@ -1,0 +1,24 @@
+<div class="center">
+  <div class="login-window-border">
+    <div class="logo">
+      <img src="/assets/img/logo/logo-main.png"><span>Лаборатория</span>
+    </div>
+    <div class="padding">
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Логин</mat-label>
+          <input matInput type="text" [(ngModel)]="log" name="login">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Пароль</mat-label>
+          <input matInput type="password" [(ngModel)]="pass" name="password">
+        </mat-form-field>
+        <div class="items-center">
+          <button mat-stroked-button color="primary" type="button" (click)="Login()">Войти</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,57 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+  height: auto;
+  margin-top: 3px;
+}
+.center {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+}
+div{
+  .login-window-border{
+    border-top: 2px solid #3f51b5;
+    border-bottom: 2px solid #3f51b5;
+    border-radius: 8px;
+  }
+  .padding{
+    padding: 10px;
+  }
+  .items-center {
+    align-items: center;
+    text-align: center;
+
+    button {
+      width: 50%;
+    }
+  }
+  .logo{
+    position: relative;
+    margin-top: 10px;
+    border-radius: 8px;
+    height: 6rem;
+    width: 100%;
+
+    span{
+      font-size: 50px;
+      color: black;
+      font-family: "Courier New";
+    }
+  }
+  img{
+    padding: 2px;
+    width: 25%;
+    height: auto;
+  }
+}
+
+
