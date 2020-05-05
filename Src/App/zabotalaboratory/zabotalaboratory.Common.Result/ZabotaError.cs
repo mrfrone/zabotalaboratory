@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
-using zabotalabratory.Common.Result.ErrorCodes;
+using zabotalaboratory.Common.Result.ErrorCodes;
 
-namespace zabotalabratory.Common.Result
+namespace zabotalaboratory.Common.Result
 {
     [DebuggerDisplay("[Code: {Code}][{Message}]")]
     public class ZabotaError

@@ -3,13 +3,13 @@ using System.Threading.Tasks;
 using zabotalaboratory.Common.PasswordService.JwtGenerate;
 using zabotalaboratory.Common.PasswordService.PasswordHash;
 using AutoMapper;
+using zabotalaboratory.Auth.Datamodel.Tokens;
+using zabotalaboratory.Auth.Forms.Login;
 using zabotalaboratory.Auth.Database.Entities;
 using zabotalaboratory.Auth.Database.Repository.Identities;
 using zabotalaboratory.Auth.Database.Repository.Tokens;
-using zabotalaboratory.Auth.Datamodel.Tokens;
-using zabotalaboratory.Auth.Forms.Login;
-using zabotalabratory.Common.Result;
-using zabotalabratory.Common.Result.ErrorCodes;
+using zabotalaboratory.Common.Result;
+using zabotalaboratory.Common.Result.ErrorCodes;
 
 namespace zabotalaboratory.Auth.Services.Login
 {

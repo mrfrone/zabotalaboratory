@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using zabotalaboratory.Auth.Database.Entities;
+using zabotalaboratory.Auth.Datamodel.Identities;
 using zabotalaboratory.Auth.Datamodel.Tokens;
 using zabotalaboratory.Common.AutoMapper.Extensions;
-using zabotalaboratory.Auth.Datamodel.Identities;
 
 namespace zabotalaboratory.Auth.Datamodel.Mapping
 {

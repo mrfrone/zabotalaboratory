@@ -1,4 +1,4 @@
-﻿namespace zabotalabratory.Common.Result.ErrorCodes
+﻿namespace zabotalaboratory.Common.Result.ErrorCodes
 {
     public enum ZabotaErrorCodes
     {

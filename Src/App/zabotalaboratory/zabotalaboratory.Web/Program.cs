@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace zabotalaboratory.Web
+namespace zabotalaboratory
 {
     public class Program
     {

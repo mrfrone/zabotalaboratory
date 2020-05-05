@@ -1,7 +1,7 @@
-﻿using zabotalaboratory.Auth.Datamodel.Identities;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using zabotalaboratory.Auth.Datamodel.Identities;
 
-namespace zabotalaboratory.Web.Common.Storage
+namespace zabotalaboratory.Common.Storage
 {
     public interface IIdentityRequestStorage
     {

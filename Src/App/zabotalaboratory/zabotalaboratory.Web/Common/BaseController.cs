@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using System.Security.Claims;
-using zabotalaboratory.Auth.Datamodel.Identities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using zabotalaboratory.Web.Common.Storage;
-using zabotalabratory.Common.Result;
-using zabotalabratory.Common.Result.ErrorCodes;
+using zabotalaboratory.Auth.Datamodel.Identities;
+using zabotalaboratory.Common.Result;
+using zabotalaboratory.Common.Result.ErrorCodes;
+using zabotalaboratory.Common.Storage;
 
-namespace zabotalaboratory.Web.Common
+namespace zabotalaboratory.Common
 {
     public class BaseController : Controller
         {
@@ -46,10 +46,10 @@ namespace zabotalaboratory.Web.Common
                 return Json(result);
             }
     
-            /*protected IActionResult ZabotaError(ZabotaErrorCodes code, string message = null)
+            protected IActionResult ZabotaError(ZabotaErrorCodes code, string message = null)
             {
                 return Json(new ZabotaResult(zabotalaboratory.Common.Result.ZabotaError.FromCode(code, message)));
-            }*/
+            }
     
             protected IActionResult ZabotaError(ZabotaError error)
             {

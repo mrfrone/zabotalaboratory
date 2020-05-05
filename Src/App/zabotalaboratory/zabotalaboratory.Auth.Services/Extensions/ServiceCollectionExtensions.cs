@@ -1,9 +1,9 @@
-﻿using zabotalaboratory.Auth.Database.Repository.Extentions;
+﻿using Microsoft.Extensions.DependencyInjection;
+using zabotalaboratory.Auth.Database.Repository.Extentions;
 using zabotalaboratory.Auth.Services.Identities;
 using zabotalaboratory.Auth.Services.Login;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace zabotalaboratory.Auth.Services.Extentions
+namespace zabotalaboratory.Auth.Services.Extensions
 {
     public static class ServiceCollectionExtensions
     {

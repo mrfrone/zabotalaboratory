@@ -1,5 +1,5 @@
-﻿using zabotalaboratory.Auth.Forms.Login;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using zabotalaboratory.Auth.Forms.Login;
 
 namespace zabotalaboratory.Auth.Database.Repository.Identities
 {

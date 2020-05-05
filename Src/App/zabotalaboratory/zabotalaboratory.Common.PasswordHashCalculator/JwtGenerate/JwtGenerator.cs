@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using zabotalaboratory.Auth.Datamodel.Tokens;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using zabotalaboratory.Auth.Datamodel.Tokens;
 
 namespace zabotalaboratory.Common.PasswordService.JwtGenerate
 {

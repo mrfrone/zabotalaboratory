@@ -4,9 +4,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
-using zabotalaboratory.Web.Common.Storage;
+using zabotalaboratory.Common.Storage;
 
-namespace zabotalaboratory.Web.Common.Filters
+namespace zabotalaboratory.Common.Filters
 {
     public class IdentityStorageFilterAttribute : IAsyncActionFilter
     {

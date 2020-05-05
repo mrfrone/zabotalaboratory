@@ -1,12 +1,14 @@
 ﻿using System.Threading.Tasks;
-using zabotalaboratory.Auth.Forms.Login;
-using zabotalaboratory.Auth.Services.Login;
-using zabotalaboratory.Web.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using zabotalaboratory.Web.Common.Consts;
+using zabotalaboratory.Auth.Datamodel.Tokens;
+using zabotalaboratory.Auth.Services.Login;
+using zabotalaboratory.Common;
+using zabotalaboratory.Common.Consts;
+using zabotalaboratory.Common.Result;
+using zabotalaboratory.Web.Common.Filters;
 
-namespace zabotalaboratory.Web.Controllers.Auth
+namespace zabotalaboratory.Areas.Api.Auth
 {
     [Area(AreaNames.Api)]
     [Route(HttpRouteConsts.DefaultController)]
@@ -18,31 +20,28 @@ namespace zabotalaboratory.Web.Controllers.Auth
         {
             _loginService = loginService;
         }
+        
         [HttpPost(HttpRouteConsts.DefaultAction)]
-        [HttpPost]
-        public async Task<IActionResult> Login([FromBody]LoginForm form)
+        [ValidModelState]
+        public async Task<ZabotaResult<Jwt>> Login([FromBody]zabotalaboratory.Api.Auth.Forms.LoginForm form)
         {
-            var result = await _loginService.Login(new LoginForm
+            return await _loginService.Login(new zabotalaboratory.Auth.Forms.Login.LoginForm
             {
                 Login = form.Login,
                 Password = form.Password
             });
-
-            return ZabotaResult(result);
         }
-        [HttpPost(HttpRouteConsts.DefaultAction)]
+        
         [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> Logout()
+        [HttpPost(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<bool>> Logout()
         {
-            var form = new LogoutForm
+            var form = new zabotalaboratory.Auth.Forms.Login.LogoutForm
             {
                 ActorId = CurrentIdentity.Id,
                 TokenId = CurrentTokenId
             };
-            var result = await _loginService.Logout(form);
-
-            return ZabotaResult(result);
+            return await _loginService.Logout(form);
         }
     }
 }

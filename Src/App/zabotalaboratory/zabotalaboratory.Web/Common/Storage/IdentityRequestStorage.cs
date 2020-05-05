@@ -2,7 +2,7 @@
 using zabotalaboratory.Auth.Datamodel.Identities;
 using zabotalaboratory.Auth.Services.Identities;
 
-namespace zabotalaboratory.Web.Common.Storage
+namespace zabotalaboratory.Common.Storage
 {
     internal class IdentityRequestStorage : IIdentityRequestStorage
     {

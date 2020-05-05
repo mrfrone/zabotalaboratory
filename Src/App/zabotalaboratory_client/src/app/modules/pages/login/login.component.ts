@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {MatInput} from "@angular/material/input";
-import {MatButton} from "@angular/material/button";
-import {Auth} from "../../../core/apiClient/auth";
+import {Component, OnInit} from '@angular/core';
 import {LoginForm} from "../../../shared/forms/LoginForm";
+import {finalize} from "rxjs/operators";
+import {AuthService} from "../../../core/services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -11,19 +10,25 @@ import {LoginForm} from "../../../shared/forms/LoginForm";
 })
 export class LoginComponent implements OnInit {
 
-  private log: string = ''
-  private pass: string = ''
+  public log: string = ''
+  public pass: string = ''
+  public isProgress: boolean = false
 
-  constructor(private _auth: Auth) { }
+  constructor(private readonly _authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  Login(){
+  public login(): void {
+    this.isProgress = true
+
     const form: LoginForm = {
-      log: this.log,
-      pass: this.pass
+      login: this.log,
+      password: this.pass
     }
-    this._auth.Authorize(form)
+
+    this._authService.authorize(form).pipe(
+      finalize(() => this.isProgress = false)
+    ).subscribe();
   }
 }

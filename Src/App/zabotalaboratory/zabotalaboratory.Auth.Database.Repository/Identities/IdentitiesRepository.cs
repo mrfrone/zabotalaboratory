@@ -1,5 +1,4 @@
 ﻿using zabotalaboratory.Auth.Database.Repository.Tokens;
-using zabotalaboratory.Auth.Forms.Login;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Linq;
@@ -7,6 +6,7 @@ using zabotalaboratory.Common.PasswordService.PasswordHash;
 using System;
 using zabotalaboratory.Auth.Database.Context;
 using Z.EntityFramework.Plus;
+using zabotalaboratory.Auth.Forms.Login;
 
 namespace zabotalaboratory.Auth.Database.Repository.Identities
 {

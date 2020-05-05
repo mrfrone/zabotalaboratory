@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
 using zabotalaboratory.Auth.Database.Repository.Identities;
-using zabotalaboratory.Auth.Datamodel.Identities;
 using System.Collections.Generic;
+using zabotalaboratory.Auth.Datamodel.Identities;
 using zabotalaboratory.Auth.Forms.Login;
 
 namespace zabotalaboratory.Auth.Services.Identities

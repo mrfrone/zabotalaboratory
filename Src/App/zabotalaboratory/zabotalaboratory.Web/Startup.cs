@@ -4,15 +4,16 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using zabotalaboratory.Auth.Datamodel.Mapping;
 using zabotalaboratory.Auth.Datamodel.Tokens;
-using zabotalaboratory.Auth.Services.Extentions;
+using zabotalaboratory.Auth.Services.Extensions;
 using zabotalaboratory.Common.AutoMapper.Extensions;
 using zabotalaboratory.Common.Datamodel.PasswordHashing;
+using zabotalaboratory.Common.Filters;
 using zabotalaboratory.Common.PasswordService.Extensions;
-using zabotalaboratory.Web.Common.Filters;
-using zabotalaboratory.Web.Common.Storage;
+using zabotalaboratory.Common.Storage;
 
-namespace zabotalaboratory.Web
+namespace zabotalaboratory
 {
     public class Startup
     {
@@ -41,7 +42,7 @@ namespace zabotalaboratory.Web
             services.AddScoped<IIdentityRequestStorage, IdentityRequestStorage>();
             
             services.AddMiMapping(
-                typeof(Auth.Datamodel.Mapping.MappingProfile)
+                typeof(MappingProfile)
             );
             
             var jwtOptions = Configuration.GetSection(nameof(JwtSettings)).Get<JwtSettings>();
@@ -67,6 +68,16 @@ namespace zabotalaboratory.Web
                     };
                 });
             
+            services.AddCors(options =>
+            {
+                options.AddPolicy("EnableCORS", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+            
             services.AddMvc(options =>
             {
                 options.Filters.Add<IdentityStorageFilterAttribute>();
@@ -77,12 +88,13 @@ namespace zabotalaboratory.Web
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseDeveloperExceptionPage();
-            //app.UseRouting();
-            app.UseStaticFiles();
 
+            app.UseCors("EnableCORS");
+            
+            app.UseStaticFiles();
             app.UseAuthentication();
             
-            app.UseMvcWithDefaultRoute();
+            //app.UseMvcWithDefaultRoute();
             app.UseMvc();
         }
     }

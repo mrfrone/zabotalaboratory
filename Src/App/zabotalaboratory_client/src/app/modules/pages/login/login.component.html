@@ -1,4 +1,4 @@
-<div class="center">
+<div class="center" *ngIf="!isProgress">
   <div class="login-window-border">
     <div class="logo">
       <img src="/assets/img/logo/logo-main.png"><span>Лаборатория</span>
@@ -15,10 +15,13 @@
           <input matInput type="password" [(ngModel)]="pass" name="password">
         </mat-form-field>
         <div class="items-center">
-          <button mat-stroked-button color="primary" type="button" (click)="Login()">Войти</button>
+          <button mat-stroked-button color="primary" type="button" (click)="login()">Войти</button>
         </div>
       </form>
     </div>
   </div>
+</div>
+<div class="center" *ngIf="isProgress">
+  <mat-spinner></mat-spinner>
 </div>
 

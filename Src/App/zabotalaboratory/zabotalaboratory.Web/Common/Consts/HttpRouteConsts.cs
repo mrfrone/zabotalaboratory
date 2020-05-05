@@ -1,4 +1,4 @@
-﻿namespace zabotalaboratory.Web.Common.Consts
+﻿namespace zabotalaboratory.Common.Consts
 {
     public class HttpRouteConsts
     {
