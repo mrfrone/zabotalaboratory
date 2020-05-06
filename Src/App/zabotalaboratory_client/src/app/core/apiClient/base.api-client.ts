@@ -1,7 +1,7 @@
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {BaseZabotaResult} from "../../shared/models/zabota-result/base-zabota-result";
-import {DefaultUrls} from "../../shared/consts/DefaultUrls";
+import {DefaultUrls} from "../../shared/consts/defaultUrls";
 
 export class BaseApiClient {
   constructor(private readonly _httpClient: HttpClient) {
