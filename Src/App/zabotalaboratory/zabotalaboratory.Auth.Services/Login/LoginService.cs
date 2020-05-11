@@ -37,11 +37,11 @@ namespace zabotalaboratory.Auth.Services.Login
         {
             var identity = await _identitiesRepository.GetByLoginAndPassword(form);
             if (identity == null)
-                return ZabotaErrorCodes.UserNotFound;
+                return ZabotaErrorCodes.AuthorizeError;
 
             var hashed = _passwordHashCalculator.Calc(form.Password);
             if (identity.Password != hashed)
-                return ZabotaErrorCodes.WrongPassword;
+                return ZabotaErrorCodes.AuthorizeError;
 
             var token = await _tokensRepository.IssueToken(identity.Id, DateTimeOffset.UtcNow.AddYears(1));
             if (token == null)
@@ -49,11 +49,10 @@ namespace zabotalaboratory.Auth.Services.Login
 
             var mappedToken = _mapper.Map<Jwts, Jwt>(token);
 
-            var tokenBody = _jwtGenerator.Generate(mappedToken);
+            var tokenBody = _jwtGenerator.Generate(mappedToken, identity.Role);
             await _tokensRepository.WriteBody(tokenBody.Id, tokenBody.Token);
 
             return new ZabotaResult<Jwt>(tokenBody);
-
         }
 
         public async Task<ZabotaResult<bool>> Logout(LogoutForm form)

@@ -4,6 +4,6 @@ namespace zabotalaboratory.Common.PasswordService.JwtGenerate
 {
     public interface IJwtGenerator
     {
-        Jwt Generate(Jwt source);
+        Jwt Generate(Jwt source, string role);
     }
 }

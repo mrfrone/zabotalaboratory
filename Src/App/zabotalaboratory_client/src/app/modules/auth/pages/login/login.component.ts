@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginForm} from "../../../shared/forms/LoginForm";
+import {LoginForm} from "../../../../shared/forms/LoginForm";
 import {finalize} from "rxjs/operators";
-import {AuthService} from "../../../core/services/auth.service";
-import {AuthCheckerService} from "../../../core/services/auth-checker.service";
+import {AuthService} from "../../../../core/services/auth.service";
+import {AuthCheckerService} from "../../../../core/services/auth-checker.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if(this._authChecker.isAuth()) {
-      this._router.navigate(['main'])
+      this._router.navigate(['analyses'])
     }
   }
 

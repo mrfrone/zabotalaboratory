@@ -23,13 +23,7 @@ export class AuthApiClient extends BaseApiClient {
     return this.postWithoutBody<ZabotaResult<boolean>>('/api/auth/logout');
   }
 
-  public isAuthenticated(): boolean {
-    let token: string = TokenGetter.GetToken()
-    //&& !this.jwtHelper.isTokenExpired(token)
-    if (token) {
-      return true;
-    } else {
-      return false;
-    }
+  public getRole(): Observable<ZabotaResult<string>>{
+    return this.postWithoutBody<ZabotaResult<string>>('/api/userprofile/getrole');
   }
 }

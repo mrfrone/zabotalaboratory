@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthCheckerService} from "./core/services/auth-checker.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  constructor(public readonly _isAuth: AuthCheckerService) {
+  }
 }

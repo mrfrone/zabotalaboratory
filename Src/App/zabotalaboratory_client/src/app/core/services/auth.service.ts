@@ -31,7 +31,7 @@ export class AuthService {
     if (res.isCorrect === true) {
       localStorage.setItem("jwt", res.result.token);
       this._message.showMessage('Авторизация успешна');
-      this._router.navigate(["main"]);
+      this._router.navigate(["analyses"]);
     } else {
       this._message.showMessage(res.error.message);
     }
@@ -47,13 +47,33 @@ export class AuthService {
     return apiResult;
   }
   private onLogOut(res: ZabotaResult<boolean>): void{
-    console.log(res);
     if(res.isCorrect === true){
       localStorage.removeItem('jwt');
       this._message.showMessage('Выход из аккаунта успешно выполнен')
       this._router.navigate([""]);
     }
     else{
+      this._message.showMessage(res.error.message)
+    }
+  }
+
+  public getRole(): string {
+    const apiResult = this._auth.getRole().pipe(
+      take(1)
+    );
+
+    let result: string;
+    apiResult.subscribe(res =>
+    {
+      this.onGetRole(res)
+      result = res.result;
+    });
+
+    return result;
+  }
+  private onGetRole(res: ZabotaResult<string>): void{
+    if(res.isNotCorrect === true)
+    {
       this._message.showMessage(res.error.message)
     }
   }
