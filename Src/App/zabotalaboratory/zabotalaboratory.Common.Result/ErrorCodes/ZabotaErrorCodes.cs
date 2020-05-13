@@ -26,7 +26,7 @@
 
         public static ZabotaResult<T> ToErrorResult<T>(this ZabotaErrorCodes code)
         {
-            return new ZabotaResult<T>(new ZabotaError {Code = code});
+            return new ZabotaResult<T>(new ZabotaError { Code = code });
         }
 
         public static string ToFriendlyString(this ZabotaErrorCodes code)
@@ -37,6 +37,6 @@
                     return code.ToString();
             }
         }
-        
+
     }
 }

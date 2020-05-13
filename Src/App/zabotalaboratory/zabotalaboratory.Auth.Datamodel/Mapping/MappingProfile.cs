@@ -32,7 +32,7 @@ namespace zabotalaboratory.Auth.Datamodel.Mapping
                 .ForMember(u => u.Phone, opts => opts.MapFrom(u => u.Identity.Login))
                 .ForMember(u => u.IsBanned, opts => opts.MapFrom(u => u.Identity.IsBanned))
                 .ForMember(u => u.Role, opts => opts.MapFrom(u => u.Identity.Role));
-                
+
         }
     }
 }

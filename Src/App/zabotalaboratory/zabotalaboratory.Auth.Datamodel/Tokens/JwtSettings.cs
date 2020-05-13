@@ -7,7 +7,8 @@ namespace zabotalaboratory.Auth.Datamodel.Tokens
     {
         public string Issuer { get; set; } // издатель токена
         public string Audience { get; set; } // потребитель токена
-        public  string SecurityKey { get; set; }   // ключ для шифрации
+        public string SecurityKey { get; set; }   // ключ для шифрации
+
         public const int LIFETIME = 60; // время жизни токена - 60 минут
 
         private SymmetricSecurityKey _symmetricSecurityKey;

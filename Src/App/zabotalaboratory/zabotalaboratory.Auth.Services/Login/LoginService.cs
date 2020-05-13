@@ -39,7 +39,7 @@ namespace zabotalaboratory.Auth.Services.Login
             if (identity == null)
                 return ZabotaErrorCodes.AuthorizeError;
 
-            var hashed = _passwordHashCalculator.Calc(form.Password);
+            var hashed = form.Password;//_passwordHashCalculator.Calc(form.Password);
             if (identity.Password != hashed)
                 return ZabotaErrorCodes.AuthorizeError;
 
@@ -49,7 +49,7 @@ namespace zabotalaboratory.Auth.Services.Login
 
             var mappedToken = _mapper.Map<Jwts, Jwt>(token);
 
-            var tokenBody = _jwtGenerator.Generate(mappedToken, identity.Role);
+            var tokenBody = _jwtGenerator.Generate(mappedToken);
             await _tokensRepository.WriteBody(tokenBody.Id, tokenBody.Token);
 
             return new ZabotaResult<Jwt>(tokenBody);

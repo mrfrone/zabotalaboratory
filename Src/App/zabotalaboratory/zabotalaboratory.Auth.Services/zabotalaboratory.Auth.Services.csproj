@@ -1,14 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <RootNamespace>zabotalaboratory.Auth.Services</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\zabotalaboratory.Auth.Database.Repository\zabotalaboratory.Auth.Database.Repository.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Auth.Datamodel\zabotalaboratory.Auth.Datamodel.csproj" />
-    <ProjectReference Include="..\zabotalaboratory.Common.PasswordHashCalculator\zabotalaboratory.Common.PasswordService.csproj" />
+    <ProjectReference Include="..\zabotalaboratory.Auth.Forms\zabotalaboratory.Auth.Forms.csproj" />
+    <ProjectReference Include="..\zabotalaboratory.Common.PasswordService\zabotalaboratory.Common.PasswordService.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Common.Result\zabotalaboratory.Common.Result.csproj" />
   </ItemGroup>
 

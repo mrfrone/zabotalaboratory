@@ -2,7 +2,7 @@
 using zabotalaboratory.Auth.Datamodel.UserProfiles;
 using zabotalaboratory.Common.Result;
 
-namespace zabotalaboratory.Auth.Service.UserProfile
+namespace zabotalaboratory.Auth.Services.UserProfile
 {
     public interface IUserProfileService
     {

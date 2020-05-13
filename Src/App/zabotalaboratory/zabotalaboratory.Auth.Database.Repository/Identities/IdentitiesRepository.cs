@@ -5,7 +5,6 @@ using System.Linq;
 using zabotalaboratory.Common.PasswordService.PasswordHash;
 using System;
 using zabotalaboratory.Auth.Database.Context;
-using Z.EntityFramework.Plus;
 using zabotalaboratory.Auth.Forms.Login;
 
 namespace zabotalaboratory.Auth.Database.Repository.Identities
@@ -71,15 +70,9 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
             if (identity == null)
                 return false;
 
-            _ac.Identities
-                .AsQueryable()
-                .Where(r => r.Id == identityId)
-                .Update(r => new Entities.Identities 
-                {
-                    Deleted = DateTimeOffset.UtcNow,
-                    DeletedById = actorId,
-                    IsDeleted = true
-                });
+            identity.Deleted = DateTimeOffset.UtcNow;
+            identity.DeletedById = actorId;
+            identity.IsDeleted = true;
 
             _ac.SaveChanges();
             return true;

@@ -15,9 +15,9 @@
         public string Phone { get; set; }
 
         public bool IsBanned { get; set; }
-        
+
         public string Role { get; set; }
-        
+
         public string FullName => $"{LastName} {FirstName} {PatronymicName}";
     }
 }

@@ -6,19 +6,19 @@ using zabotalaboratory.Auth.Datamodel.UserProfiles;
 using zabotalaboratory.Common.Result;
 using zabotalaboratory.Common.Result.ErrorCodes;
 
-namespace zabotalaboratory.Auth.Service.UserProfile
+namespace zabotalaboratory.Auth.Services.UserProfile
 {
     internal class UserProfilesService : IUserProfileService
     {
-        private readonly IUserProfilesRepository _userProfilesRepository;
+        private readonly IUsersProfilesRepository _userProfilesRepository;
         private readonly IMapper _mapper;
 
-        public UserProfilesService(IUserProfilesRepository userProfilesRepository, IMapper mapper)
+        public UserProfilesService(IUsersProfilesRepository userProfilesRepository, IMapper mapper)
         {
             _userProfilesRepository = userProfilesRepository;
             _mapper = mapper;
         }
-        
+
         public async Task<ZabotaResult<ZabotaUserProfile>> GetByIdentityId(int identityId)
         {
             var model = await _userProfilesRepository.GetByIdentityId(identityId);
@@ -30,10 +30,10 @@ namespace zabotalaboratory.Auth.Service.UserProfile
         }
         public async Task<ZabotaResult<string>> GetRoleByIdentityId(int identityId)
         {
-            var model =  await GetByIdentityId(identityId);
+            var model = await GetByIdentityId(identityId);
             if (model.Result == null)
                 return ZabotaErrorCodes.EmptyResult;
-            
+
             return new ZabotaResult<string>(model.Result.Role);
         }
     }

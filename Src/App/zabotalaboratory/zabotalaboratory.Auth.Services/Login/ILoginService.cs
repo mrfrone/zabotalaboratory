@@ -6,8 +6,8 @@ using zabotalaboratory.Common.Result;
 namespace zabotalaboratory.Auth.Services.Login
 {
     public interface ILoginService
-        {
-            Task<ZabotaResult<Jwt>> Login(LoginForm form);
-            Task<ZabotaResult<bool>> Logout(LogoutForm form);
-        }
+    {
+        Task<ZabotaResult<Jwt>> Login(LoginForm form);
+        Task<ZabotaResult<bool>> Logout(LogoutForm form);
+    }
 }

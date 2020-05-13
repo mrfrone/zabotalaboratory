@@ -6,15 +6,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace zabotalaboratory.Auth.Database.Repository.UserProfiles
 {
-    internal class UserProfilesRepository : IUserProfilesRepository
+    internal class UsersProfilesRepository : IUsersProfilesRepository
     {
         private readonly AuthContext _dc;
 
-        public UserProfilesRepository(AuthContext dc)
+        public UsersProfilesRepository(AuthContext dc)
         {
             _dc = dc;
         }
-        
+
         public Task<UsersProfiles> GetByIdentityId(int identityId, bool trackChanges = false)
         {
             return _dc.UsersProfiles

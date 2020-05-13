@@ -11,12 +11,18 @@ export class BaseApiClient {
     const serializedForm = JSON.stringify(form);
     return this._httpClient.post<TRes>(DefaultUrls.ServerUrl + url, serializedForm, {
       headers: new HttpHeaders({
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
       })
     });
   }
 
   protected postWithoutBody<TRes extends BaseZabotaResult>(url: string): Observable<TRes> {
-    return this._httpClient.post<TRes>(DefaultUrls.ServerUrl + url, '');
+    return this._httpClient.post<TRes>(DefaultUrls.ServerUrl + url, '', {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      })
+    });
   }
 }

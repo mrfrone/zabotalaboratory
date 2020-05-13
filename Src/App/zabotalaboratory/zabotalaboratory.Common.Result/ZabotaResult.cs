@@ -28,7 +28,7 @@ namespace zabotalaboratory.Common.Result
             return new ZabotaResult(Error);
         }
     }
-    
+
     [DebuggerDisplay("[IsCorrect: {IsCorrect}][Result: {Result}]{Error}")]
     public class ZabotaResult<T> : ZabotaResult
     {
