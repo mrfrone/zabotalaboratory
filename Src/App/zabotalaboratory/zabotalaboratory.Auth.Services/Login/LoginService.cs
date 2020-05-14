@@ -49,7 +49,7 @@ namespace zabotalaboratory.Auth.Services.Login
 
             var mappedToken = _mapper.Map<Jwts, Jwt>(token);
 
-            var tokenBody = _jwtGenerator.Generate(mappedToken);
+            var tokenBody = _jwtGenerator.Generate(mappedToken, identity.Role);
             await _tokensRepository.WriteBody(tokenBody.Id, tokenBody.Token);
 
             return new ZabotaResult<Jwt>(tokenBody);

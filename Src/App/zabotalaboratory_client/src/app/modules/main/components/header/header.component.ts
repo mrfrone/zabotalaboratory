@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit {
     ).subscribe(res =>
     {
       this.role = res.result
-      console.log(this.role);
     });
   }
 

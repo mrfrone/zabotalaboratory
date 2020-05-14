@@ -28,6 +28,14 @@ namespace zabotalaboratory.Common
                 return service.Current;
             }
         }
+        protected string CurrentRole
+        {
+            get
+            {
+                var RoleClaim = HttpContext.User.Claims.FirstOrDefault(u => u.Type == ClaimTypes.Role);
+                return RoleClaim.Value;
+            }
+        }
 
         //protected IActionResult ZabotaResult<T>(T result)
         //{

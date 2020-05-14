@@ -22,9 +22,9 @@ namespace zabotalaboratory.Areas.Api.Auth
 
         
         [HttpPost(HttpRouteConsts.DefaultAction)]
-        public async Task<ZabotaResult<string>> GetRole()
+        public ZabotaResult<string> GetRole()
         {
-            return await _userProfileService.GetRoleByIdentityId(CurrentIdentity.Id);
+            return new ZabotaResult<string>(CurrentRole);
         }
     }
 }

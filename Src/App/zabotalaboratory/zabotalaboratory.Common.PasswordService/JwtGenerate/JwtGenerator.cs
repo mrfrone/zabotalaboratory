@@ -21,33 +21,34 @@ namespace zabotalaboratory.Common.PasswordService.JwtGenerate
             RefreshKey(_options.CurrentValue);
         }
 
-        public Jwt Generate(Jwt source)
+        public Jwt Generate(Jwt source, string role)
         {
             return new Jwt
             {
                 Id = source.Id,
                 Expires = source.Expires,
-                Token = GetJwtSecurityToken(source.Expires, source.Id)
+                Token = GetJwtSecurityToken(source.Expires, source.Id, role)
             };
         }
 
-        private string GetJwtSecurityToken(DateTimeOffset dateExpires, int id)
+        private string GetJwtSecurityToken(DateTimeOffset dateExpires, int id, string role)
         {
             var token = new JwtSecurityToken(
                 issuer: _options.CurrentValue.Issuer,
                 audience: _options.CurrentValue.Audience,
-                claims: GetClaims(id),
+                claims: GetClaims(id, role),
                 expires: dateExpires.Date,
                 signingCredentials: _signingSecurityKey);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        private IEnumerable<Claim> GetClaims(int id)
+        private IEnumerable<Claim> GetClaims(int id, string role)
         {
             return new Claim[]
             {
-                new Claim(ClaimTypes.NameIdentifier, id.ToString())
+                new Claim(ClaimTypes.NameIdentifier, id.ToString()),
+                new Claim(ClaimTypes.Role, role)
             };
         }
 
