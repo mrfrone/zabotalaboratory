@@ -10,8 +10,8 @@ using zabotalaboratory.Auth.Database.Context;
 namespace zabotalaboratory.Auth.Database.Migrations
 {
     [DbContext(typeof(AuthContext))]
-    [Migration("20200513121242_AddAuth")]
-    partial class AddAuth
+    [Migration("20200514105522_AddRole")]
+    partial class AddRole
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,18 +30,12 @@ namespace zabotalaboratory.Auth.Database.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<DateTimeOffset?>("Deleted")
-                        .IsRequired()
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int?>("DeletedById")
-                        .IsRequired()
                         .HasColumnType("integer");
 
-                    b.Property<bool>("IsBanned")
-                        .HasColumnType("boolean");
-
                     b.Property<bool?>("IsDeleted")
-                        .IsRequired()
                         .HasColumnType("boolean");
 
                     b.Property<string>("Login")
@@ -57,9 +51,6 @@ namespace zabotalaboratory.Auth.Database.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Login")
-                        .HasAnnotation("Npgsql:IndexInclude", new[] { "IsDeleted" });
 
                     b.ToTable("Identities");
                 });

@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace zabotalaboratory.Auth.Database.Migrations
 {
-    public partial class AddAuth : Migration
+    public partial class InitialDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,11 +20,9 @@ namespace zabotalaboratory.Auth.Database.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Login = table.Column<string>(nullable: false),
                     Password = table.Column<string>(nullable: false),
-                    IsBanned = table.Column<bool>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: true),
                     DeletedById = table.Column<int>(nullable: true),
-                    Deleted = table.Column<DateTimeOffset>(nullable: true),
-                    Role = table.Column<string>(nullable: false)
+                    Deleted = table.Column<DateTimeOffset>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -65,36 +63,6 @@ namespace zabotalaboratory.Auth.Database.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "UsersProfiles",
-                schema: "zabota_auth",
-                columns: table => new
-                {
-                    IdentityId = table.Column<int>(nullable: false),
-                    FirstName = table.Column<string>(maxLength: 32, nullable: false),
-                    LastName = table.Column<string>(maxLength: 32, nullable: false),
-                    PatronymicName = table.Column<string>(maxLength: 32, nullable: false),
-                    Email = table.Column<string>(maxLength: 256, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UsersProfiles", x => x.IdentityId);
-                    table.ForeignKey(
-                        name: "FK_UsersProfiles_Identities_IdentityId",
-                        column: x => x.IdentityId,
-                        principalSchema: "zabota_auth",
-                        principalTable: "Identities",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Identities_Login",
-                schema: "zabota_auth",
-                table: "Identities",
-                column: "Login")
-                .Annotation("Npgsql:IndexInclude", new[] { "IsDeleted" });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Jwts_DeletedById",
                 schema: "zabota_auth",
@@ -112,10 +80,6 @@ namespace zabotalaboratory.Auth.Database.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Jwts",
-                schema: "zabota_auth");
-
-            migrationBuilder.DropTable(
-                name: "UsersProfiles",
                 schema: "zabota_auth");
 
             migrationBuilder.DropTable(

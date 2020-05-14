@@ -39,7 +39,7 @@ namespace zabotalaboratory.Auth.Services.Login
             if (identity == null)
                 return ZabotaErrorCodes.AuthorizeError;
 
-            var hashed = form.Password;//_passwordHashCalculator.Calc(form.Password);
+            var hashed = _passwordHashCalculator.Calc(form.Password);
             if (identity.Password != hashed)
                 return ZabotaErrorCodes.AuthorizeError;
 

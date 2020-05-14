@@ -1,13 +1,13 @@
-import {Injectable} from "@angular/core";
-import {LoginForm} from "../../shared/forms/LoginForm";
-import {Observable} from "rxjs";
-import {ZabotaResult} from "../../shared/models/zabota-result/zabota-result";
-import {Jwt} from "../../shared/models/jwt/jwt";
-import {AuthApiClient} from "../apiClient/auth.api-client";
-import {Router} from "@angular/router";
-import {MessageService} from "./message.service";
-import {JwtHelperService} from "@auth0/angular-jwt";
-import {take} from "rxjs/operators";
+import {Injectable} from '@angular/core';
+import {LoginForm} from '../../shared/forms/LoginForm';
+import {Observable} from 'rxjs';
+import {ZabotaResult} from '../../shared/models/zabota-result/zabota-result';
+import {Jwt} from '../../shared/models/jwt/jwt';
+import {AuthApiClient} from '../apiClient/auth.api-client';
+import {Router} from '@angular/router';
+import {MessageService} from './message.service';
+import {JwtHelperService} from '@auth0/angular-jwt';
+import {take} from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -29,9 +29,9 @@ export class AuthService {
 
   private onAuthorized(res: ZabotaResult<Jwt>): void {
     if (res.isCorrect === true) {
-      localStorage.setItem("jwt", res.result.token);
+      localStorage.setItem('jwt', res.result.token);
       this._message.showMessage('Авторизация успешна');
-      this._router.navigate(["analyses"]);
+      this._router.navigate(['analyses']);
     } else {
       this._message.showMessage(res.error.message);
     }
@@ -47,34 +47,13 @@ export class AuthService {
     return apiResult;
   }
   private onLogOut(res: ZabotaResult<boolean>): void{
-    if(res.isCorrect === true){
+    if (res.isCorrect === true){
       localStorage.removeItem('jwt');
-      this._message.showMessage('Выход из аккаунта успешно выполнен')
-      this._router.navigate([""]);
+      this._message.showMessage('Выход из аккаунта успешно выполнен');
+      this._router.navigate(['']);
     }
     else{
-      this._message.showMessage(res.error.message)
-    }
-  }
-
-  public getRole(): string {
-    const apiResult = this._auth.getRole().pipe(
-      take(1)
-    );
-
-    let result: string;
-    apiResult.subscribe(res =>
-    {
-      this.onGetRole(res)
-      result = res.result;
-    });
-
-    return result;
-  }
-  private onGetRole(res: ZabotaResult<string>): void{
-    if(res.isNotCorrect === true)
-    {
-      this._message.showMessage(res.error.message)
+      this._message.showMessage(res.error.message);
     }
   }
 }

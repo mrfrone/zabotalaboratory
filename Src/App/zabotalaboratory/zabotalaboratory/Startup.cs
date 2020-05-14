@@ -86,6 +86,7 @@ namespace zabotalaboratory
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseRouting();
             
             app.UseCors(x => x
@@ -93,7 +94,6 @@ namespace zabotalaboratory
                 .AllowAnyMethod()
                 .AllowAnyHeader());
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
             
             app.UseAuthentication();

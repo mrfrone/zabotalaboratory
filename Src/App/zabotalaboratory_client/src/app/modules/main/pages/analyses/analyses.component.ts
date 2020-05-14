@@ -16,7 +16,6 @@ export class AnalysesComponent implements OnInit {
   }
 
   public AddOne(): void{
-    // tslint:disable-next-line:only-arrow-functions
       this.dataSource.forEach(function(value) {
         value.position += 1;
       });

@@ -15,18 +15,12 @@ namespace zabotalaboratory.Auth.Database.Entities
         public virtual string Password { get; set; }
 
         [Required]
-        public virtual bool IsBanned { get; set; }
+        public virtual string Role { get; set; }
 
-        [Required]
         public virtual bool? IsDeleted { get; set; }
 
-        [Required]
         public virtual int? DeletedById { get; set; }
 
-        [Required]
-        public DateTimeOffset? Deleted { get; set; }
-
-        [Required]
-        public virtual string Role { get; set; }
+        public virtual DateTimeOffset? Deleted { get; set; }
     }
 }

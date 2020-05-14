@@ -10,14 +10,8 @@ namespace zabotalaboratory.Auth.Database.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.UseIdentityColumns();
-
+            modelBuilder.UseIdentityByDefaultColumns();
             modelBuilder.HasDefaultSchema(SchemaName);
-
-            modelBuilder
-                .Entity<Identities>()
-                .HasIndex(u => u.Login)
-                .IncludeProperties(u => u.IsDeleted);
         }
 
         public DbSet<Identities> Identities { get; set; }

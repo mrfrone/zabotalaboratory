@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using zabotalaboratory.Auth.Database.Context;
@@ -9,9 +10,10 @@ using zabotalaboratory.Auth.Database.Context;
 namespace zabotalaboratory.Auth.Database.Migrations
 {
     [DbContext(typeof(AuthContext))]
-    partial class AuthContextModelSnapshot : ModelSnapshot
+    [Migration("20200514094115_InitialDB")]
+    partial class InitialDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,10 +43,6 @@ namespace zabotalaboratory.Auth.Database.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -90,51 +88,12 @@ namespace zabotalaboratory.Auth.Database.Migrations
                     b.ToTable("Jwts");
                 });
 
-            modelBuilder.Entity("zabotalaboratory.Auth.Database.Entities.UsersProfiles", b =>
-                {
-                    b.Property<int>("IdentityId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("character varying(256)")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("character varying(32)")
-                        .HasMaxLength(32);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("character varying(32)")
-                        .HasMaxLength(32);
-
-                    b.Property<string>("PatronymicName")
-                        .IsRequired()
-                        .HasColumnType("character varying(32)")
-                        .HasMaxLength(32);
-
-                    b.HasKey("IdentityId");
-
-                    b.ToTable("UsersProfiles");
-                });
-
             modelBuilder.Entity("zabotalaboratory.Auth.Database.Entities.Jwts", b =>
                 {
                     b.HasOne("zabotalaboratory.Auth.Database.Entities.Identities", "DeletedBy")
                         .WithMany()
                         .HasForeignKey("DeletedById");
 
-                    b.HasOne("zabotalaboratory.Auth.Database.Entities.Identities", "Identity")
-                        .WithMany()
-                        .HasForeignKey("IdentityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("zabotalaboratory.Auth.Database.Entities.UsersProfiles", b =>
-                {
                     b.HasOne("zabotalaboratory.Auth.Database.Entities.Identities", "Identity")
                         .WithMany()
                         .HasForeignKey("IdentityId")

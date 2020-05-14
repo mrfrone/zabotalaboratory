@@ -13,7 +13,6 @@ namespace zabotalaboratory.Auth.Database.Extensions
             {
                 builder.UseNpgsql(connectionString, options =>
                 {
-                    options.MigrationsAssembly("zabotalaboratory.Auth.Database");
                     options.EnableRetryOnFailure();
                     options.MigrationsHistoryTable("__EFMigrationsHistory", AuthContext.SchemaName);
                 });
