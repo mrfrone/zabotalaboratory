@@ -18,6 +18,8 @@
 
         public string Role { get; set; }
 
+        public string SubRole { get; set; }
+
         public string FullName => $"{LastName} {FirstName} {PatronymicName}";
     }
 }

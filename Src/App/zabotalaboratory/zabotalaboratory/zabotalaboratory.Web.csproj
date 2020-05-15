@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\zabotalaboratory.Analyses.Database\zabotalaboratory.Analyses.Database.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Auth.Services\zabotalaboratory.Auth.Services.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Common.AutoMapper\zabotalaboratory.Common.AutoMapper.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Common.PasswordService\zabotalaboratory.Common.PasswordService.csproj" />

@@ -1,6 +1,6 @@
-﻿namespace zabotalaboratory.Auth.Database.Entities
+﻿namespace zabotalaboratory.Analyses.Database.Entities
 {
-    public class Roles
+    public class Clinics
     {
         public virtual int Id { get; set; }
 

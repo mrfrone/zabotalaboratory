@@ -3,33 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Web", "zabotalaboratory\zabotalaboratory.Web.csproj", "{F80C877B-7ACA-44E6-8D49-D85CF8912B34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Web", "zabotalaboratory\zabotalaboratory.Web.csproj", "{F80C877B-7ACA-44E6-8D49-D85CF8912B34}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{F49E29C2-A10D-47ED-BFB8-50F0AF6D2243}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{49882651-8FE1-495A-BDE1-F8E16392C12F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Auth.Database", "zabotalaboratory.Auth.Database\zabotalaboratory.Auth.Database.csproj", "{615EF04C-8377-4C6A-BE30-86869BBA0D8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Auth.Database", "zabotalaboratory.Auth.Database\zabotalaboratory.Auth.Database.csproj", "{615EF04C-8377-4C6A-BE30-86869BBA0D8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Auth.Database.Repository", "zabotalaboratory.Auth.Database.Repository\zabotalaboratory.Auth.Database.Repository.csproj", "{89E0BF29-8EC1-4266-A4D3-A1455FCE0105}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Auth.Database.Repository", "zabotalaboratory.Auth.Database.Repository\zabotalaboratory.Auth.Database.Repository.csproj", "{89E0BF29-8EC1-4266-A4D3-A1455FCE0105}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Auth.Forms", "zabotalaboratory.Auth.Forms\zabotalaboratory.Auth.Forms.csproj", "{C6FF3700-6652-4A43-B3D7-5F4EB45B3565}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Auth.Forms", "zabotalaboratory.Auth.Forms\zabotalaboratory.Auth.Forms.csproj", "{C6FF3700-6652-4A43-B3D7-5F4EB45B3565}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{777252BA-E2DD-4676-AE4D-3B3EDD217A21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Common.EFCore", "zabotalaboratory.Common.EFCore\zabotalaboratory.Common.EFCore.csproj", "{D4187982-3210-48C2-89B5-B77437944D07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Common.EFCore", "zabotalaboratory.Common.EFCore\zabotalaboratory.Common.EFCore.csproj", "{D4187982-3210-48C2-89B5-B77437944D07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Common.Datamodel", "zabotalaboratory.Common.Datamodel\zabotalaboratory.Common.Datamodel.csproj", "{B28B3587-B00C-4D33-A3B3-10C3F11171CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Common.Datamodel", "zabotalaboratory.Common.Datamodel\zabotalaboratory.Common.Datamodel.csproj", "{B28B3587-B00C-4D33-A3B3-10C3F11171CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Common.PasswordService", "zabotalaboratory.Common.PasswordService\zabotalaboratory.Common.PasswordService.csproj", "{51973959-D04B-4870-B236-B1BFF4996C57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Common.PasswordService", "zabotalaboratory.Common.PasswordService\zabotalaboratory.Common.PasswordService.csproj", "{51973959-D04B-4870-B236-B1BFF4996C57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Auth.Datamodel", "zabotalaboratory.Auth.Datamodel\zabotalaboratory.Auth.Datamodel.csproj", "{B67323BF-1D53-464E-808A-EBAD0667C28B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Auth.Datamodel", "zabotalaboratory.Auth.Datamodel\zabotalaboratory.Auth.Datamodel.csproj", "{B67323BF-1D53-464E-808A-EBAD0667C28B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Common.AutoMapper", "zabotalaboratory.Common.AutoMapper\zabotalaboratory.Common.AutoMapper.csproj", "{1A20B939-96F2-471B-9F99-37C5953497E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Common.AutoMapper", "zabotalaboratory.Common.AutoMapper\zabotalaboratory.Common.AutoMapper.csproj", "{1A20B939-96F2-471B-9F99-37C5953497E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Common.Result", "zabotalaboratory.Common.Result\zabotalaboratory.Common.Result.csproj", "{290198BA-446D-4744-839B-02681FEEC768}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Common.Result", "zabotalaboratory.Common.Result\zabotalaboratory.Common.Result.csproj", "{290198BA-446D-4744-839B-02681FEEC768}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Auth.Services", "zabotalaboratory.Auth.Services\zabotalaboratory.Auth.Services.csproj", "{0789A9B3-6E70-4B59-A52C-18821206F8B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Auth.Services", "zabotalaboratory.Auth.Services\zabotalaboratory.Auth.Services.csproj", "{0789A9B3-6E70-4B59-A52C-18821206F8B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analyses", "Analyses", "{11401A91-C9DB-4A78-8817-F840BB307B3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Analyses.Database", "zabotalaboratory.Analyses.Database\zabotalaboratory.Analyses.Database.csproj", "{51919C73-E038-4FBB-91F3-5F1FDEC1C3B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +85,10 @@ Global
 		{0789A9B3-6E70-4B59-A52C-18821206F8B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0789A9B3-6E70-4B59-A52C-18821206F8B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0789A9B3-6E70-4B59-A52C-18821206F8B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51919C73-E038-4FBB-91F3-5F1FDEC1C3B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51919C73-E038-4FBB-91F3-5F1FDEC1C3B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51919C73-E038-4FBB-91F3-5F1FDEC1C3B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51919C73-E038-4FBB-91F3-5F1FDEC1C3B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +105,7 @@ Global
 		{1A20B939-96F2-471B-9F99-37C5953497E3} = {777252BA-E2DD-4676-AE4D-3B3EDD217A21}
 		{290198BA-446D-4744-839B-02681FEEC768} = {777252BA-E2DD-4676-AE4D-3B3EDD217A21}
 		{0789A9B3-6E70-4B59-A52C-18821206F8B5} = {49882651-8FE1-495A-BDE1-F8E16392C12F}
+		{51919C73-E038-4FBB-91F3-5F1FDEC1C3B5} = {11401A91-C9DB-4A78-8817-F840BB307B3E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4BC89C9E-2F41-4726-B9B2-2BB855D03E69}

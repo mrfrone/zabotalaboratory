@@ -6,6 +6,8 @@ using zabotalaboratory.Common.PasswordService.PasswordHash;
 using System;
 using zabotalaboratory.Auth.Database.Context;
 using zabotalaboratory.Auth.Forms.Login;
+using zabotalaboratory.Auth.Database.Entities;
+using zabotalaboratory.Common.EFCore.Extensions;
 
 namespace zabotalaboratory.Auth.Database.Repository.Identities
 {
@@ -29,6 +31,7 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
                 .Where(x => x.IsDeleted != true)
                 .ToArrayAsync();
         }
+
         public async Task<Entities.Identities> IdentityByTokenId(int id)
         {
             var jwt = await _tokensRepository.GetById(id);
@@ -40,6 +43,7 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
                 .Include(u => u.SubRole)
                 .FirstOrDefaultAsync(u => u.Id == jwt.IdentityId && u.IsDeleted != true);
         }
+
         public async Task<Entities.Identities> IdentityByLogin(string login)
         {
             return await _ac.Identities
@@ -59,10 +63,26 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
 
             return user;
         }
-        public Task<bool> IdentityExistsAsync(int identityId)
+
+        public async Task<bool> IdentityExistsAsync(int identityId)
         {
-            return _ac.Identities.AnyAsync(u => u.Id == identityId && u.IsDeleted != true);
+            return  await _ac.Identities.AnyAsync(u => u.Id == identityId && u.IsDeleted != true);
         }
+
+        public async Task<Roles[]> GetRoles(bool trackChanges = false) 
+        {
+            return await _ac.Roles
+                .HasTracking(trackChanges)
+                .ToArrayAsync();
+        }
+
+        public async Task<SubRoles[]> GetSubRoles(bool trackChanges = false)
+        {
+            return await _ac.SubRoles
+                .HasTracking(trackChanges)
+                .ToArrayAsync();
+        }
+
         public Task Add(LoginForm form)
         {
             _ac.Identities.Add(new Entities.Identities
@@ -70,12 +90,14 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
                 Login = form.Login,
                 Password = _passwordHashCalculator.Calc(form.Password),
                 IsDeleted = false,
+                //todo: add dynamic roles
                 RoleId = 1,
                 SubRoleId = 1
             });
 
             return _ac.SaveChangesAsync();
         }
+
         public async Task<bool> Delete(int identityId, int actorId)
         {
             var identity = await _ac.Identities.FirstOrDefaultAsync(u => u.Id == identityId && u.IsDeleted != true);

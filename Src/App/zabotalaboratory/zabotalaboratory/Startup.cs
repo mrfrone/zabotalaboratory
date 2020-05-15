@@ -13,6 +13,7 @@ using zabotalaboratory.Common.AutoMapper.Extensions;
 using zabotalaboratory.Common.PasswordService.Extensions;
 using zabotalaboratory.Common.Storage;
 using zabotalaboratory.Common.Filters;
+using zabotalaboratory.Analyses.Database.Extensions;
 
 namespace zabotalaboratory
 {
@@ -44,6 +45,7 @@ namespace zabotalaboratory
             services.Configure<PasswordHashingSettings>(Configuration.GetSection(nameof(PasswordHashingSettings)));
 
             services.AddAuthServices(Configuration.GetConnectionString("PostgreSQL"));
+            services.AddAnalysesDatabase(Configuration.GetConnectionString("PostgreSQL"));
             services.AddPasswordHashing();
             services.AddScoped<IIdentityRequestStorage, IdentityRequestStorage>();
 
