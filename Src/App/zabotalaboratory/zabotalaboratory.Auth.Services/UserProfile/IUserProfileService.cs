@@ -7,6 +7,5 @@ namespace zabotalaboratory.Auth.Services.UserProfile
     public interface IUserProfileService
     {
         Task<ZabotaResult<ZabotaUserProfile>> GetByIdentityId(int identityId);
-        Task<ZabotaResult<string>> GetRoleByIdentityId(int identityId);
     }
 }

@@ -29,8 +29,8 @@ namespace zabotalaboratory.Auth.Datamodel.Mapping
                 .ForMember(u => u.PatronymicName, opts => opts.MapFrom(u => u.PatronymicName))
                 .ForMember(u => u.LastName, opts => opts.MapFrom(u => u.LastName))
                 .ForMember(u => u.Email, opts => opts.MapFrom(u => u.Email))
-                .ForMember(u => u.Phone, opts => opts.MapFrom(u => u.Identity.Login))
-                .ForMember(u => u.Role, opts => opts.MapFrom(u => u.Identity.Role));
+                .ForMember(u => u.Phone, opts => opts.MapFrom(u => u.Identity.Login));
+                //.ForMember(u => u.Role, opts => opts.MapFrom(u => u.Identity.Role));
 
         }
     }

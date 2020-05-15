@@ -24,6 +24,8 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
         public async Task<Entities.Identities[]> Get()
         {
             return await _ac.Identities
+                .Include(u => u.Role)
+                .Include(u => u.SubRole)
                 .Where(x => x.IsDeleted != true)
                 .ToArrayAsync();
         }
@@ -33,11 +35,16 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
             if (jwt == null || jwt.IsDeleted)
                 return null;
 
-            return await _ac.Identities.FirstOrDefaultAsync(u => u.Id == jwt.IdentityId && u.IsDeleted != true);
+            return await _ac.Identities
+                .Include(u => u.Role)
+                .Include(u => u.SubRole)
+                .FirstOrDefaultAsync(u => u.Id == jwt.IdentityId && u.IsDeleted != true);
         }
         public async Task<Entities.Identities> IdentityByLogin(string login)
         {
             return await _ac.Identities
+                .Include(u => u.Role)
+                .Include(u => u.SubRole)
                 .FirstOrDefaultAsync(x => x.Login == login);
         }
 
@@ -45,7 +52,10 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
         {
             var login = form.Login.Trim();
 
-            var user = await _ac.Identities.FirstOrDefaultAsync(u => u.Login == login && u.IsDeleted != true);
+            var user = await _ac.Identities
+                .Include(u => u.Role)
+                .Include(u => u.SubRole)
+                .FirstOrDefaultAsync(u => u.Login == login && u.IsDeleted != true);
 
             return user;
         }
@@ -59,7 +69,9 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
             {
                 Login = form.Login,
                 Password = _passwordHashCalculator.Calc(form.Password),
-                IsDeleted = false
+                IsDeleted = false,
+                RoleId = 1,
+                SubRoleId = 1
             });
 
             return _ac.SaveChangesAsync();

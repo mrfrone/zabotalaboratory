@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using zabotalaboratory.Auth.Database.Context;
@@ -9,9 +10,10 @@ using zabotalaboratory.Auth.Database.Context;
 namespace zabotalaboratory.Auth.Database.Migrations
 {
     [DbContext(typeof(AuthContext))]
-    partial class AuthContextModelSnapshot : ModelSnapshot
+    [Migration("20200515074210_AddRolesToOtherTable")]
+    partial class AddRolesToOtherTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,17 +46,7 @@ namespace zabotalaboratory.Auth.Database.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("SubRoleId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.HasIndex("SubRoleId");
 
                     b.ToTable("Identities");
                 });
@@ -128,28 +120,6 @@ namespace zabotalaboratory.Auth.Database.Migrations
                         });
                 });
 
-            modelBuilder.Entity("zabotalaboratory.Auth.Database.Entities.SubRoles", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SubRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Все"
-                        });
-                });
-
             modelBuilder.Entity("zabotalaboratory.Auth.Database.Entities.UsersProfiles", b =>
                 {
                     b.Property<int>("IdentityId")
@@ -178,21 +148,6 @@ namespace zabotalaboratory.Auth.Database.Migrations
                     b.HasKey("IdentityId");
 
                     b.ToTable("UsersProfiles");
-                });
-
-            modelBuilder.Entity("zabotalaboratory.Auth.Database.Entities.Identities", b =>
-                {
-                    b.HasOne("zabotalaboratory.Auth.Database.Entities.Roles", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("zabotalaboratory.Auth.Database.Entities.SubRoles", "SubRole")
-                        .WithMany()
-                        .HasForeignKey("SubRoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("zabotalaboratory.Auth.Database.Entities.Jwts", b =>

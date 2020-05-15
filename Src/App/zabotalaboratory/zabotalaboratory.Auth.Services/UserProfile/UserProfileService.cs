@@ -28,13 +28,5 @@ namespace zabotalaboratory.Auth.Services.UserProfile
             var mappedModel = _mapper.Map<UsersProfiles, ZabotaUserProfile>(model);
             return new ZabotaResult<ZabotaUserProfile>(mappedModel);
         }
-        public async Task<ZabotaResult<string>> GetRoleByIdentityId(int identityId)
-        {
-            var model = await GetByIdentityId(identityId);
-            if (model.Result == null)
-                return ZabotaErrorCodes.EmptyResult;
-
-            return new ZabotaResult<string>(model.Result.Role);
-        }
     }
 }

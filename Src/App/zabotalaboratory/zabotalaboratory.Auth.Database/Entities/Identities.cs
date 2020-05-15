@@ -15,7 +15,15 @@ namespace zabotalaboratory.Auth.Database.Entities
         public virtual string Password { get; set; }
 
         [Required]
-        public virtual string Role { get; set; }
+        public virtual int RoleId { get; set; }
+
+        [Required]
+        public virtual Roles Role { get; set; }
+
+        [Required]
+        public virtual int SubRoleId { get; set; }
+        [Required]
+        public virtual SubRoles SubRole { get; set; }
 
         public virtual bool? IsDeleted { get; set; }
 
