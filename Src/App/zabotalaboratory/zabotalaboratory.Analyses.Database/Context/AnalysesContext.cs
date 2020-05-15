@@ -27,5 +27,15 @@ namespace zabotalaboratory.Auth.Database.Context
         }
 
         public DbSet<Clinics> Clinics { get; set; }
+
+        public DbSet<LaboratoryAnalyses> LaboratoryAnalyses { get; set; }
+
+        public DbSet<Talons> Talons { get; set; }
+
+        public DbSet<AnalysesResult> AnalysesResult { get; set; }
+
+        public DbSet<AnalysesTypes> AnalysesTypes { get; set; }
+
+        public DbSet<LaboratoryAnalysesTests> LaboratoryAnalysesTests { get; set; }
     }
 }

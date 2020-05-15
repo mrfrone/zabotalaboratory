@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analyses", "Analyses", "{11
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Analyses.Database", "zabotalaboratory.Analyses.Database\zabotalaboratory.Analyses.Database.csproj", "{51919C73-E038-4FBB-91F3-5F1FDEC1C3B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Analyses.Database.Repository", "zabotalaboratory.Analyses.Database.Repository\zabotalaboratory.Analyses.Database.Repository.csproj", "{0DAA8742-294F-4E4F-AAA8-768429F1E7AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +91,10 @@ Global
 		{51919C73-E038-4FBB-91F3-5F1FDEC1C3B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51919C73-E038-4FBB-91F3-5F1FDEC1C3B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51919C73-E038-4FBB-91F3-5F1FDEC1C3B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DAA8742-294F-4E4F-AAA8-768429F1E7AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DAA8742-294F-4E4F-AAA8-768429F1E7AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DAA8742-294F-4E4F-AAA8-768429F1E7AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DAA8742-294F-4E4F-AAA8-768429F1E7AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,6 +112,7 @@ Global
 		{290198BA-446D-4744-839B-02681FEEC768} = {777252BA-E2DD-4676-AE4D-3B3EDD217A21}
 		{0789A9B3-6E70-4B59-A52C-18821206F8B5} = {49882651-8FE1-495A-BDE1-F8E16392C12F}
 		{51919C73-E038-4FBB-91F3-5F1FDEC1C3B5} = {11401A91-C9DB-4A78-8817-F840BB307B3E}
+		{0DAA8742-294F-4E4F-AAA8-768429F1E7AF} = {11401A91-C9DB-4A78-8817-F840BB307B3E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4BC89C9E-2F41-4726-B9B2-2BB855D03E69}
