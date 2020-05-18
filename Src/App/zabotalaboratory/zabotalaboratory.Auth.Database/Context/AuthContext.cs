@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using zabotalaboratory.Auth.Database.Entities;
 
-namespace zabotalaboratory.Analyses.Database.Context
+namespace zabotalaboratory.Auth.Database.Context
 {
     public class AuthContext : DbContext
     {

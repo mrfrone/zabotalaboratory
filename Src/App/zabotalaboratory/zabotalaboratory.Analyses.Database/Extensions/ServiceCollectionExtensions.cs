@@ -1,4 +1,4 @@
-﻿using zabotalaboratory.Auth.Database.Context;
+﻿using zabotalaboratory.Analyses.Database.Context;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 

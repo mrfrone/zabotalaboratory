@@ -6,6 +6,7 @@ namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalysesReposi
 {
     public interface ILaboratoryAnalysesRepository
     {
-        Task<List<LaboratoryAnalyses>> GetLaboratoryAnalyses(bool trackChanges = false);
+        Task<LaboratoryAnalyses[]> GetLaboratoryAnalyses(bool trackChanges = false);
+        Task<LaboratoryAnalyses> GetLaboratoryAnalysesById(int id, bool trackChanges = false);
     }
 }

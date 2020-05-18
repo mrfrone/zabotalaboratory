@@ -1,6 +1,6 @@
-﻿namespace zabotalaboratory.Analyses.Database.Entities
+﻿namespace zabotalaboratory.Analyses.Datamodel.Analyses
 {
-    public class LaboratoryAnalysesTests
+    public class ZabotaLaboratoryAnalysesTests
     {
         public virtual int Id { get; set; }
 

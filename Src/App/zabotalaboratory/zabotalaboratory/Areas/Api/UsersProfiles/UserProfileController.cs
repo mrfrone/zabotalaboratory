@@ -6,7 +6,7 @@ using zabotalaboratory.Common;
 using zabotalaboratory.Common.Consts;
 using zabotalaboratory.Common.Result;
 
-namespace zabotalaboratory.Areas.Api.Auth
+namespace zabotalaboratory.Areas.Api.UserProfile
 {
     [Authorize]
     [Area(AreaNames.Api)]

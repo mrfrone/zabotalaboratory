@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace zabotalaboratory.Analyses.Database.Entities
+namespace zabotalaboratory.Analyses.Datamodel.Analyses
 {
-    public class AnalysesTypes
+    public class ZabotaAnalysesTypes
     {
         public virtual int Id { get; set; }
 
@@ -10,6 +10,6 @@ namespace zabotalaboratory.Analyses.Database.Entities
 
         public virtual int Number1C { get; set; }    
         
-        public virtual List<LaboratoryAnalysesTests> LaboratoryAnalysesTests { get; set; }
+        public virtual IEnumerable<ZabotaLaboratoryAnalysesTests> LaboratoryAnalysesTests { get; set; }
     }
 }

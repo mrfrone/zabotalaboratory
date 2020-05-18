@@ -2,7 +2,7 @@
 using zabotalaboratory.Analyses.Database.Entities;
 using zabotalaboratory.Auth.Services.Identities;
 
-namespace zabotalaboratory.Auth.Database.Context
+namespace zabotalaboratory.Analyses.Database.Context
 {
     public class AnalysesContext : DbContext
     {

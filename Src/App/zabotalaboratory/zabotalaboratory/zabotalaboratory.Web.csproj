@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -17,7 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\zabotalaboratory.Analyses.Database\zabotalaboratory.Analyses.Database.csproj" />
+    <ProjectReference Include="..\zabotalaboratory.Analyses.Datamodel\zabotalaboratory.Analyses.Datamodel.csproj" />
+    <ProjectReference Include="..\zabotalaboratory.Analyses.Services\zabotalaboratory.Analyses.Services.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Auth.Services\zabotalaboratory.Auth.Services.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Common.AutoMapper\zabotalaboratory.Common.AutoMapper.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Common.PasswordService\zabotalaboratory.Common.PasswordService.csproj" />

@@ -9,7 +9,7 @@ namespace zabotalaboratory.Analyses.Database.Repository.Extentions
         public static IServiceCollection AddAnalysesRepository(this IServiceCollection services, string connectionString)
         {
             services.AddAnalysesDatabase(connectionString);
-            services.AddScoped<ITokensRepository, TokensRepository>();
+            services.AddScoped<ILaboratoryAnalysesRepository, LaboratoryAnalysesRepository.LaboratoryAnalysesRepository>();
             return services;
         }
     }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using zabotalaboratory.Analyses.Database.Context;
@@ -9,9 +10,10 @@ using zabotalaboratory.Analyses.Database.Context;
 namespace zabotalaboratory.Analyses.Database.Migrations
 {
     [DbContext(typeof(AnalysesContext))]
-    partial class AnalysesContextModelSnapshot : ModelSnapshot
+    [Migration("20200518095752_AddAnalyses")]
+    partial class AddAnalyses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -129,7 +131,7 @@ namespace zabotalaboratory.Analyses.Database.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("AnalysesTypesId")
+                    b.Property<int?>("AnalysesTypeId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
@@ -140,7 +142,7 @@ namespace zabotalaboratory.Analyses.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AnalysesTypesId");
+                    b.HasIndex("AnalysesTypeId");
 
                     b.ToTable("LaboratoryAnalysesTests");
                 });
@@ -189,9 +191,9 @@ namespace zabotalaboratory.Analyses.Database.Migrations
 
             modelBuilder.Entity("zabotalaboratory.Analyses.Database.Entities.LaboratoryAnalysesTests", b =>
                 {
-                    b.HasOne("zabotalaboratory.Analyses.Database.Entities.AnalysesTypes", null)
+                    b.HasOne("zabotalaboratory.Analyses.Database.Entities.AnalysesTypes", "AnalysesType")
                         .WithMany("LaboratoryAnalysesTests")
-                        .HasForeignKey("AnalysesTypesId");
+                        .HasForeignKey("AnalysesTypeId");
                 });
 
             modelBuilder.Entity("zabotalaboratory.Analyses.Database.Entities.Talons", b =>

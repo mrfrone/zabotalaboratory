@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using zabotalaboratory.Auth.Datamodel.Mapping;
 using zabotalaboratory.Auth.Datamodel.Tokens;
 using zabotalaboratory.Auth.Services.Extensions;
 using zabotalaboratory.Common.Datamodel.PasswordHashing;
@@ -13,7 +12,7 @@ using zabotalaboratory.Common.AutoMapper.Extensions;
 using zabotalaboratory.Common.PasswordService.Extensions;
 using zabotalaboratory.Common.Storage;
 using zabotalaboratory.Common.Filters;
-using zabotalaboratory.Analyses.Database.Extensions;
+using zabotalaboratory.Analyses.Services.Extensions;
 
 namespace zabotalaboratory
 {
@@ -39,18 +38,21 @@ namespace zabotalaboratory
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
 
             services.Configure<JwtSettings>(Configuration.GetSection(nameof(JwtSettings)));
             services.Configure<PasswordHashingSettings>(Configuration.GetSection(nameof(PasswordHashingSettings)));
 
             services.AddAuthServices(Configuration.GetConnectionString("PostgreSQL"));
-            services.AddAnalysesDatabase(Configuration.GetConnectionString("PostgreSQL"));
+            services.AddAnalysesServices(Configuration.GetConnectionString("PostgreSQL"));
             services.AddPasswordHashing();
             services.AddScoped<IIdentityRequestStorage, IdentityRequestStorage>();
 
             services.AddMiMapping(
-                typeof(MappingProfile)
+                typeof(Auth.Datamodel.Mapping.MappingProfile),
+                typeof(Analyses.Datamodel.Mapping.MappingProfile)
             );
 
             var jwtOptions = Configuration.GetSection(nameof(JwtSettings)).Get<JwtSettings>();
