@@ -4,7 +4,7 @@ using zabotalaboratory.Common.EFCore.Extensions;
 using Microsoft.EntityFrameworkCore;
 using zabotalaboratory.Analyses.Database.Context;
 
-namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalysesRepository
+namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
 {
     internal class LaboratoryAnalysesRepository : ILaboratoryAnalysesRepository
     {
@@ -15,14 +15,14 @@ namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalysesReposi
             _ac = ac;
         }
         
-        public async Task<LaboratoryAnalyses[]> GetLaboratoryAnalyses(bool trackChanges = false)
+        public async Task<Entities.LaboratoryAnalyses[]> GetLaboratoryAnalyses(bool trackChanges = false)
         {
             return await _ac.LaboratoryAnalyses
                 .HasTracking(trackChanges)
                 .Include(a => a.Clinic)
                 .ToArrayAsync();
         }
-        public async Task<LaboratoryAnalyses> GetLaboratoryAnalysesById(int id, bool trackChanges = false)
+        public async Task<Entities.LaboratoryAnalyses> GetLaboratoryAnalysesById(int id, bool trackChanges = false)
         {
             return await _ac.LaboratoryAnalyses
                 .HasTracking(trackChanges)

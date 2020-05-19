@@ -23,4 +23,12 @@ export class BaseApiClient {
       })
     });
   }
+
+  protected get<TRes extends BaseZabotaResult>(url: string): Observable<TRes> {
+    return this._httpClient.get<TRes>(DefaultUrls.ServerUrl + url);
+  }
+
+  protected getWithId<TRes extends BaseZabotaResult>(url: string, id: number): Observable<TRes> {
+    return this._httpClient.get<TRes>(DefaultUrls.ServerUrl + url + "/?id=" + id);
+  }
 }

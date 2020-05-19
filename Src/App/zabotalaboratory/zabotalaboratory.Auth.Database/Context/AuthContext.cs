@@ -22,14 +22,6 @@ namespace zabotalaboratory.Auth.Database.Context
                     new Roles() { Id = 3, Name="Поликлиника" }
                 });
             });
-
-            modelBuilder.Entity<SubRoles>(e =>
-            {
-                e.HasData(new[]
-                {
-                    new SubRoles() { Id = 1, Name="Все" }
-                });
-            });
         }
 
         public DbSet<Identities> Identities { get; set; }

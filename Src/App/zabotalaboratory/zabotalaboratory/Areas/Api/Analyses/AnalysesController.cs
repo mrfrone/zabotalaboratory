@@ -2,8 +2,10 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using zabotalaboratory.Analyses.Datamodel.Analyses;
 using zabotalaboratory.Analyses.Datamodel.LaboratoryAnalyses;
-using zabotalaboratory.Analyses.Services.AnalysesService;
+using zabotalaboratory.Analyses.Services.Analyses;
+using zabotalaboratory.Analyses.Services.LaboratoryAnalyses;
 using zabotalaboratory.Common;
 using zabotalaboratory.Common.Consts;
 using zabotalaboratory.Common.Result;
@@ -15,25 +17,37 @@ namespace zabotalaboratory.Areas.Api.Auth
     [Route(HttpRouteConsts.DefaultController)]
     public class AnalysesController : BaseController
     {
+        private readonly ILaboratoryAnalysesService _laboratoryAnalysesService;
         private readonly IAnalysesService _analysesService;
 
-        public AnalysesController(IAnalysesService analysesService)
+        public AnalysesController(ILaboratoryAnalysesService laboratoryAnalysesService, IAnalysesService analysesService)
         {
             _analysesService = analysesService;
+            _laboratoryAnalysesService = laboratoryAnalysesService;
         }
                 
         [HttpGet(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<IEnumerable<ZabotaLaboratoryAnalyses>>> LaboratoryAnalyses()
         {
-            return await _analysesService.GetLaboratoryAnalyses();
+            return await _laboratoryAnalysesService.GetLaboratoryAnalyses();
         }
 
         [HttpGet(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<ZabotaLaboratoryAnalyses>> LaboratoryAnalyseById(int id)
         {
-            var result = await _analysesService.GetLaboratoryAnalyseById(id);
+            return await _laboratoryAnalysesService.GetLaboratoryAnalyseById(id);
+        }
 
-            return result;
+        [HttpGet(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> AnalysesTypes()
+        {
+            return await _analysesService.GetAnalysesWithTests();
+        }
+
+        [HttpGet(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<ZabotaAnalysesTypes>> AnalysesTypeById(int id)
+        {
+            return await _analysesService.GetAnalysesTypeById(id);                     
         }
     }
 }

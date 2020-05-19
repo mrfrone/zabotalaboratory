@@ -11,8 +11,7 @@ import {AuthCheckerService} from "../../../../core/services/auth-checker.service
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  public role: string
+  public role: string = 'Error';
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

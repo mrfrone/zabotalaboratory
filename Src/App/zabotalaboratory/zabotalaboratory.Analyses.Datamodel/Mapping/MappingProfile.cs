@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using zabotalaboratory.Analyses.Database.Entities;
 using zabotalaboratory.Analyses.Datamodel.Analyses;
 using zabotalaboratory.Analyses.Datamodel.Clinics;
 using zabotalaboratory.Analyses.Datamodel.LaboratoryAnalyses;
@@ -45,6 +44,7 @@ namespace zabotalaboratory.Analyses.Datamodel.Mapping
                 .IgnoreOther()
                 .ForMember(u => u.Id, opts => opts.MapFrom(u => u.Id))
                 .ForMember(u => u.Name, opts => opts.MapFrom(u => u.Name))
+                .ForMember(u => u.Number1C, opts => opts.MapFrom(u => u.Number1C))
                 .ForMember(u => u.LaboratoryAnalysesTests, opts => opts.MapFrom(u => u.LaboratoryAnalysesTests));
 
             CreateMap<Database.Entities.LaboratoryAnalysesTests, ZabotaLaboratoryAnalysesTests>()

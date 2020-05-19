@@ -50,3 +50,17 @@
 }
 button:focus {outline:0;}
 
+mat-sidenav-container{
+  mat-sidenav{
+    button{
+      width: 100%;
+      text-align: left;
+    }
+    mat-toolbar{
+      span{
+        font-family: "Courier New";
+      }
+    }
+  }
+}
+

@@ -3,12 +3,22 @@
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Лаборатория</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Анализы</a>
-      <a mat-list-item href="#">Профиль</a>
-      <a mat-list-item href="#">Администрирование</a>
-    </mat-nav-list>
+    <mat-toolbar><img src="/assets/img/logo/logo-main.png"><span>Лаборатория</span></mat-toolbar>
+      <button mat-button [matMenuTriggerFor]="analyses">Анализы</button>
+      <button mat-button>Профиль</button>
+      <button mat-button [matMenuTriggerFor]="admin">Администрирование</button>
+
+      <mat-menu #analyses="matMenu">
+        <button mat-menu-item routerLink="analyses">Просмотреть анализы</button>
+        <button mat-menu-item routerLink="analyses/add">Добавить анализ</button>
+      </mat-menu>
+
+      <mat-menu #admin="matMenu">
+        <button mat-menu-item>Настройки типов тестов</button>
+        <button mat-menu-item>Настройки тестов</button>
+        <button mat-menu-item>Пользователи</button>
+        <button mat-menu-item>Управление анализами</button>
+      </mat-menu>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
@@ -21,7 +31,6 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button></span>
-      <span>Забота</span>
       </div>
       <div class="navigation-items">
         <span>{{ role }}</span>

@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {MaterialModule} from "./modules/material.module";
 
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,14 +14,16 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './modules/auth/pages/login/login.component';
 import {AnalysesComponent} from "./modules/main/pages/analyses/analyses.component";
 import {HeaderComponent} from "./modules/main/components/header/header.component";
-import {MaterialModule} from "./modules/material.module";
+import {AddAnalysesComponent} from "./modules/main/pages/addanalyses/add-analyses.component";
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AnalysesComponent,
-    HeaderComponent
+    HeaderComponent,
+    AddAnalysesComponent
   ],
   imports: [
     MaterialModule,

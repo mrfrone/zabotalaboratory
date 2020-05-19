@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {LoginForm} from "../../shared/forms/LoginForm";
-import {TokenGetter} from "../../shared/consts/tokenGetter";
 import {ZabotaResult} from "../../shared/models/zabota-result/zabota-result";
 import {Jwt} from "../../shared/models/jwt/jwt";
 import {Observable} from "rxjs";
@@ -24,6 +23,6 @@ export class AuthApiClient extends BaseApiClient {
   }
 
   public getRole(): Observable<ZabotaResult<string>>{
-    return this.postWithoutBody<ZabotaResult<string>>('/api/userprofile/getrole');
+    return this.get<ZabotaResult<string>>('/api/userprofile/getrole');
   }
 }

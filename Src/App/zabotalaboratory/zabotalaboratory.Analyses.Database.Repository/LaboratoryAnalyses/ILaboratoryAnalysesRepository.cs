@@ -2,11 +2,11 @@
 using zabotalaboratory.Analyses.Database.Entities;
 using System.Collections.Generic;
 
-namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalysesRepository
+namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
 {
     public interface ILaboratoryAnalysesRepository
     {
-        Task<LaboratoryAnalyses[]> GetLaboratoryAnalyses(bool trackChanges = false);
-        Task<LaboratoryAnalyses> GetLaboratoryAnalysesById(int id, bool trackChanges = false);
+        Task<Entities.LaboratoryAnalyses[]> GetLaboratoryAnalyses(bool trackChanges = false);
+        Task<Entities.LaboratoryAnalyses> GetLaboratoryAnalysesById(int id, bool trackChanges = false);
     }
 }

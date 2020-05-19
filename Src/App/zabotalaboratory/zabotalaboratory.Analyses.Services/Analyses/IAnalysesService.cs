@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using zabotalaboratory.Analyses.Datamodel.LaboratoryAnalyses;
+using zabotalaboratory.Analyses.Datamodel.Analyses;
 using zabotalaboratory.Common.Result;
 
-namespace zabotalaboratory.Analyses.Services.AnalysesService
+namespace zabotalaboratory.Analyses.Services.Analyses
 {
     public interface IAnalysesService
     {
-        Task<ZabotaResult<IEnumerable<ZabotaLaboratoryAnalyses>>> GetLaboratoryAnalyses();
-        Task<ZabotaResult<ZabotaLaboratoryAnalyses>> GetLaboratoryAnalyseById(int id);
+        Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesWithTests();
+
+        Task<ZabotaResult<ZabotaAnalysesTypes>> GetAnalysesTypeById(int id);
     }
 }

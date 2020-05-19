@@ -21,7 +21,7 @@ namespace zabotalaboratory.Areas.Api.UserProfile
         }
 
         
-        [HttpPost(HttpRouteConsts.DefaultAction)]
+        [HttpGet(HttpRouteConsts.DefaultAction)]
         public ZabotaResult<string> GetRole()
         {
             return new ZabotaResult<string>(CurrentRole);
