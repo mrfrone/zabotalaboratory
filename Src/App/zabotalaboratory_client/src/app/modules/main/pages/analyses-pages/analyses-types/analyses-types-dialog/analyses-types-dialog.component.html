@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Настройки типа №{{ id }}</h2>
+<mat-dialog-content class="mat-typography">
+  <div *ngIf="!isProgress">
+    <form class="example-form" [formGroup]="typeForm">
+      <mat-form-field class="example-full-width">
+        <mat-label>Название теста</mat-label>
+        <input matInput type="text" formControlName="typeName">
+        <mat-error *ngIf="typeForm.controls['typeName'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Номер теста в 1С</mat-label>
+        <input matInput type="number" formControlName="type1C">
+        <mat-error *ngIf="typeForm.controls['type1C'].invalid">
+          Поле не должно быть пустым и в нем могут быть только цифры
+        </mat-error>
+      </mat-form-field>
+      <div class="form-buttons">
+        <button mat-stroked-button color="primary" type="button" [disabled]="typeForm.invalid" (click)="onFormSubmit()">Изменить</button>
+        <button mat-stroked-button color="primary" type="button" *ngIf="!type.isValid" (click)="onValidButton()">Активировать</button>
+        <button mat-stroked-button color="warn" type="button" *ngIf="type.isValid"(click)="onValidButton()">Деактивировать</button>
+      </div>
+    </form>
+  </div>
+  <div class="center" *ngIf="isProgress">
+    <mat-spinner></mat-spinner>
+  </div>
+</mat-dialog-content>
+
+

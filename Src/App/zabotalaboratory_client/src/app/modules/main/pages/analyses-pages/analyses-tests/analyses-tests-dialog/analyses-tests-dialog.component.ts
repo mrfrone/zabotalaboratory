@@ -4,10 +4,10 @@ import {AnalysesApiClient} from "../../../../../../core/apiClient/analyses.api-c
 import {LaboratoryAnalysesTests} from "../../../../../../shared/models/analyses/laboratory-analyses-tests";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AnalysesTypes} from "../../../../../../shared/models/analyses/analyses-types";
-import {UpdateAnalysesTestForm} from "../../../../../../shared/forms/Analyses/update-analyses-test.form";
+import {UpdateAnalysesTestForm} from "../../../../../../shared/forms/AnalysesTests/update-analyses-test.form";
 import {DefaultSuccessMessages} from "../../../../../../shared/consts/defaultSuccessMessages";
 import {MessageService} from "../../../../../../core/services/message.service";
-import {UpdateAnalysesTestValidForm} from "../../../../../../shared/forms/Analyses/update-analyses-test-valid.form";
+import {UpdateAnalysesTestValidForm} from "../../../../../../shared/forms/AnalysesTests/update-analyses-test-valid.form";
 import {ZabotaResult} from "../../../../../../shared/models/zabota-result/zabota-result";
 
 @Component({
@@ -37,7 +37,7 @@ export class AnalysesTestsDialogComponent implements OnInit {
               private readonly _messages: MessageService) {}
 
   ngOnInit(): void {
-    this._analyses.getAnalysesTypes().subscribe(res => {
+    this._analyses.getAnalysesTypesWithTests().subscribe(res => {
       this.types = res.result
     });
 
@@ -55,7 +55,7 @@ export class AnalysesTestsDialogComponent implements OnInit {
     };
 
     this._analyses.updateAnalysesTest(form).subscribe(res => {
-      this.afterUpdateTest(res);
+      this.afterUpdateTest(res, DefaultSuccessMessages.onUpdateTest);
     });
   }
 
@@ -68,12 +68,12 @@ export class AnalysesTestsDialogComponent implements OnInit {
     }
 
     this._analyses.updateValidation(form).subscribe(res => {
-      this.afterUpdateTest(res);
+      this.afterUpdateTest(res, DefaultSuccessMessages.onUpdateTestValid);
     });
   }
 
-  private afterUpdateTest(res: ZabotaResult<any>): void {
-    this._messages.showResult(res, DefaultSuccessMessages.onUpdateTestValid);
+  private afterUpdateTest(res: ZabotaResult<any>, message: string): void {
+    this._messages.showResult(res, message);
     this.updateData();
     this.updateEvent.emit();
   }

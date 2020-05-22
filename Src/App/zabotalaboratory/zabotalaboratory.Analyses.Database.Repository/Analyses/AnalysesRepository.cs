@@ -15,7 +15,15 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
         {
             _ac = ac;
         }
-        
+
+        #region Types
+        public async Task<AnalysesTypes[]> GetAnalysesTypesWithoutTests(bool trackChanges = false)
+        {
+            return await _ac.AnalysesTypes
+                .HasTracking(trackChanges)
+                .ToArrayAsync();
+        }
+
         public async Task<AnalysesTypes[]> GetAnalysesTypesWithTests(bool trackChanges = false)
         {
             return await _ac.AnalysesTypes
@@ -31,6 +39,10 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
                 .Include(a => a.LaboratoryAnalysesTests)
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
+
+        #endregion
+
+        #region Tests
         public async Task<LaboratoryAnalysesTests> GetAnalysesTestById(int id, bool trackChanges = false)
         {
             return await _ac.LaboratoryAnalysesTests
@@ -70,5 +82,6 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
 
             await _ac.SaveChangesAsync();
         }
+        #endregion
     }
 }

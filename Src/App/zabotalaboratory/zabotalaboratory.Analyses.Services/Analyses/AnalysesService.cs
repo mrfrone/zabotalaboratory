@@ -20,6 +20,18 @@ namespace zabotalaboratory.Analyses.Services.Analyses
             _mapper = mapper;
         }
 
+        #region Types
+        public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypesWithoutTests()
+        {
+            var result = await _analysesRepository.GetAnalysesTypesWithoutTests();
+            if (result == null)
+                return ZabotaErrorCodes.EmptyResult;
+
+            var mappedModel = _mapper.Map<IEnumerable<ZabotaAnalysesTypes>>(result);
+
+            return new ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>(mappedModel);
+        }
+
         public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypesWithTests()
         {
             var result = await _analysesRepository.GetAnalysesTypesWithTests();
@@ -42,6 +54,9 @@ namespace zabotalaboratory.Analyses.Services.Analyses
             return new ZabotaResult<ZabotaAnalysesTypes>(mappedModel);
         }
 
+        #endregion
+
+        #region Tests
         public async Task<ZabotaResult<ZabotaLaboratoryAnalysesTests>> GetAnalysesTestById(int id)
         {
             var result = await _analysesRepository.GetAnalysesTestById(id);
@@ -73,5 +88,6 @@ namespace zabotalaboratory.Analyses.Services.Analyses
 
             return new ZabotaResult<bool>(true);
         }
+        #endregion
     }
 }

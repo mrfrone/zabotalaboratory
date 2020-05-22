@@ -1,0 +1,48 @@
+<div class="main-box">
+  <div class="main-box-content" *ngIf="!mainWindowIsProgress">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Название</th>
+        <th scope="col">Номер 1С</th>
+        <th scope="col">Статус</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let type of types;" (click)="onTableElementClick(type.id)">
+        <th class="row-center">{{ type.id }}</th>
+        <td>{{ type.name }}</td>
+        <td class="row-center">{{ type.number1C }}</td>
+        <td class="row-center" *ngIf="type.isValid"><font color="green">Действителен</font></td>
+        <td class="row-center" *ngIf="!type.isValid"><font color="red">Недействителен</font></td>
+      </tr>
+      </tbody>
+    </table>
+    <form class="example-form" [formGroup]="typesForm">
+      <div class="form-title">Добавление новой группы тестов</div>
+      <hr>
+      <mat-form-field class="example-full-width">
+        <mat-label>Название группы</mat-label>
+        <input matInput type="text" formControlName="typeName">
+        <mat-error *ngIf="typesForm.controls['typeName'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Номер группы в 1С</mat-label>
+        <input matInput type="number" formControlName="type1C">
+        <mat-error *ngIf="typesForm.controls['type1C'].invalid">
+          Поле не должно быть пустым и в нем могут быть только цифры
+        </mat-error>
+      </mat-form-field>
+      <div class="form-button">
+        <button mat-stroked-button color="primary" type="button" [disabled]="typesForm.invalid" (click)="onFormSubmit()">Добавить</button>
+      </div>
+    </form>
+  </div>
+  <div class="center" *ngIf="mainWindowIsProgress">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>

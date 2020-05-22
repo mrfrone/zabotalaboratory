@@ -17,6 +17,8 @@ import {HeaderComponent} from "./modules/main/components/header/header.component
 import {AddAnalysesComponent} from "./modules/main/pages/analyses-pages/add-analyses/add-analyses.component";
 import {AnalysesTestsComponent} from "./modules/main/pages/analyses-pages/analyses-tests/analyses-tests.component";
 import { AnalysesTestsDialogComponent } from './modules/main/pages/analyses-pages/analyses-tests/analyses-tests-dialog/analyses-tests-dialog.component';
+import { AnalysesTypesComponent } from './modules/main/pages/analyses-pages/analyses-types/analyses-types.component';
+import { AnalysesTypesDialogComponent } from './modules/main/pages/analyses-pages/analyses-types/analyses-types-dialog/analyses-types-dialog.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { AnalysesTestsDialogComponent } from './modules/main/pages/analyses-page
     HeaderComponent,
     AddAnalysesComponent,
     AnalysesTestsComponent,
-    AnalysesTestsDialogComponent
+    AnalysesTestsDialogComponent,
+    AnalysesTypesComponent,
+    AnalysesTypesDialogComponent
   ],
   imports: [
     MaterialModule,

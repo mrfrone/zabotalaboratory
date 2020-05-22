@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AnalysesTypes} from "../../../../../shared/models/analyses/analyses-types";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {NewAnalysesTestForm} from "../../../../../shared/forms/Analyses/new-analyses-test.form";
+import {NewAnalysesTestForm} from "../../../../../shared/forms/AnalysesTests/new-analyses-test.form";
 import {AnalysesApiClient} from "../../../../../core/apiClient/analyses.api-client";
 import {MessageService} from "../../../../../core/services/message.service";
 import {DefaultSuccessMessages} from "../../../../../shared/consts/defaultSuccessMessages";
@@ -63,7 +63,7 @@ export class AnalysesTestsComponent implements OnInit {
   }
 
   private updateData(): void{
-    this._analyses.getAnalysesTypes()
+    this._analyses.getAnalysesTypesWithTests()
       .subscribe(res => {
       this.types = res.result
       this.mainWindowIsProgress = false;

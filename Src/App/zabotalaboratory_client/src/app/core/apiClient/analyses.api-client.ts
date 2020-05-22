@@ -5,10 +5,10 @@ import {Observable} from "rxjs";
 import {ZabotaResult} from "../../shared/models/zabota-result/zabota-result";
 import {LaboratoryAnalyses} from "../../shared/models/analyses/laboratory-analyses";
 import {AnalysesTypes} from "../../shared/models/analyses/analyses-types";
-import {NewAnalysesTestForm} from "../../shared/forms/Analyses/new-analyses-test.form";
+import {NewAnalysesTestForm} from "../../shared/forms/AnalysesTests/new-analyses-test.form";
 import {LaboratoryAnalysesTests} from "../../shared/models/analyses/laboratory-analyses-tests";
-import {UpdateAnalysesTestForm} from "../../shared/forms/Analyses/update-analyses-test.form";
-import {UpdateAnalysesTestValidForm} from "../../shared/forms/Analyses/update-analyses-test-valid.form";
+import {UpdateAnalysesTestForm} from "../../shared/forms/AnalysesTests/update-analyses-test.form";
+import {UpdateAnalysesTestValidForm} from "../../shared/forms/AnalysesTests/update-analyses-test-valid.form";
 
 @Injectable({providedIn: 'root'})
 
@@ -21,8 +21,16 @@ export class AnalysesApiClient extends BaseApiClient{
     return this.get<ZabotaResult<LaboratoryAnalyses[]>>('/api/LaboratoryAnalyses/GetLaboratoryAnalyses');
   }
 
-  public getAnalysesTypes(): Observable<ZabotaResult<AnalysesTypes[]>> {
-    return this.get<ZabotaResult<AnalysesTypes[]>>('/api/AnalysesTypes/GetAnalysesTypes');
+  public getAnalysesTypesWithTests(): Observable<ZabotaResult<AnalysesTypes[]>> {
+    return this.get<ZabotaResult<AnalysesTypes[]>>('/api/AnalysesTypes/GetAnalysesTypesWithTests');
+  }
+
+  public getAnalysesTypesWithoutTests(): Observable<ZabotaResult<AnalysesTypes[]>> {
+    return this.get<ZabotaResult<AnalysesTypes[]>>('/api/AnalysesTypes/GetAnalysesTypesWithoutTests');
+  }
+
+  public getAnalysesType(id: number): Observable<ZabotaResult<AnalysesTypes>> {
+    return this.getWithId<ZabotaResult<AnalysesTypes>>('/api/AnalysesTypes/GetAnalysesType', id);
   }
 
   public getAnalysesTest(id: number): Observable<ZabotaResult<LaboratoryAnalysesTests>>{

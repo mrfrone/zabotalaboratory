@@ -8,9 +8,17 @@ namespace zabotalaboratory.Analyses.Services.Analyses
 {
     public interface IAnalysesService
     {
+        #region Types
+
+        Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypesWithoutTests();
+
         Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypesWithTests();
 
         Task<ZabotaResult<ZabotaAnalysesTypes>> GetAnalysesTypeById(int id);
+
+        #endregion
+
+        #region Tests
 
         Task<ZabotaResult<ZabotaLaboratoryAnalysesTests>> GetAnalysesTestById(int id);
 
@@ -19,5 +27,7 @@ namespace zabotalaboratory.Analyses.Services.Analyses
         Task<ZabotaResult<bool>> UpdateAnalysesTest(UpdateAnalysesTestForm form);
 
         Task<ZabotaResult<bool>> UpdateAnalysesTestValid(UpdateAnalysesTestValidForm form);
+
+        #endregion
     }
 }

@@ -25,9 +25,21 @@ namespace zabotalaboratory.Areas.Api.AnalysesTypes
         }
 
         [HttpGet(HttpRouteConsts.DefaultAction)]
-        public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypes()
+        public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypesWithTests()
         {
             return await _analysesService.GetAnalysesTypesWithTests();
+        }
+
+        [HttpGet(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypesWithoutTests()
+        {
+            return await _analysesService.GetAnalysesTypesWithoutTests();
+        }
+
+        [HttpGet(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<ZabotaAnalysesTypes>> GetAnalysesType(int id)
+        {
+            return await _analysesService.GetAnalysesTypeById(id);
         }
     }
 }

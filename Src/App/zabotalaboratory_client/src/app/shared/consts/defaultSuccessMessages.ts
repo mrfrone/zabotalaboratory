@@ -5,4 +5,7 @@ export class DefaultSuccessMessages {
   public static onNewTestAdded: string = 'Новый тест успешно добавлен';
   public static onUpdateTest: string = 'Тест успешно обновлен';
   public static onUpdateTestValid: string = 'Статус теста успешно изменен';
+
+  public static onUpdateType: string = 'Тип успешно обновлен';
+  public static onUpdateTypeValid: string = 'Статус типа успешно изменен';
 }
