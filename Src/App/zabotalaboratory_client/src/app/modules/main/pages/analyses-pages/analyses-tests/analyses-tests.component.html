@@ -1,0 +1,62 @@
+<div class="main-box">
+  <div class="main-box-content" *ngIf="!mainWindowIsProgress">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Название</th>
+        <th scope="col">Номер 1С</th>
+        <th scope="col">Статус</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let type of types">
+      <tr>
+         <td colspan="4" class="type-name-center">{{type.name}}</td>
+      </tr>
+      <tr *ngFor="let test of type.laboratoryAnalysesTests;" (click)="onTableElementClick(test.id)">
+        <th class="row-center">{{ test.id }}</th>
+        <td>{{ test.name }}</td>
+        <td class="row-center">{{ test.number1C }}</td>
+        <td class="row-center" *ngIf="test.isValid"><font color="green">Действителен</font></td>
+        <td class="row-center" *ngIf="!test.isValid"><font color="red">Недействителен</font></td>
+      </tr>
+      </tbody>
+    </table>
+    <form class="example-form" [formGroup]="testsForm">
+      <div class="form-title">Добавление нового теста</div>
+      <hr>
+    <mat-form-field class="example-full-width">
+      <mat-label>Название теста</mat-label>
+      <input matInput type="text" formControlName="testName">
+      <mat-error *ngIf="testsForm.controls['testName'].invalid">
+        Поле не должно быть пустым
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Номер теста в 1С</mat-label>
+      <input matInput type="number" formControlName="test1C">
+      <mat-error *ngIf="testsForm.controls['test1C'].invalid">
+        Поле не должно быть пустым и в нем могут быть только цифры
+      </mat-error>
+    </mat-form-field>
+      <mat-form-field>
+        <mat-label>Группа тестов</mat-label>
+        <mat-select formControlName="testType">
+          <mat-option *ngFor="let type of types" [value]="type.id">
+            {{type.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="testsForm.controls['testType'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+      <div class="form-button">
+        <button mat-stroked-button color="primary" type="button" [disabled]="testsForm.invalid" (click)="onFormSubmit()">Добавить</button>
+      </div>
+    </form>
+  </div>
+  <div class="center" *ngIf="mainWindowIsProgress">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>

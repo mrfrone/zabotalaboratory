@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Настройки теста №{{ id }}</h2>
+<mat-dialog-content class="mat-typography">
+  <div *ngIf="!isProgress">
+  <form class="example-form" [formGroup]="testForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>Название теста</mat-label>
+      <input matInput type="text" formControlName="testName">
+      <mat-error *ngIf="testForm.controls['testName'].invalid">
+        Поле не должно быть пустым
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Номер теста в 1С</mat-label>
+      <input matInput type="number" formControlName="test1C">
+      <mat-error *ngIf="testForm.controls['test1C'].invalid">
+        Поле не должно быть пустым и в нем могут быть только цифры
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Группа тестов</mat-label>
+      <mat-select formControlName="testType">
+        <mat-option *ngFor="let type of types" [value]="type.id">
+          {{type.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="testForm.controls['testType'].invalid">
+        Поле не должно быть пустым
+      </mat-error>
+    </mat-form-field>
+    <div class="form-buttons">
+      <button mat-stroked-button color="primary" type="button" [disabled]="testForm.invalid" (click)="onFormSubmit()">Изменить</button>
+      <button mat-stroked-button color="primary" type="button" *ngIf="!test.isValid" (click)="onValidButton()">Активировать</button>
+      <button mat-stroked-button color="warn" type="button" *ngIf="test.isValid"(click)="onValidButton()">Деактивировать</button>
+    </div>
+  </form>
+  </div>
+  <div class="center" *ngIf="isProgress">
+    <mat-spinner></mat-spinner>
+  </div>
+</mat-dialog-content>
+
+

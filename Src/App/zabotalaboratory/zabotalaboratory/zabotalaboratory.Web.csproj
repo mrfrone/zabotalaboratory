@@ -19,11 +19,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\zabotalaboratory.Analyses.Datamodel\zabotalaboratory.Analyses.Datamodel.csproj" />
+    <ProjectReference Include="..\zabotalaboratory.Analyses.Forms\zabotalaboratory.Analyses.Forms.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Analyses.Services\zabotalaboratory.Analyses.Services.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Auth.Services\zabotalaboratory.Auth.Services.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Common.AutoMapper\zabotalaboratory.Common.AutoMapper.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Common.PasswordService\zabotalaboratory.Common.PasswordService.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Common.Result\zabotalaboratory.Common.Result.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Api\AnalysesTypes\Forms\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

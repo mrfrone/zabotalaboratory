@@ -9,6 +9,8 @@ namespace zabotalaboratory.Analyses.Datamodel.Analyses
         public string Name { get; set; }
 
         public int Number1C { get; set; }    
+
+        public bool IsValid { get; set; }
         
         public IEnumerable<ZabotaLaboratoryAnalysesTests> LaboratoryAnalysesTests { get; set; }
     }

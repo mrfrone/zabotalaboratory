@@ -18,7 +18,6 @@ namespace zabotalaboratory.Analyses.Datamodel.Mapping
                 .ForMember(u => u.LastName, opts => opts.MapFrom(u => u.LastName))
                 .ForMember(u => u.PatronymicName, opts => opts.MapFrom(u => u.PatronymicName))
                 .ForMember(u => u.DateOfBirth, opts => opts.MapFrom(u => u.DateOfBirth))
-                .ForMember(u => u.ClinicId, opts => opts.MapFrom(u => u.ClinicId))
                 .ForMember(u => u.Clinic, opts => opts.MapFrom(u => u.Clinic))
                 .ForMember(u => u.PickUpDate, opts => opts.MapFrom(u => u.PickUpDate))
                 .ForMember(u => u.Talons, opts => opts.MapFrom(u => u.Talons));
@@ -45,13 +44,16 @@ namespace zabotalaboratory.Analyses.Datamodel.Mapping
                 .ForMember(u => u.Id, opts => opts.MapFrom(u => u.Id))
                 .ForMember(u => u.Name, opts => opts.MapFrom(u => u.Name))
                 .ForMember(u => u.Number1C, opts => opts.MapFrom(u => u.Number1C))
+                .ForMember(u => u.IsValid, opts => opts.MapFrom(u => u.IsValid))
                 .ForMember(u => u.LaboratoryAnalysesTests, opts => opts.MapFrom(u => u.LaboratoryAnalysesTests));
 
             CreateMap<Database.Entities.LaboratoryAnalysesTests, ZabotaLaboratoryAnalysesTests>()
                 .IgnoreOther()
                 .ForMember(u => u.Id, opts => opts.MapFrom(u => u.Id))
                 .ForMember(u => u.Name, opts => opts.MapFrom(u => u.Name))
-                .ForMember(u => u.Number1C, opts => opts.MapFrom(u => u.Number1C));
+                .ForMember(u => u.Number1C, opts => opts.MapFrom(u => u.Number1C))
+                .ForMember(u => u.IsValid, opts => opts.MapFrom(u => u.IsValid))
+                .ForMember(u => u.AnalysesTypesId, opts => opts.MapFrom(u => u.AnalysesTypesId));
         }
     }
 }

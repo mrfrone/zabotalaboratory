@@ -3,7 +3,6 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {ZabotaResult} from "../../shared/models/zabota-result/zabota-result";
-import {take} from "rxjs/operators";
 import {AuthApiClient} from "../apiClient/auth.api-client";
 
 @Injectable({providedIn: 'root'})
@@ -22,8 +21,6 @@ export class AuthCheckerService {
     return false;
   }
   public getRole(): Observable<ZabotaResult<string>> {
-    return this._authApiClient.getRole().pipe(
-      take(1)
-    );
+    return this._authApiClient.getRole();
   }
 }

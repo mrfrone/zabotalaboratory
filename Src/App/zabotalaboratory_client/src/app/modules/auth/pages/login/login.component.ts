@@ -1,9 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginForm} from "../../../../shared/forms/LoginForm";
+import {LoginForm} from "../../../../shared/forms/Auth/login.form";
 import {finalize} from "rxjs/operators";
-import {AuthService} from "../../../../core/services/auth.service";
 import {AuthCheckerService} from "../../../../core/services/auth-checker.service";
 import {Router} from "@angular/router";
+import {ZabotaResult} from "../../../../shared/models/zabota-result/zabota-result";
+import {Jwt} from "../../../../shared/models/jwt/jwt";
+import {DefaultSuccessMessages} from "../../../../shared/consts/defaultSuccessMessages";
+import {AuthApiClient} from "../../../../core/apiClient/auth.api-client";
+import {MessageService} from "../../../../core/services/message.service";
 
 @Component({
   selector: 'app-login',
@@ -16,13 +20,14 @@ export class LoginComponent implements OnInit {
   public pass: string = ''
   public isProgress: boolean = false
 
-  constructor(private readonly _authService: AuthService,
+  constructor(private readonly _auth: AuthApiClient,
               private readonly _authChecker: AuthCheckerService,
-              private readonly  _router: Router) { }
+              private readonly  _router: Router,
+              private readonly _messages: MessageService) { }
 
   ngOnInit(): void {
     if(this._authChecker.isAuth()) {
-      this._router.navigate(['analyses'])
+      this.goToMainPage();
     }
   }
 
@@ -34,8 +39,19 @@ export class LoginComponent implements OnInit {
       password: this.pass
     }
 
-    this._authService.authorize(form).pipe(
+    this._auth.authorize(form).pipe(
       finalize(() => this.isProgress = false)
-    ).subscribe();
+    ).subscribe(res => {
+      this._messages.showResult(res, DefaultSuccessMessages.onAuth)
+
+      if (res.isCorrect === true) {
+        localStorage.setItem('jwt', res.result.token);
+        this.goToMainPage();
+      }
+    });
+  }
+
+  private goToMainPage(): void {
+    this._router.navigate(['analyses']);
   }
 }

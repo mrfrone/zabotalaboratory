@@ -3,6 +3,7 @@ using zabotalaboratory.Analyses.Database.Entities;
 using zabotalaboratory.Common.EFCore.Extensions;
 using Microsoft.EntityFrameworkCore;
 using zabotalaboratory.Analyses.Database.Context;
+using zabotalaboratory.Analyses.Forms.AnalysesTests;
 
 namespace zabotalaboratory.Analyses.Database.Repository.Analyses
 {
@@ -30,7 +31,44 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
                 .Include(a => a.LaboratoryAnalysesTests)
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
+        public async Task<LaboratoryAnalysesTests> GetAnalysesTestById(int id, bool trackChanges = false)
+        {
+            return await _ac.LaboratoryAnalysesTests
+                .HasTracking(trackChanges)
+                .FirstOrDefaultAsync(a => a.Id == id);
+        }
 
+        public Task AddAnalysesTest(NewAnalysesTestForm form)
+        {
+            _ac.LaboratoryAnalysesTests.Add(new LaboratoryAnalysesTests
+            {
+                Name = form.Name,
+                Number1C = form.Number1C,
+                AnalysesTypesId = form.AnalysesTypesId,
+                IsValid = true
+            });
 
+            return _ac.SaveChangesAsync();
+        }
+
+        public async Task UpdateAnalysesTest(UpdateAnalysesTestForm form)
+        {
+            var result = await GetAnalysesTestById(form.Id, true);
+
+            result.Name = form.Name;
+            result.Number1C = form.Number1C;
+            result.AnalysesTypesId = form.AnalysesTypesId;
+
+            await _ac.SaveChangesAsync();
+        }
+
+        public async Task UpdateAnalysesTestValid(UpdateAnalysesTestValidForm form)
+        {
+            var result = await GetAnalysesTestById(form.Id, true);
+
+            result.IsValid = form.IsValid;
+
+            await _ac.SaveChangesAsync();
+        }
     }
 }

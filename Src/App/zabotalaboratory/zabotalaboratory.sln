@@ -33,13 +33,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Auth.Servi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analyses", "Analyses", "{11401A91-C9DB-4A78-8817-F840BB307B3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Analyses.Database", "zabotalaboratory.Analyses.Database\zabotalaboratory.Analyses.Database.csproj", "{51919C73-E038-4FBB-91F3-5F1FDEC1C3B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Analyses.Database", "zabotalaboratory.Analyses.Database\zabotalaboratory.Analyses.Database.csproj", "{51919C73-E038-4FBB-91F3-5F1FDEC1C3B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Analyses.Database.Repository", "zabotalaboratory.Analyses.Database.Repository\zabotalaboratory.Analyses.Database.Repository.csproj", "{0DAA8742-294F-4E4F-AAA8-768429F1E7AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Analyses.Database.Repository", "zabotalaboratory.Analyses.Database.Repository\zabotalaboratory.Analyses.Database.Repository.csproj", "{0DAA8742-294F-4E4F-AAA8-768429F1E7AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Analyses.Datamodel", "zabotalaboratory.Analyses.Datamodel\zabotalaboratory.Analyses.Datamodel.csproj", "{958E810E-312E-4A43-B4E5-701A4363BDA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Analyses.Datamodel", "zabotalaboratory.Analyses.Datamodel\zabotalaboratory.Analyses.Datamodel.csproj", "{958E810E-312E-4A43-B4E5-701A4363BDA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Analyses.Services", "zabotalaboratory.Analyses.Services\zabotalaboratory.Analyses.Services.csproj", "{801C3245-BA22-4D9D-B527-F2051C1AF569}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Analyses.Services", "zabotalaboratory.Analyses.Services\zabotalaboratory.Analyses.Services.csproj", "{801C3245-BA22-4D9D-B527-F2051C1AF569}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Analyses.Forms", "zabotalaboratory.Analyses.Forms\zabotalaboratory.Analyses.Forms.csproj", "{697FDCAC-82BF-4B59-9916-4B8F3356DBEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +109,10 @@ Global
 		{801C3245-BA22-4D9D-B527-F2051C1AF569}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{801C3245-BA22-4D9D-B527-F2051C1AF569}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{801C3245-BA22-4D9D-B527-F2051C1AF569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{697FDCAC-82BF-4B59-9916-4B8F3356DBEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{697FDCAC-82BF-4B59-9916-4B8F3356DBEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{697FDCAC-82BF-4B59-9916-4B8F3356DBEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{697FDCAC-82BF-4B59-9916-4B8F3356DBEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -127,6 +133,7 @@ Global
 		{0DAA8742-294F-4E4F-AAA8-768429F1E7AF} = {11401A91-C9DB-4A78-8817-F840BB307B3E}
 		{958E810E-312E-4A43-B4E5-701A4363BDA0} = {11401A91-C9DB-4A78-8817-F840BB307B3E}
 		{801C3245-BA22-4D9D-B527-F2051C1AF569} = {11401A91-C9DB-4A78-8817-F840BB307B3E}
+		{697FDCAC-82BF-4B59-9916-4B8F3356DBEE} = {11401A91-C9DB-4A78-8817-F840BB307B3E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4BC89C9E-2F41-4726-B9B2-2BB855D03E69}

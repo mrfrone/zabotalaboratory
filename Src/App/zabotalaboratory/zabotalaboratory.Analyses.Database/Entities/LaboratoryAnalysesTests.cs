@@ -7,5 +7,9 @@
         public virtual int Number1C { get; set; }
 
         public virtual string Name { get; set; }
+
+        public virtual bool IsValid { get; set; }
+
+        public virtual int AnalysesTypesId { get; set; }
     }
 }

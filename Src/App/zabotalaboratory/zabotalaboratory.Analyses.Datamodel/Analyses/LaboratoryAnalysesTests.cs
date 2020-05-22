@@ -7,5 +7,9 @@
         public int Number1C { get; set; }
 
         public string Name { get; set; }
+
+        public bool IsValid { get; set; }
+
+        public int AnalysesTypesId { get; set; }
     }
 }

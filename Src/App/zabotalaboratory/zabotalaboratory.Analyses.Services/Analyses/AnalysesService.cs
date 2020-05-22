@@ -5,6 +5,7 @@ using zabotalaboratory.Common.Result;
 using zabotalaboratory.Common.Result.ErrorCodes;
 using zabotalaboratory.Analyses.Database.Repository.Analyses;
 using zabotalaboratory.Analyses.Datamodel.Analyses;
+using zabotalaboratory.Analyses.Forms.AnalysesTests;
 
 namespace zabotalaboratory.Analyses.Services.Analyses
 {
@@ -19,7 +20,7 @@ namespace zabotalaboratory.Analyses.Services.Analyses
             _mapper = mapper;
         }
 
-        public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesWithTests()
+        public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypesWithTests()
         {
             var result = await _analysesRepository.GetAnalysesTypesWithTests();
             if (result == null)
@@ -39,6 +40,38 @@ namespace zabotalaboratory.Analyses.Services.Analyses
             var mappedModel = _mapper.Map<ZabotaAnalysesTypes>(result);
 
             return new ZabotaResult<ZabotaAnalysesTypes>(mappedModel);
+        }
+
+        public async Task<ZabotaResult<ZabotaLaboratoryAnalysesTests>> GetAnalysesTestById(int id)
+        {
+            var result = await _analysesRepository.GetAnalysesTestById(id);
+            if (result == null)
+                return ZabotaErrorCodes.EmptyResult;
+
+            var mappedModel = _mapper.Map<ZabotaLaboratoryAnalysesTests>(result);
+
+            return new ZabotaResult<ZabotaLaboratoryAnalysesTests>(mappedModel);
+        }
+
+        public async Task<ZabotaResult<bool>> AddNewAnalysesTest(NewAnalysesTestForm form)
+        {
+            await _analysesRepository.AddAnalysesTest(form);
+
+            return new ZabotaResult<bool>(true);
+        }
+
+        public async Task<ZabotaResult<bool>> UpdateAnalysesTest(UpdateAnalysesTestForm form)
+        {
+            await _analysesRepository.UpdateAnalysesTest(form);
+
+            return new ZabotaResult<bool>(true);
+        }
+
+        public async Task<ZabotaResult<bool>> UpdateAnalysesTestValid(UpdateAnalysesTestValidForm form)
+        {
+            await _analysesRepository.UpdateAnalysesTestValid(form);
+
+            return new ZabotaResult<bool>(true);
         }
     }
 }

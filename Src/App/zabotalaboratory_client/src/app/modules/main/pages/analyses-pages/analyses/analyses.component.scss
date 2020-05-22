@@ -25,8 +25,29 @@
 
     table {
       width: 100%;
+      max-width: 100%;
       background-color: white;
       box-shadow: none;
+
+      tbody{
+
+        tr{
+          td{
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+          }
+        }
+        tr:hover{
+          cursor: pointer;
+        }
+        tr:active{
+          background-color: lighten(gray, 30);
+        }
+      }
     }
   }
 }

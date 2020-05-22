@@ -19,8 +19,6 @@ namespace zabotalaboratory.Analyses.Datamodel.LaboratoryAnalyses
 
         public DateTimeOffset DateOfBirth { get; set; }
 
-        public int ClinicId { get; set; }
-
         public ZabotaClinics Clinic { get; set; }
 
         public DateTimeOffset PickUpDate { get; set; }

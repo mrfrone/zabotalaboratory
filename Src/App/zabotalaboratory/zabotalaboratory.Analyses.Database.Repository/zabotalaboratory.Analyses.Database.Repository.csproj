@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\zabotalaboratory.Analyses.Database\zabotalaboratory.Analyses.Database.csproj" />
+    <ProjectReference Include="..\zabotalaboratory.Analyses.Forms\zabotalaboratory.Analyses.Forms.csproj" />
   </ItemGroup>
 
 </Project>
