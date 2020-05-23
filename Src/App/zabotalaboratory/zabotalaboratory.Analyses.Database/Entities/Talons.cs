@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace zabotalaboratory.Analyses.Database.Entities
 {
@@ -6,6 +8,10 @@ namespace zabotalaboratory.Analyses.Database.Entities
     {
         public virtual int Id { get; set; }
 
+        [Required]
+        [ForeignKey(nameof(AnalysesType))]
+        public virtual int AnalysesTypeId { get; set; }
+        [Required]
         public virtual AnalysesTypes AnalysesType { get; set; }
 
         public virtual List<AnalysesResult> AnalysesResult { get; set; }

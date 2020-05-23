@@ -4,6 +4,7 @@ using zabotalaboratory.Common.EFCore.Extensions;
 using Microsoft.EntityFrameworkCore;
 using zabotalaboratory.Analyses.Database.Context;
 using zabotalaboratory.Analyses.Forms.AnalysesTests;
+using zabotalaboratory.Analyses.Forms.AnalysesTypes;
 
 namespace zabotalaboratory.Analyses.Database.Repository.Analyses
 {
@@ -40,6 +41,37 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
 
+        public async Task AddAnalysesType(NewAnalysesTypeForm form)
+        {
+            _ac.AnalysesTypes.Add(new AnalysesTypes
+            {
+                Name = form.Name,
+                Number1C = form.Number1C,
+                IsValid = true
+            });
+
+            await _ac.SaveChangesAsync();
+        }
+
+        public async Task UpdateAnalysesType(UpdateAnalysesTypeForm form)
+        {
+            var result = await GetAnalysesTypeById(form.Id, true);
+
+            result.Name = form.Name;
+            result.Number1C = form.Number1C;
+
+            await _ac.SaveChangesAsync();
+        }
+        
+        public async Task UpdateAnalysesTypeValid(UpdateAnalysesTypeValidForm form)
+        {
+            var result = await GetAnalysesTypeById(form.Id, true);
+
+            result.IsValid = form.IsValid;
+
+            await _ac.SaveChangesAsync();
+        }
+        
         #endregion
 
         #region Tests
@@ -50,7 +82,7 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
 
-        public Task AddAnalysesTest(NewAnalysesTestForm form)
+        public async Task AddAnalysesTest(NewAnalysesTestForm form)
         {
             _ac.LaboratoryAnalysesTests.Add(new LaboratoryAnalysesTests
             {
@@ -60,7 +92,7 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
                 IsValid = true
             });
 
-            return _ac.SaveChangesAsync();
+            await _ac.SaveChangesAsync();
         }
 
         public async Task UpdateAnalysesTest(UpdateAnalysesTestForm form)

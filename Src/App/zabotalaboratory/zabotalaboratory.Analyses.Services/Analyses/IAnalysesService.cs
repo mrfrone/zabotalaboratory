@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using zabotalaboratory.Analyses.Datamodel.Analyses;
 using zabotalaboratory.Analyses.Forms.AnalysesTests;
+using zabotalaboratory.Analyses.Forms.AnalysesTypes;
 using zabotalaboratory.Common.Result;
 
 namespace zabotalaboratory.Analyses.Services.Analyses
@@ -15,6 +16,12 @@ namespace zabotalaboratory.Analyses.Services.Analyses
         Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypesWithTests();
 
         Task<ZabotaResult<ZabotaAnalysesTypes>> GetAnalysesTypeById(int id);
+
+        Task<ZabotaResult<bool>> AddNewAnalysesType(NewAnalysesTypeForm form);
+
+        Task<ZabotaResult<bool>> UpdateAnalysesType(UpdateAnalysesTypeForm form);
+
+        Task<ZabotaResult<bool>> UpdateAnalysesTypeValid(UpdateAnalysesTypeValidForm form);
 
         #endregion
 

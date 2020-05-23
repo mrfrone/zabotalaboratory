@@ -1,12 +1,11 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using zabotalaboratory.Auth.Services.UserProfile;
 using zabotalaboratory.Common;
 using zabotalaboratory.Common.Consts;
 using zabotalaboratory.Common.Result;
 
-namespace zabotalaboratory.Areas.Api.UserProfile
+namespace zabotalaboratory.Web.Areas.Api.UsersProfiles
 {
     [Authorize]
     [Area(AreaNames.Api)]

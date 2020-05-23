@@ -6,6 +6,7 @@ using zabotalaboratory.Common.Result.ErrorCodes;
 using zabotalaboratory.Analyses.Database.Repository.Analyses;
 using zabotalaboratory.Analyses.Datamodel.Analyses;
 using zabotalaboratory.Analyses.Forms.AnalysesTests;
+using zabotalaboratory.Analyses.Forms.AnalysesTypes;
 
 namespace zabotalaboratory.Analyses.Services.Analyses
 {
@@ -54,6 +55,27 @@ namespace zabotalaboratory.Analyses.Services.Analyses
             return new ZabotaResult<ZabotaAnalysesTypes>(mappedModel);
         }
 
+        public async Task<ZabotaResult<bool>> AddNewAnalysesType(NewAnalysesTypeForm form)
+        {
+            await _analysesRepository.AddAnalysesType(form);
+
+            return new ZabotaResult<bool>(true);
+        }
+
+        public async Task<ZabotaResult<bool>> UpdateAnalysesType(UpdateAnalysesTypeForm form)
+        {
+            await _analysesRepository.UpdateAnalysesType(form);
+
+            return new ZabotaResult<bool>(true);
+        }
+        
+        public async Task<ZabotaResult<bool>> UpdateAnalysesTypeValid(UpdateAnalysesTypeValidForm form)
+        {
+            await _analysesRepository.UpdateAnalysesTypeValid(form);
+
+            return new ZabotaResult<bool>(true);
+        }
+        
         #endregion
 
         #region Tests

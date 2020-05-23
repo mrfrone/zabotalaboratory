@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using zabotalaboratory.Analyses.Database.Entities;
 using zabotalaboratory.Analyses.Forms.AnalysesTests;
+using zabotalaboratory.Analyses.Forms.AnalysesTypes;
 
 namespace zabotalaboratory.Analyses.Database.Repository.Analyses
 {
@@ -12,6 +13,13 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
         Task<AnalysesTypes[]> GetAnalysesTypesWithTests(bool trackChanges = false);
 
         Task<AnalysesTypes> GetAnalysesTypeById(int id, bool trackChanges = false);
+
+        Task AddAnalysesType(NewAnalysesTypeForm form);
+
+        Task UpdateAnalysesType(UpdateAnalysesTypeForm form);
+
+        Task UpdateAnalysesTypeValid(UpdateAnalysesTypeValidForm form);
+        
         #endregion
 
         #region Tests

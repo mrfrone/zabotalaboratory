@@ -11,14 +11,14 @@ import {TokenGetter} from "./shared/consts/tokenGetter";
 import {DefaultUrls} from "./shared/consts/defaultUrls";
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './modules/auth/pages/login/login.component';
-import {AnalysesComponent} from "./modules/main/pages/analyses-pages/analyses/analyses.component";
-import {HeaderComponent} from "./modules/main/components/header/header.component";
-import {AddAnalysesComponent} from "./modules/main/pages/analyses-pages/add-analyses/add-analyses.component";
-import {AnalysesTestsComponent} from "./modules/main/pages/analyses-pages/analyses-tests/analyses-tests.component";
-import { AnalysesTestsDialogComponent } from './modules/main/pages/analyses-pages/analyses-tests/analyses-tests-dialog/analyses-tests-dialog.component';
-import { AnalysesTypesComponent } from './modules/main/pages/analyses-pages/analyses-types/analyses-types.component';
-import { AnalysesTypesDialogComponent } from './modules/main/pages/analyses-pages/analyses-types/analyses-types-dialog/analyses-types-dialog.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import {AnalysesComponent} from "./pages/analyses/analyses/analyses.component";
+import {HeaderComponent} from "./pages/layers/header/header.component";
+import {AddAnalysesComponent} from "./pages/analyses/add-analyses/add-analyses.component";
+import {AnalysesTestsComponent} from "./pages/analyses/analyses-tests/analyses-tests.component";
+import { AnalysesTestsDialogComponent } from './pages/analyses/analyses-tests/analyses-tests-dialog/analyses-tests-dialog.component';
+import { AnalysesTypesComponent } from './pages/analyses/analyses-types/analyses-types.component';
+import { AnalysesTypesDialogComponent } from './pages/analyses/analyses-types/analyses-types-dialog/analyses-types-dialog.component';
 
 
 @NgModule({
@@ -42,7 +42,7 @@ import { AnalysesTypesDialogComponent } from './modules/main/pages/analyses-page
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: TokenGetter.GetToken,
+        tokenGetter: TokenGetter.getToken,
         whitelistedDomains: [DefaultUrls.Domain],
         blacklistedRoutes: []
       }

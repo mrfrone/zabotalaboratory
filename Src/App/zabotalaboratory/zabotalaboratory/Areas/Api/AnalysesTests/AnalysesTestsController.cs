@@ -9,7 +9,7 @@ using zabotalaboratory.Common.Consts;
 using zabotalaboratory.Common.Result;
 using zabotalaboratory.Web.Common.Filters;
 
-namespace zabotalaboratory.Areas.Api.AnalysesTests
+namespace zabotalaboratory.Web.Areas.Api.AnalysesTests
 {
     [Authorize]
     [Area(AreaNames.Api)]

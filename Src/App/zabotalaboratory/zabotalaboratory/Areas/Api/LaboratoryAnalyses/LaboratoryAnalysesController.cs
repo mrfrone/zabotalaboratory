@@ -8,7 +8,7 @@ using zabotalaboratory.Common;
 using zabotalaboratory.Common.Consts;
 using zabotalaboratory.Common.Result;
 
-namespace zabotalaboratory.Areas.Api.LaboratoryAnalyses
+namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
 {
     [Authorize]
     [Area(AreaNames.Api)]

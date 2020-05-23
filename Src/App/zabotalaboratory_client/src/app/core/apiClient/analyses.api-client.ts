@@ -9,6 +9,8 @@ import {NewAnalysesTestForm} from "../../shared/forms/AnalysesTests/new-analyses
 import {LaboratoryAnalysesTests} from "../../shared/models/analyses/laboratory-analyses-tests";
 import {UpdateAnalysesTestForm} from "../../shared/forms/AnalysesTests/update-analyses-test.form";
 import {UpdateAnalysesTestValidForm} from "../../shared/forms/AnalysesTests/update-analyses-test-valid.form";
+import {UpdateAnalysesTypeForm} from "../../shared/forms/analyses-types/update-analyses-type.form";
+import {NewAnalysesTypeForm} from "../../shared/forms/analyses-types/new-analyses-type.form";
 
 @Injectable({providedIn: 'root'})
 
@@ -33,6 +35,18 @@ export class AnalysesApiClient extends BaseApiClient{
     return this.getWithId<ZabotaResult<AnalysesTypes>>('/api/AnalysesTypes/GetAnalysesType', id);
   }
 
+  public addNewAnalysesType(form: NewAnalysesTypeForm): Observable<ZabotaResult<boolean>> {
+    return this.post<ZabotaResult<boolean>, NewAnalysesTypeForm>('/api/AnalysesTypes/AddAnalysesType', form);
+  }
+
+  public updateAnalysesType(form: UpdateAnalysesTypeForm): Observable<ZabotaResult<boolean>> {
+    return this.post<ZabotaResult<boolean>, UpdateAnalysesTypeForm>('/api/AnalysesTypes/UpdateAnalysesType', form);
+  }
+
+  public updateTypeValidation(form: UpdateAnalysesTestValidForm): Observable<ZabotaResult<boolean>>{
+    return this.post<ZabotaResult<boolean>, UpdateAnalysesTestValidForm>('/api/AnalysesTypes/UpdateAnalysesTypeValid', form);
+  }
+
   public getAnalysesTest(id: number): Observable<ZabotaResult<LaboratoryAnalysesTests>>{
     return this.getWithId<ZabotaResult<LaboratoryAnalysesTests>>('/api/AnalysesTests/AnalysesTestById', id);
   }
@@ -45,7 +59,7 @@ export class AnalysesApiClient extends BaseApiClient{
     return this.post<ZabotaResult<boolean>, UpdateAnalysesTestForm>('/api/AnalysesTests/UpdateAnalysesTest', form);
   }
 
-  public updateValidation(form: UpdateAnalysesTestValidForm): Observable<ZabotaResult<boolean>>{
+  public updateTestValidation(form: UpdateAnalysesTestValidForm): Observable<ZabotaResult<boolean>>{
     return this.post<ZabotaResult<boolean>, UpdateAnalysesTestValidForm>('/api/AnalysesTests/UpdateAnalysesTestValid', form);
   }
 }

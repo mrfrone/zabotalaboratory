@@ -1,0 +1,26 @@
+mat-dialog-content{
+  min-width: 50vh;
+  min-height: 20vh;
+
+  form{
+    mat-form-field {
+      width: 100%;
+    }
+    .form-buttons{
+      display: flex;
+      justify-content: space-around;
+
+      button{
+        min-width: 30%;
+      }
+    }
+  }
+}
+.center{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 20vh;
+  width: 100%;
+}

@@ -6,6 +6,7 @@ export class DefaultSuccessMessages {
   public static onUpdateTest: string = 'Тест успешно обновлен';
   public static onUpdateTestValid: string = 'Статус теста успешно изменен';
 
+  public static onNewTypeAdded: string = 'Новый тип успешно добавлен';
   public static onUpdateType: string = 'Тип успешно обновлен';
   public static onUpdateTypeValid: string = 'Статус типа успешно изменен';
 }

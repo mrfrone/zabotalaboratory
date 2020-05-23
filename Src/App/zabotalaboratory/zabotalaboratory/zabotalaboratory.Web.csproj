@@ -27,10 +27,6 @@
     <ProjectReference Include="..\zabotalaboratory.Common.Result\zabotalaboratory.Common.Result.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Api\AnalysesTypes\Forms\" />
-  </ItemGroup>
-
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 

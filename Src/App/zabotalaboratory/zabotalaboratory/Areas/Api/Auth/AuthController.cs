@@ -8,7 +8,7 @@ using zabotalaboratory.Common.Consts;
 using zabotalaboratory.Common.Result;
 using zabotalaboratory.Web.Common.Filters;
 
-namespace zabotalaboratory.Areas.Api.Auth
+namespace zabotalaboratory.Web.Areas.Api.Auth
 {
     [Area(AreaNames.Api)]
     [Route(HttpRouteConsts.DefaultController)]

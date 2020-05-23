@@ -1,5 +1,5 @@
 export class TokenGetter {
-  public static GetToken(): string{
+  public static getToken(): string{
     return localStorage.getItem("jwt");
   }
 }

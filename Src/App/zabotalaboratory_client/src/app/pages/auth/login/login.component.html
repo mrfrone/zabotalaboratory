@@ -1,0 +1,33 @@
+<div class="center" *ngIf="!isProgress">
+  <div class="login-window-border">
+    <div class="logo">
+      <img src="/assets/img/logo/logo-main.png"><span>Лаборатория</span>
+    </div>
+    <div class="padding">
+      <form class="example-form" [formGroup]="authForm">
+        <mat-form-field class="example-full-width">
+          <mat-label>Логин</mat-label>
+          <input matInput type="text" formControlName="authLogin">
+          <mat-error *ngIf="authForm.controls['authLogin'].invalid">
+            Поле не должно быть пустым
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Пароль</mat-label>
+          <input matInput type="password" formControlName="authPassword">
+          <mat-error *ngIf="authForm.controls['authPassword'].invalid">
+            Поле не должно быть пустым
+          </mat-error>
+        </mat-form-field>
+        <div class="items-center">
+          <button mat-stroked-button color="primary" type="button" (click)="login()" [disabled]="this.authForm.invalid">Войти</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="center" *ngIf="isProgress">
+  <mat-spinner></mat-spinner>
+</div>
+

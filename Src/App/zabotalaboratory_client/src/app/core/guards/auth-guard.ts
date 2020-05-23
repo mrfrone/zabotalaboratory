@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
               private readonly _messageService: MessageService) {
   }
   canActivate() {
-    let token = TokenGetter.GetToken();
+    let token = TokenGetter.getToken();
 
     if (this._authChecker.isAuth()){
       return true;
