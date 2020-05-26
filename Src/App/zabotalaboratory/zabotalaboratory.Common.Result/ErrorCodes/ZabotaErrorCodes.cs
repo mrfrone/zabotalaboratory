@@ -9,7 +9,10 @@
         CannotFindToken = 1000004,
         CannotFindIdentityByTokenId = 1000005,
         CannotFindUserProfileByIdentityId = 1000006,
-        EmptyResult = 1000007
+        EmptyResult = 1000007,
+        IdentityExists = 1000008,
+        CannotFindIdentityById = 1000009,
+        CannotDeleteCurrentUser = 1000010,
     }
 
     public static class ErrorCodesExtensions

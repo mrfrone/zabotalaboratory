@@ -1,16 +1,13 @@
 import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {AnalysesApiClient} from "../../../../core/apiClient/analyses.api-client";
 import {MessageService} from "../../../../core/services/message.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {LaboratoryAnalysesTests} from "../../../../shared/models/analyses/laboratory-analyses-tests";
 import {AnalysesTypes} from "../../../../shared/models/analyses/analyses-types";
 import {ZabotaResult} from "../../../../shared/models/zabota-result/zabota-result";
 import {DefaultSuccessMessages} from "../../../../shared/consts/defaultSuccessMessages";
-import {UpdateAnalysesTestForm} from "../../../../shared/forms/AnalysesTests/update-analyses-test.form";
 import {UpdateAnalysesTypeForm} from "../../../../shared/forms/analyses-types/update-analyses-type.form";
-import {UpdateAnalysesTestValidForm} from "../../../../shared/forms/AnalysesTests/update-analyses-test-valid.form";
 import {UpdateAnalysesTypeValidForm} from "../../../../shared/forms/analyses-types/update-analyses-type-valid.form";
+import {AnalysesTypesApiClient} from "../../../../core/apiClient/analyses/analyses-types.api-client";
 
 @Component({
   selector: 'app-analyses-types-dialog',
@@ -32,7 +29,7 @@ export class AnalysesTypesDialogComponent implements OnInit {
   public type: AnalysesTypes;
 
   constructor(@Inject(MAT_DIALOG_DATA) public id: number,
-              private readonly _analyses: AnalysesApiClient,
+              private readonly _analysesTypes: AnalysesTypesApiClient,
               private readonly _messages: MessageService) { }
 
   ngOnInit(): void {
@@ -48,7 +45,7 @@ export class AnalysesTypesDialogComponent implements OnInit {
       number1C: this.typeForm.controls['type1C'].value
     };
 
-      this._analyses.updateAnalysesType(form).subscribe(res => {
+      this._analysesTypes.updateAnalysesType(form).subscribe(res => {
       this.afterUpdateType(res, DefaultSuccessMessages.onUpdateType);
     });
   }
@@ -61,7 +58,7 @@ export class AnalysesTypesDialogComponent implements OnInit {
       isValid: !this.type.isValid
     }
 
-    this._analyses.updateTypeValidation(form).subscribe(res => {
+    this._analysesTypes.updateTypeValidation(form).subscribe(res => {
       this.afterUpdateType(res, DefaultSuccessMessages.onUpdateTypeValid);
     });
   }
@@ -73,7 +70,7 @@ export class AnalysesTypesDialogComponent implements OnInit {
   }
 
   private updateData(): void {
-    this._analyses.getAnalysesType(this.id).subscribe(res => {
+    this._analysesTypes.getAnalysesType(this.id).subscribe(res => {
       this.type = res.result;
 
       this.typeForm.controls['typeName'].setValue(res.result.name);

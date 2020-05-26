@@ -21,7 +21,9 @@ namespace zabotalaboratory.Auth.Datamodel.Mapping
             CreateMap<Auth.Database.Entities.Identities, ZabotaIdentity>()
                 .IgnoreOther()
                 .ForMember(u => u.Id, opts => opts.MapFrom(u => u.Id))
-                .ForMember(u => u.Login, opts => opts.MapFrom(u => u.Login));
+                .ForMember(u => u.Login, opts => opts.MapFrom(u => u.Login))
+                .ForMember(u => u.Role, opts => opts.MapFrom(u => u.Role))
+                .ForMember(u => u.SubRole, opts => opts.MapFrom(u => u.SubRole));
 
             CreateMap<Database.Entities.UsersProfiles, ZabotaUserProfile>()
                 .IgnoreOther()
@@ -30,7 +32,6 @@ namespace zabotalaboratory.Auth.Datamodel.Mapping
                 .ForMember(u => u.PatronymicName, opts => opts.MapFrom(u => u.PatronymicName))
                 .ForMember(u => u.LastName, opts => opts.MapFrom(u => u.LastName))
                 .ForMember(u => u.Email, opts => opts.MapFrom(u => u.Email))
-                .ForMember(u => u.Phone, opts => opts.MapFrom(u => u.Identity.Login))
                 .ForMember(u => u.Role, opts => opts.MapFrom(u => u.Identity.Role.Name))
                 .ForMember(u => u.SubRole, opts => opts.MapFrom(u => u.Identity.SubRole.Name));
 

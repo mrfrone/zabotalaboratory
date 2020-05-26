@@ -1,14 +1,15 @@
 import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {AnalysesApiClient} from "../../../../core/apiClient/analyses.api-client";
+import {AnalysesTestsApiClient} from "../../../../core/apiClient/analyses/analyses-tests.api-client";
 import {LaboratoryAnalysesTests} from "../../../../shared/models/analyses/laboratory-analyses-tests";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AnalysesTypes} from "../../../../shared/models/analyses/analyses-types";
-import {UpdateAnalysesTestForm} from "../../../../shared/forms/AnalysesTests/update-analyses-test.form";
+import {UpdateAnalysesTestForm} from "../../../../shared/forms/analyses-tests/update-analyses-test.form";
 import {DefaultSuccessMessages} from "../../../../shared/consts/defaultSuccessMessages";
 import {MessageService} from "../../../../core/services/message.service";
-import {UpdateAnalysesTestValidForm} from "../../../../shared/forms/AnalysesTests/update-analyses-test-valid.form";
+import {UpdateAnalysesTestValidForm} from "../../../../shared/forms/analyses-tests/update-analyses-test-valid.form";
 import {ZabotaResult} from "../../../../shared/models/zabota-result/zabota-result";
+import {AnalysesTypesApiClient} from "../../../../core/apiClient/analyses/analyses-types.api-client";
 
 @Component({
   selector: 'app-analyses-tests-dialog',
@@ -33,11 +34,12 @@ export class AnalysesTestsDialogComponent implements OnInit {
   public types: AnalysesTypes[];
 
   constructor(@Inject(MAT_DIALOG_DATA) public id: number,
-              private readonly _analyses: AnalysesApiClient,
+              private readonly _analysesTests: AnalysesTestsApiClient,
+              private readonly _analysesTypes: AnalysesTypesApiClient,
               private readonly _messages: MessageService) {}
 
   ngOnInit(): void {
-    this._analyses.getAnalysesTypesWithTests().subscribe(res => {
+    this._analysesTypes.getAnalysesTypesWithTests().subscribe(res => {
       this.types = res.result
     });
 
@@ -54,7 +56,7 @@ export class AnalysesTestsDialogComponent implements OnInit {
       analysesTypesId: this.testForm.controls['testType'].value
     };
 
-    this._analyses.updateAnalysesTest(form).subscribe(res => {
+    this._analysesTests.updateAnalysesTest(form).subscribe(res => {
       this.afterUpdateTest(res, DefaultSuccessMessages.onUpdateTest);
     });
   }
@@ -67,7 +69,7 @@ export class AnalysesTestsDialogComponent implements OnInit {
       isValid: !this.test.isValid
     }
 
-    this._analyses.updateTestValidation(form).subscribe(res => {
+    this._analysesTests.updateTestValidation(form).subscribe(res => {
       this.afterUpdateTest(res, DefaultSuccessMessages.onUpdateTestValid);
     });
   }
@@ -79,7 +81,7 @@ export class AnalysesTestsDialogComponent implements OnInit {
   }
 
   private updateData(): void {
-    this._analyses.getAnalysesTest(this.id).subscribe(res => {
+    this._analysesTests.getAnalysesTest(this.id).subscribe(res => {
       this.test = res.result;
 
       this.testForm.controls['testName'].setValue(res.result.name);

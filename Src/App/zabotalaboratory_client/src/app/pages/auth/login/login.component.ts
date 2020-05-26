@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginForm} from "../../../shared/forms/Auth/login.form";
+import {LoginForm} from "../../../shared/forms/auth/login.form";
 import {finalize} from "rxjs/operators";
 import {AuthCheckerService} from "../../../core/services/auth-checker.service";
 import {Router} from "@angular/router";

@@ -1,0 +1,76 @@
+<div class="main-box">
+  <div class="main-box-content" *ngIf="!mainWindowIsProgress">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Login</th>
+        <th scope="col">Основная роль</th>
+        <th scope="col">Роль доступа к анализам</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let identity of identities">
+      <tr (click)="onTableElementClick(identity.id)">
+        <th class="row-center">{{ identity.id }}</th>
+        <td>{{ identity.login }}</td>
+        <td class="row-center">{{ identity.role.name }}</td>
+        <td class="row-center">{{ identity.subRole.name }}</td>
+      </tr>
+      </tbody>
+    </table>
+    <form class="example-form" [formGroup]="identitiesForm">
+      <div class="form-title">Добавление нового пользователя</div>
+      <hr>
+      <mat-form-field class="example-full-width">
+        <mat-label>Логин</mat-label>
+        <input matInput type="text" formControlName="identitiesLogin">
+        <mat-error *ngIf="identitiesForm.controls['identitiesLogin'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Пароль</mat-label>
+        <input matInput type="password" formControlName="identitiesPassword">
+        <mat-error *ngIf="identitiesForm.controls['identitiesPassword'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Подтверждение пароля</mat-label>
+        <input matInput type="password" formControlName="identitiesPasswordConfirm">
+        <mat-error *ngIf="identitiesForm.controls['identitiesPasswordConfirm'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Основная роль</mat-label>
+        <mat-select formControlName="identitiesRole">
+          <mat-option *ngFor="let role of roles" [value]="role.id">
+            {{role.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="identitiesForm.controls['identitiesRole'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Роль доступа к анализам</mat-label>
+        <mat-select formControlName="identitiesSubRole">
+          <mat-option [value]="null">
+            Без роли
+          </mat-option>
+          <mat-option *ngFor="let subRole of subRoles" [value]="subRole.id">
+            {{subRole.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="form-button">
+        <button mat-stroked-button color="primary" type="button" [disabled]="identitiesForm.invalid" (click)="onFormSubmit()">Добавить</button>
+      </div>
+    </form>
+  </div>
+  <div class="center" *ngIf="mainWindowIsProgress">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>

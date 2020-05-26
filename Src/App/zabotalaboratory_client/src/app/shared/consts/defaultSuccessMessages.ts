@@ -9,4 +9,6 @@ export class DefaultSuccessMessages {
   public static onNewTypeAdded: string = 'Новый тип успешно добавлен';
   public static onUpdateType: string = 'Тип успешно обновлен';
   public static onUpdateTypeValid: string = 'Статус типа успешно изменен';
+
+  public static onNewIdentityAdded: string = 'Новый пользователь успешно добавлен';
 }

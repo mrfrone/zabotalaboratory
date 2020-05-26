@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {LoginForm} from "../../shared/forms/Auth/login.form";
+import {LoginForm} from "../../shared/forms/auth/login.form";
 import {ZabotaResult} from "../../shared/models/zabota-result/zabota-result";
 import {Jwt} from "../../shared/models/jwt/jwt";
 import {Observable} from "rxjs";

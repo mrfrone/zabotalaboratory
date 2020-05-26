@@ -19,6 +19,7 @@ import {AnalysesTestsComponent} from "./pages/analyses/analyses-tests/analyses-t
 import { AnalysesTestsDialogComponent } from './pages/analyses/analyses-tests/analyses-tests-dialog/analyses-tests-dialog.component';
 import { AnalysesTypesComponent } from './pages/analyses/analyses-types/analyses-types.component';
 import { AnalysesTypesDialogComponent } from './pages/analyses/analyses-types/analyses-types-dialog/analyses-types-dialog.component';
+import { IdentitiesSettingsComponent } from './pages/users/identities-settings/identities-settings.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AnalysesTypesDialogComponent } from './pages/analyses/analyses-types/an
     AnalysesTestsComponent,
     AnalysesTestsDialogComponent,
     AnalysesTypesComponent,
-    AnalysesTypesDialogComponent
+    AnalysesTypesDialogComponent,
+    IdentitiesSettingsComponent
   ],
   imports: [
     MaterialModule,

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {AnalysesTypes} from "../../../shared/models/analyses/analyses-types";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {NewAnalysesTestForm} from "../../../shared/forms/AnalysesTests/new-analyses-test.form";
-import {AnalysesApiClient} from "../../../core/apiClient/analyses.api-client";
+import {NewAnalysesTestForm} from "../../../shared/forms/analyses-tests/new-analyses-test.form";
+import {AnalysesTestsApiClient} from "../../../core/apiClient/analyses/analyses-tests.api-client";
 import {MessageService} from "../../../core/services/message.service";
 import {DefaultSuccessMessages} from "../../../shared/consts/defaultSuccessMessages";
 import {MatDialog} from "@angular/material/dialog";
 import {AnalysesTestsDialogComponent} from "./analyses-tests-dialog/analyses-tests-dialog.component";
+import {AnalysesTypesApiClient} from "../../../core/apiClient/analyses/analyses-types.api-client";
 
 @Component({
   selector: 'app-analyses-tests',
@@ -28,7 +29,8 @@ export class AnalysesTestsComponent implements OnInit {
   public mainWindowIsProgress: boolean = true;
   public types: AnalysesTypes[];
 
-  constructor(private readonly _analyses: AnalysesApiClient,
+  constructor(private readonly _analysesTests: AnalysesTestsApiClient,
+              private readonly _analysesTypes: AnalysesTypesApiClient,
               private readonly _messages: MessageService,
               private readonly _dialog: MatDialog) { }
 
@@ -55,7 +57,7 @@ export class AnalysesTestsComponent implements OnInit {
       analysesTypesId: this.testsForm.controls['testType'].value
     };
 
-    this._analyses.addNewAnalysesTest(form).subscribe(res => {
+    this._analysesTests.addNewAnalysesTest(form).subscribe(res => {
       this._messages.showResult(res, DefaultSuccessMessages.onNewTestAdded);
       this.testsForm.reset();
       this.updateData();
@@ -63,7 +65,7 @@ export class AnalysesTestsComponent implements OnInit {
   }
 
   private updateData(): void{
-    this._analyses.getAnalysesTypesWithTests()
+    this._analysesTypes.getAnalysesTypesWithTests()
       .subscribe(res => {
       this.types = res.result
       this.mainWindowIsProgress = false;

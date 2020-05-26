@@ -1,9 +1,15 @@
-﻿namespace zabotalaboratory.Auth.Datamodel.Identities
+﻿using zabotalaboratory.Auth.Datamodel.Roles;
+
+namespace zabotalaboratory.Auth.Datamodel.Identities
 {
     public class ZabotaIdentity
     {
         public int Id { get; set; }
 
         public string Login { get; set; }
+
+        public ZabotaRoles Role { get; set; }
+
+        public ZabotaSubRoles SubRole { get; set; }
     }
 }

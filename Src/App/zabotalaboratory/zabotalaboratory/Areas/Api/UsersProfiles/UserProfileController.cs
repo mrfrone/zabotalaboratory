@@ -18,12 +18,6 @@ namespace zabotalaboratory.Web.Areas.Api.UsersProfiles
         {
             _userProfileService = userProfileService;
         }
-
         
-        [HttpGet(HttpRouteConsts.DefaultAction)]
-        public ZabotaResult<string> GetRole()
-        {
-            return new ZabotaResult<string>(CurrentRole);
-        }
     }
 }

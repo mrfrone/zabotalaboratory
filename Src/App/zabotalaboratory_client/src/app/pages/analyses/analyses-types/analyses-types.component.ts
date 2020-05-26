@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {AnalysesTypes} from "../../../shared/models/analyses/analyses-types";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AnalysesApiClient} from "../../../core/apiClient/analyses.api-client";
 import {MessageService} from "../../../core/services/message.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AnalysesTypesDialogComponent} from "./analyses-types-dialog/analyses-types-dialog.component";
 import {DefaultSuccessMessages} from "../../../shared/consts/defaultSuccessMessages";
 import {NewAnalysesTypeForm} from "../../../shared/forms/analyses-types/new-analyses-type.form";
+import {AnalysesTypesApiClient} from "../../../core/apiClient/analyses/analyses-types.api-client";
 
 @Component({
   selector: 'app-analyses-types',
@@ -26,7 +26,7 @@ export class AnalysesTypesComponent implements OnInit {
   public mainWindowIsProgress: boolean = true;
   public types: AnalysesTypes[];
 
-  constructor(private readonly _analyses: AnalysesApiClient,
+  constructor(private readonly _analysesTypes: AnalysesTypesApiClient,
               private readonly _messages: MessageService,
               private readonly _dialog: MatDialog) { }
 
@@ -52,7 +52,7 @@ export class AnalysesTypesComponent implements OnInit {
       number1C: this.typesForm.controls['type1C'].value
     };
 
-    this._analyses.addNewAnalysesType(form).subscribe(res => {
+    this._analysesTypes.addNewAnalysesType(form).subscribe(res => {
       this._messages.showResult(res, DefaultSuccessMessages.onNewTypeAdded);
       this.typesForm.reset();
       this.updateData();
@@ -60,7 +60,7 @@ export class AnalysesTypesComponent implements OnInit {
   }
 
   private updateData(): void {
-    this._analyses.getAnalysesTypesWithoutTests()
+    this._analysesTypes.getAnalysesTypesWithoutTests()
       .subscribe(res => {
         this.types = res.result
         this.mainWindowIsProgress = false;

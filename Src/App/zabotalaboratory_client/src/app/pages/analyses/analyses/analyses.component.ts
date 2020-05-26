@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {LaboratoryAnalyses} from "../../../shared/models/analyses/laboratory-analyses";
-import {AnalysesApiClient} from "../../../core/apiClient/analyses.api-client";
+import {LaboratoryAnalysesApiClient} from "../../../core/apiClient/analyses/laboratory-analyses.api-client";
 
 @Component({
   selector: 'app-main',
@@ -12,7 +12,7 @@ export class AnalysesComponent implements OnInit {
   public mainTableIsProgress: boolean = true;
   public dataSource: LaboratoryAnalyses[];
 
-  constructor(private readonly _analyses: AnalysesApiClient) { }
+  constructor(private readonly _analyses: LaboratoryAnalysesApiClient) { }
 
   ngOnInit(): void {
     this.Update();

@@ -8,6 +8,7 @@ using zabotalaboratory.Auth.Database.Context;
 using zabotalaboratory.Auth.Forms.Login;
 using zabotalaboratory.Auth.Database.Entities;
 using zabotalaboratory.Common.EFCore.Extensions;
+using zabotalaboratory.Auth.Forms.Identity;
 
 namespace zabotalaboratory.Auth.Database.Repository.Identities
 {
@@ -30,6 +31,14 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
                 .Include(u => u.SubRole)
                 .Where(x => x.IsDeleted != true)
                 .ToArrayAsync();
+        }
+
+        public async Task<Entities.Identities> IdentityById(int id)
+        {
+            return await _ac.Identities
+                .Include(u => u.Role)
+                .Include(u => u.SubRole)
+                .FirstOrDefaultAsync(u => u.Id == id && u.IsDeleted != true);
         }
 
         public async Task<Entities.Identities> IdentityByTokenId(int id)
@@ -64,11 +73,6 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
             return user;
         }
 
-        public async Task<bool> IdentityExistsAsync(int identityId)
-        {
-            return  await _ac.Identities.AnyAsync(u => u.Id == identityId && u.IsDeleted != true);
-        }
-
         public async Task<Roles[]> GetRoles(bool trackChanges = false) 
         {
             return await _ac.Roles
@@ -83,19 +87,33 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
                 .ToArrayAsync();
         }
 
-        public Task Add(LoginForm form)
+        public async Task Add(AddIdentityForm form)
         {
             _ac.Identities.Add(new Entities.Identities
             {
                 Login = form.Login,
                 Password = _passwordHashCalculator.Calc(form.Password),
                 IsDeleted = false,
-                //todo: add dynamic roles
-                RoleId = 1,
-                SubRoleId = 1
+                RoleId = form.RoleId,
+                SubRoleId = form.SubRoleId
             });
 
-            return _ac.SaveChangesAsync();
+            await _ac.SaveChangesAsync();
+        }
+
+        public async Task<bool> Update(UpdateIdentityForm form)
+        {
+            var identity = await _ac.Identities.FirstOrDefaultAsync(u => u.Id == form.Id && u.IsDeleted != true);
+            if (identity == null)
+                return false;
+
+            identity.Login = form.Login;
+            identity.Password = form.Password;
+            identity.RoleId = form.RoleId;
+            identity.SubRoleId = form.SubRoleId;
+
+            await _ac.SaveChangesAsync();
+            return true;
         }
 
         public async Task<bool> Delete(int identityId, int actorId)

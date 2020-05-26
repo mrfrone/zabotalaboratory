@@ -12,10 +12,6 @@
 
         public string Email { get; set; }
 
-        public string Phone { get; set; }
-
-        public bool IsBanned { get; set; }
-
         public string Role { get; set; }
 
         public string SubRole { get; set; }
