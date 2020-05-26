@@ -8,24 +8,24 @@ import {AddAnalysesComponent} from "./pages/analyses/add-analyses/add-analyses.c
 import {AnalysesTestsComponent} from "./pages/analyses/analyses-tests/analyses-tests.component";
 import {AnalysesTypesComponent} from "./pages/analyses/analyses-types/analyses-types.component";
 import {HeaderComponent} from "./pages/layers/header/header.component";
+import {IdentitiesSettingsComponent} from "./pages/users/identities-settings/identities-settings.component";
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   {
-    path: 'analyses',
+    path: 'home',
     component: HeaderComponent,
     canActivate: [AuthGuard],
     children: [
-      {path: '', component: AnalysesComponent},
-      {path: 'add', component: AddAnalysesComponent},
-      {path: 'tests', component: AnalysesTestsComponent},
-      {path: 'types', component: AnalysesTypesComponent},
+      {path: 'analyses', component: AnalysesComponent},
+      {path: 'analyses/add', component: AddAnalysesComponent},
+      {path: 'analyses/tests', component: AnalysesTestsComponent},
+      {path: 'analyses/types', component: AnalysesTypesComponent},
+      {path: 'users', component: IdentitiesSettingsComponent},
+      {path: '**', redirectTo: 'analyses'}
     ]
   },
-  //{ path: 'analyses/add', component: AddAnalysesComponent, canActivate: [AuthGuard] },
-  //{ path: 'analyses/tests', component: AnalysesTestsComponent, canActivate: [AuthGuard] },
-  //{ path: 'analyses/types', component: AnalysesTypesComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'analyses' }
 ];
 

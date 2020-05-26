@@ -42,7 +42,7 @@ namespace zabotalaboratory.Web.Areas.Api.UsersProfiles
         [Authorize]
         [ValidModelState]
         [HttpPost(HttpRouteConsts.DefaultAction)]
-        public async Task<ZabotaResult<bool>> AddIdentity(AddIdentityForm form)
+        public async Task<ZabotaResult<bool>> AddIdentity([FromBody] AddIdentityForm form)
         {
             return await _identityService.AddIdentity(new zabotalaboratory.Auth.Forms.Identity.AddIdentityForm {
                 Login = form.Login,
@@ -55,7 +55,7 @@ namespace zabotalaboratory.Web.Areas.Api.UsersProfiles
         [Authorize]
         [ValidModelState]
         [HttpPost(HttpRouteConsts.DefaultAction)]
-        public async Task<ZabotaResult<bool>> UpdateIdentity(UpdateIdentityForm form)
+        public async Task<ZabotaResult<bool>> UpdateIdentity([FromBody] UpdateIdentityForm form)
         {
             return await _identityService.UpdateIdentity(new zabotalaboratory.Auth.Forms.Identity.UpdateIdentityForm
             {
@@ -76,14 +76,14 @@ namespace zabotalaboratory.Web.Areas.Api.UsersProfiles
 
         [Authorize]
         [HttpGet(HttpRouteConsts.DefaultAction)]
-        public async Task<ZabotaResult<IEnumerable<ZabotaRoles>>> GetRole()
+        public async Task<ZabotaResult<IEnumerable<ZabotaRoles>>> GetRoles()
         {
             return await _identityService.GetRoles();
         }
 
         [Authorize]
         [HttpGet(HttpRouteConsts.DefaultAction)]
-        public async Task<ZabotaResult<IEnumerable<ZabotaSubRoles>>> GetSubRole()
+        public async Task<ZabotaResult<IEnumerable<ZabotaSubRoles>>> GetSubRoles()
         {
             return await _identityService.GetSubRoles();
         }

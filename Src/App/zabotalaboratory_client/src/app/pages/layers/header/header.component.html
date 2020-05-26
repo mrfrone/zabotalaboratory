@@ -9,14 +9,14 @@
       <button mat-button [matMenuTriggerFor]="admin">Администрирование</button>
 
       <mat-menu #analyses="matMenu">
-        <button mat-menu-item routerLink="/analyses/">Просмотреть анализы</button>
-        <button mat-menu-item routerLink="/analyses/add/">Добавить анализ</button>
+        <button mat-menu-item routerLink="/home/analyses/">Просмотреть анализы</button>
+        <button mat-menu-item routerLink="/home/analyses/add/">Добавить анализ</button>
       </mat-menu>
 
       <mat-menu #admin="matMenu">
-        <button mat-menu-item routerLink="/analyses/types/">Настройки типов тестов</button>
-        <button mat-menu-item routerLink="/analyses/tests/">Настройки тестов</button>
-        <button mat-menu-item>Пользователи</button>
+        <button mat-menu-item routerLink="/home/analyses/types/">Настройки типов тестов</button>
+        <button mat-menu-item routerLink="/home/analyses/tests/">Настройки тестов</button>
+        <button mat-menu-item routerLink="/home/users/">Пользователи</button>
         <button mat-menu-item>Управление анализами</button>
       </mat-menu>
   </mat-sidenav>

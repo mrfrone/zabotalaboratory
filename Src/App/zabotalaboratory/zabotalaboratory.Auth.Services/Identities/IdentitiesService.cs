@@ -39,14 +39,14 @@ namespace zabotalaboratory.Auth.Services.Identities
             return new ZabotaResult<ZabotaIdentity>(mappedModel);
         }
 
-        public async Task<ZabotaResult<ZabotaIdentity>> GetIdentityByTokenId(int id)
+        public async Task<ZabotaIdentity> GetIdentityByTokenId(int id)
         {
             var model = await _identitiesRepository.IdentityByTokenId(id);
             if (model == null)
-                return ZabotaErrorCodes.CannotFindIdentityByTokenId;
+                return null;
 
             var mappedModel = _mapper.Map<Database.Entities.Identities, ZabotaIdentity>(model);
-            return new ZabotaResult<ZabotaIdentity>(mappedModel);
+            return mappedModel;
         }
 
         public async Task<ZabotaResult<IEnumerable<ZabotaRoles>>> GetRoles() 

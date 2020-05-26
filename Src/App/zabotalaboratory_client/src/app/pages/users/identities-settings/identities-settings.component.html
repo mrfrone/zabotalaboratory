@@ -12,9 +12,10 @@
       <tbody *ngFor="let identity of identities">
       <tr (click)="onTableElementClick(identity.id)">
         <th class="row-center">{{ identity.id }}</th>
-        <td>{{ identity.login }}</td>
+        <td class="row-center">{{ identity.login }}</td>
         <td class="row-center">{{ identity.role.name }}</td>
-        <td class="row-center">{{ identity.subRole.name }}</td>
+        <td class="row-center" *ngIf="identity.subRole?.name != null">{{ identity.subRole.name }}</td>
+        <td class="row-center" *ngIf="identity.subRole?.name == null">Без роли доступа</td>
       </tr>
       </tbody>
     </table>

@@ -1,5 +1,5 @@
-<div class="main-box" *ngIf="!mainTableIsProgress">
-  <div class="main-box-content">
+<div class="main-box">
+  <div class="main-box-content" *ngIf="!mainTableIsProgress">
     <mat-form-field>
       <mat-label>Поиск по имени</mat-label>
       <input matInput (keyup)="onNameSearchKeyUp()" placeholder="Введите имя пациента">

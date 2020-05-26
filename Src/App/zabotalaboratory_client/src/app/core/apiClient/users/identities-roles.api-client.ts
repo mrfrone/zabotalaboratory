@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {ZabotaResult} from "../../../shared/models/zabota-result/zabota-result";
 import {Observable} from "rxjs";
 import {BaseApiClient} from "../base.api-client";
-import {Identity} from "../../../shared/models/users/identity";
 import {Roles} from "../../../shared/models/users/roles";
 import {SubRoles} from "../../../shared/models/users/sub-roles";
 

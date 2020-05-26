@@ -52,6 +52,7 @@ export class IdentitiesSettingsComponent implements OnInit {
     if(this.identitiesForm.controls['identitiesPassword'].value !== this.identitiesForm.controls['identitiesPasswordConfirm'].value)
     {
       this._messages.showMessage("Пароли не совпадают!");
+      this.mainWindowIsProgress = false;
       return
     }
 

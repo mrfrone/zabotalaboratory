@@ -19,8 +19,6 @@ export class LoginComponent implements OnInit {
     "authPassword": new FormControl("", Validators.required)
   });
 
-  public log: string = ''
-  public pass: string = ''
   public isProgress: boolean = false
 
   constructor(private readonly _auth: AuthApiClient,
@@ -55,6 +53,6 @@ export class LoginComponent implements OnInit {
   }
 
   private goToMainPage(): void {
-    this._router.navigate(['analyses']);
+    this._router.navigate(['home/analyses']);
   }
 }

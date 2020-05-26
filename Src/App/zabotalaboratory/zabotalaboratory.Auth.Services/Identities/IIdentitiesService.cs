@@ -13,7 +13,7 @@ namespace zabotalaboratory.Auth.Services.Identities
 
         Task<ZabotaResult<ZabotaIdentity>> GetIdentityById(int id);
 
-        Task<ZabotaResult<ZabotaIdentity>> GetIdentityByTokenId(int id);
+        Task<ZabotaIdentity> GetIdentityByTokenId(int id);
 
         Task<ZabotaResult<IEnumerable<ZabotaRoles>>> GetRoles();
 
