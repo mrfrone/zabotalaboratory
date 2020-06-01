@@ -1,14 +1,17 @@
 import {TokenGetter} from "../../shared/consts/tokenGetter";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Injectable} from "@angular/core";
-import {AuthApiClient} from "../apiClient/auth/auth.api-client";
 import * as jwt_decode from "jwt-decode";
+import {Roles} from "../../shared/models/users/roles";
+import {IdentitiesRolesApiClient} from "../apiClient/users/identities-roles.api-client";
+import {Observable} from "rxjs";
+import {ZabotaResult} from "../../shared/models/zabota-result/zabota-result";
 
 @Injectable({providedIn: 'root'})
 export class AuthCheckerService {
 
-    constructor(private readonly _jwtHelper: JwtHelperService,
-                private readonly _authApiClient: AuthApiClient) {}
+  constructor(private readonly _jwtHelper: JwtHelperService,
+              private readonly _roles: IdentitiesRolesApiClient) {}
 
   public isAuth(): boolean{
 
@@ -19,7 +22,8 @@ export class AuthCheckerService {
     }
     return false;
   }
-  public getRole(): string {
+
+  public getCurrentRole(): string {
       const token = TokenGetter.getToken();
             const decodedToken = jwt_decode(token);
 

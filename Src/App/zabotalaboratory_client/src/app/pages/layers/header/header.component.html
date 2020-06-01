@@ -4,21 +4,21 @@
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="(isHandset$ | async) === false">
     <mat-toolbar><img src="/assets/img/logo/logo-main.png"><span>Лаборатория</span></mat-toolbar>
-      <button mat-button [matMenuTriggerFor]="analyses">Анализы</button>
+      <button mat-button [matMenuTriggerFor]="analyses_router_list">Анализы</button>
       <button mat-button>Профиль</button>
-      <button mat-button [matMenuTriggerFor]="admin">Администрирование</button>
+      <button mat-button [matMenuTriggerFor]="admin_router_list" *ngIf="isAvailableRoute([admin, laborant])">Администрирование</button>
 
-      <mat-menu #analyses="matMenu">
+      <mat-menu #analyses_router_list="matMenu">
         <button mat-menu-item routerLink="/home/analyses/">Просмотреть анализы</button>
-        <button mat-menu-item routerLink="/home/analyses/add/">Добавить анализ</button>
+        <button mat-menu-item routerLink="/home/analyses/add/" *ngIf="isAvailableRoute([admin, laborant])">Добавить анализ</button>
       </mat-menu>
 
-      <mat-menu #admin="matMenu">
-        <button mat-menu-item routerLink="/home/analyses/types/">Настройки типов тестов</button>
-        <button mat-menu-item routerLink="/home/analyses/tests/">Настройки тестов</button>
-        <button mat-menu-item routerLink="/home/users/">Пользователи</button>
-        <button mat-menu-item routerLink="/home/users/sub-roles">Настройки ролей доступа к анализам</button>
-        <button mat-menu-item>Управление анализами</button>
+      <mat-menu #admin_router_list="matMenu">
+        <button mat-menu-item routerLink="/home/analyses/types/" *ngIf="isAvailableRoute([admin, laborant])">Настройки типов тестов</button>
+        <button mat-menu-item routerLink="/home/analyses/tests/" *ngIf="isAvailableRoute([admin, laborant])">Настройки тестов</button>
+        <button mat-menu-item routerLink="/home/users/" *ngIf="isAvailableRoute([admin])">Пользователи</button>
+        <button mat-menu-item routerLink="/home/users/sub-roles" *ngIf="isAvailableRoute([admin])">Настройки ролей доступа к анализам</button>
+        <button mat-menu-item *ngIf="isAvailableRoute([admin])">Управление анализами</button>
       </mat-menu>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -34,7 +34,7 @@
       </button></span>
       </div>
       <div class="navigation-items">
-        <span>{{ role }}</span>
+        <span>{{ currentRole }}</span>
         <span><a (click)="logOut()">Выйти</a></span>
       </div>
     </mat-toolbar>

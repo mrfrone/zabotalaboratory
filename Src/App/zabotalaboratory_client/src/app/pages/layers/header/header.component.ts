@@ -1,14 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
-import {map, shareReplay, take} from 'rxjs/operators';
+import {map, shareReplay} from 'rxjs/operators';
 import {AuthCheckerService} from "../../../core/services/auth-checker.service";
-import {ZabotaResult} from "../../../shared/models/zabota-result/zabota-result";
 import {DefaultSuccessMessages} from "../../../shared/consts/defaultSuccessMessages";
 import {AuthApiClient} from "../../../core/apiClient/auth/auth.api-client";
 import {MessageService} from "../../../core/services/message.service";
 import {Router} from "@angular/router";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { StaticRoles } from "../../../shared/consts/staticRoles";
 
 @Component({
   selector: 'app-header',
@@ -16,7 +15,11 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  public role: string = 'Загрузка...';
+  public currentRole: string = 'Загрузка...';
+  public admin: string = StaticRoles.admin;
+  public laborant: string = StaticRoles.laborant;
+  public clinic: string = StaticRoles.clinic;
+
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -32,7 +35,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.role = this._authCheckerService.getRole();
+    this.currentRole = this._authCheckerService.getCurrentRole();
   }
 
   public logOut(): void {
@@ -44,5 +47,22 @@ export class HeaderComponent implements OnInit {
         this._router.navigate(['']);
       }
     });
+  }
+
+  public isAvailableRoute(roles: string[]): boolean {
+    let access: boolean = false;
+    let currentRole: string = this._authCheckerService.getCurrentRole()
+
+    roles.forEach(function (value) {
+      if(value == currentRole) {
+        access = true;
+        return;
+      }
+    });
+
+    if(access)
+      return true;
+
+    return false;
   }
 }
