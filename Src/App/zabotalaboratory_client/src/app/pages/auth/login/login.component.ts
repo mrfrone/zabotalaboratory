@@ -4,7 +4,7 @@ import {finalize} from "rxjs/operators";
 import {AuthCheckerService} from "../../../core/services/auth-checker.service";
 import {Router} from "@angular/router";
 import {DefaultSuccessMessages} from "../../../shared/consts/defaultSuccessMessages";
-import {AuthApiClient} from "../../../core/apiClient/auth.api-client";
+import {AuthApiClient} from "../../../core/apiClient/auth/auth.api-client";
 import {MessageService} from "../../../core/services/message.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 

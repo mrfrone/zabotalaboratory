@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {LoginForm} from "../../shared/forms/auth/login.form";
-import {ZabotaResult} from "../../shared/models/zabota-result/zabota-result";
-import {Jwt} from "../../shared/models/jwt/jwt";
+import {LoginForm} from "../../../shared/forms/auth/login.form";
+import {ZabotaResult} from "../../../shared/models/zabota-result/zabota-result";
+import {Jwt} from "../../../shared/models/jwt/jwt";
 import {Observable} from "rxjs";
-import {BaseApiClient} from "./base.api-client";
+import {BaseApiClient} from "../base.api-client";
 
 
 @Injectable({providedIn: 'root'})

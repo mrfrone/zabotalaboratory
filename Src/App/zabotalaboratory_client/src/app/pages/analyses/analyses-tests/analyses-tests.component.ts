@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AnalysesTypes} from "../../../shared/models/analyses/analyses-types";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {NewAnalysesTestForm} from "../../../shared/forms/analyses-tests/new-analyses-test.form";
+import {AddNewAnalysesTestForm} from "../../../shared/forms/analyses-tests/add-new-analyses-test.form";
 import {AnalysesTestsApiClient} from "../../../core/apiClient/analyses/analyses-tests.api-client";
 import {MessageService} from "../../../core/services/message.service";
 import {DefaultSuccessMessages} from "../../../shared/consts/defaultSuccessMessages";
@@ -51,7 +51,7 @@ export class AnalysesTestsComponent implements OnInit {
   public onFormSubmit(): void{
     this.mainWindowIsProgress = true;
 
-    const form: NewAnalysesTestForm = {
+    const form: AddNewAnalysesTestForm = {
       name: this.testsForm.controls['testName'].value,
       number1C: this.testsForm.controls['test1C'].value,
       analysesTypesId: this.testsForm.controls['testType'].value

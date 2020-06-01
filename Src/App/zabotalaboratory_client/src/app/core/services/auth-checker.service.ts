@@ -1,7 +1,7 @@
 import {TokenGetter} from "../../shared/consts/tokenGetter";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Injectable} from "@angular/core";
-import {AuthApiClient} from "../apiClient/auth.api-client";
+import {AuthApiClient} from "../apiClient/auth/auth.api-client";
 import * as jwt_decode from "jwt-decode";
 
 @Injectable({providedIn: 'root'})

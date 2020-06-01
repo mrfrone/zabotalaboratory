@@ -62,6 +62,7 @@ namespace zabotalaboratory.Web.Areas.Api.UsersProfiles
                 Id = form.Id,
                 Login = form.Login,
                 Password = form.Password,
+                ChangePassword = form.ChangePassword,
                 RoleId = form.RoleId,
                 SubRoleId = form.SubRoleId
             });
@@ -83,9 +84,58 @@ namespace zabotalaboratory.Web.Areas.Api.UsersProfiles
 
         [Authorize]
         [HttpGet(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<IEnumerable<ZabotaSubRoles>>> GetOnlyValidSubRoles()
+        {
+            return await _identityService.GetSubRoles(true);
+        }
+
+        [Authorize]
+        [HttpGet(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<IEnumerable<ZabotaSubRoles>>> GetSubRoles()
         {
-            return await _identityService.GetSubRoles();
+            return await _identityService.GetSubRoles(false);
+        }
+
+        [Authorize]
+        [HttpGet(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<ZabotaSubRoles>> GetSubRoleById(int id)
+        {
+            return await _identityService.GetSubRoleById(id);
+        }
+
+        [Authorize]
+        [ValidModelState]
+        [HttpPost(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<bool>> AddSubRole([FromBody] AddNewSubRoleForm form)
+        {
+            return await _identityService.AddSubRole(new zabotalaboratory.Auth.Forms.Roles.AddNewSubRoleForm
+            {
+                Name = form.Name
+            });
+        }
+
+        [Authorize]
+        [ValidModelState]
+        [HttpPost(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<bool>> UpdateSubRole([FromBody] UpdateSubRoleForm form)
+        {
+            return await _identityService.UpdateSubRole(new zabotalaboratory.Auth.Forms.Roles.UpdateSubRoleForm
+            {
+                Id = form.Id,
+                Name = form.Name
+            });
+        }
+
+        [Authorize]
+        [ValidModelState]
+        [HttpPost(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<bool>> UpdateSubRoleValid([FromBody] UpdateSubRoleValidForm form)
+        {
+            return await _identityService.UpdateSubRoleValid(new zabotalaboratory.Auth.Forms.Roles.UpdateSubRoleValidForm
+            {
+                Id = form.Id,
+                IsValid = form.IsValid
+            });
         }
     }
 }

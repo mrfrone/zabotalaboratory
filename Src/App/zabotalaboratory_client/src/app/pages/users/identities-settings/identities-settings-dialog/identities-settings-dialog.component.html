@@ -1,0 +1,61 @@
+<h2 mat-dialog-title>Настройки пользователя №{{ id }}</h2>
+<mat-dialog-content class="mat-typography">
+  <div *ngIf="!isProgress">
+    <form class="example-form" [formGroup]="identityForm">
+      <hr>
+      <mat-form-field class="example-full-width">
+        <mat-label>Логин</mat-label>
+        <input matInput type="text" formControlName="identitiesLogin">
+        <mat-error *ngIf="identityForm.controls['identitiesLogin'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Основная роль</mat-label>
+        <mat-select formControlName="identitiesRole">
+          <mat-option *ngFor="let role of roles" [value]="role.id">
+            {{role.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="identityForm.controls['identitiesRole'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Роль доступа к анализам</mat-label>
+        <mat-select formControlName="identitiesSubRole">
+          <mat-option [value]="null">
+            Без роли
+          </mat-option>
+          <mat-option *ngFor="let subRole of subRoles" [value]="subRole.id">
+            {{subRole.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-checkbox formControlName="changePasswordCheck" (change)="onCheckBoxChanged()">Изменить пароль?</mat-checkbox>
+      <mat-form-field class="example-full-width">
+        <mat-label>Пароль</mat-label>
+        <input matInput type="password" formControlName="identitiesPassword">
+        <mat-error *ngIf="identityForm.controls['identitiesPassword'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Подтверждение пароля</mat-label>
+        <input matInput type="password" formControlName="identitiesPasswordConfirm">
+        <mat-error *ngIf="identityForm.controls['identitiesPasswordConfirm'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+      <div class="form-buttons">
+        <button mat-stroked-button color="primary" type="button" [disabled]="identityForm.invalid" (click)="onFormSubmit()">Обновить</button>
+        <button mat-stroked-button color="warn" type="button" (click)="onDeleteButton()">Удалить</button>
+      </div>
+    </form>
+  </div>
+  <div class="center" *ngIf="isProgress">
+    <mat-spinner></mat-spinner>
+  </div>
+</mat-dialog-content>
+
+

@@ -21,7 +21,7 @@ namespace zabotalaboratory.Analyses.Database.Context
                         
             modelBuilder.Entity<Clinics>(e =>
             {
-                var subRolesData = _identityService.GetSubRoles().Result;
+                var subRolesData = _identityService.GetSubRoles(false).Result;
                 e.HasData(subRolesData.Result);
             });
         }

@@ -5,7 +5,7 @@ import {map, shareReplay, take} from 'rxjs/operators';
 import {AuthCheckerService} from "../../../core/services/auth-checker.service";
 import {ZabotaResult} from "../../../shared/models/zabota-result/zabota-result";
 import {DefaultSuccessMessages} from "../../../shared/consts/defaultSuccessMessages";
-import {AuthApiClient} from "../../../core/apiClient/auth.api-client";
+import {AuthApiClient} from "../../../core/apiClient/auth/auth.api-client";
 import {MessageService} from "../../../core/services/message.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";

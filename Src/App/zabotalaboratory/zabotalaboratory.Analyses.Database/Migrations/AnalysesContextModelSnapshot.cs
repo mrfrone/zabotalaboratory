@@ -27,7 +27,7 @@ namespace zabotalaboratory.Analyses.Database.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("LaboratoryAnalysesTestsId")
+                    b.Property<int>("LaboratoryAnalysesTestsId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Result")
@@ -56,6 +56,7 @@ namespace zabotalaboratory.Analyses.Database.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("Number1C")
@@ -68,12 +69,16 @@ namespace zabotalaboratory.Analyses.Database.Migrations
 
             modelBuilder.Entity("zabotalaboratory.Analyses.Database.Entities.Clinics", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<bool>("IsValid")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -83,8 +88,21 @@ namespace zabotalaboratory.Analyses.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            Id = 0,
+                            IsValid = true,
                             Name = "14"
+                        },
+                        new
+                        {
+                            Id = 1,
+                            IsValid = true,
+                            Name = "14а"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IsValid = true,
+                            Name = "20"
                         });
                 });
 
@@ -102,13 +120,19 @@ namespace zabotalaboratory.Analyses.Database.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasColumnType("character varying(32)")
+                        .HasMaxLength(32);
 
                     b.Property<string>("LastName")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasColumnType("character varying(32)")
+                        .HasMaxLength(32);
 
                     b.Property<string>("PatronymicName")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasColumnType("character varying(32)")
+                        .HasMaxLength(32);
 
                     b.Property<DateTimeOffset>("PickUpDate")
                         .HasColumnType("timestamp with time zone");
@@ -134,6 +158,7 @@ namespace zabotalaboratory.Analyses.Database.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("Number1C")
@@ -153,7 +178,7 @@ namespace zabotalaboratory.Analyses.Database.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("AnalysesTypeId")
+                    b.Property<int>("AnalysesTypeId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("LaboratoryAnalysesId")
@@ -172,7 +197,9 @@ namespace zabotalaboratory.Analyses.Database.Migrations
                 {
                     b.HasOne("zabotalaboratory.Analyses.Database.Entities.LaboratoryAnalysesTests", "LaboratoryAnalysesTests")
                         .WithMany()
-                        .HasForeignKey("LaboratoryAnalysesTestsId");
+                        .HasForeignKey("LaboratoryAnalysesTestsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("zabotalaboratory.Analyses.Database.Entities.Talons", null)
                         .WithMany("AnalysesResult")
@@ -201,7 +228,9 @@ namespace zabotalaboratory.Analyses.Database.Migrations
                 {
                     b.HasOne("zabotalaboratory.Analyses.Database.Entities.AnalysesTypes", "AnalysesType")
                         .WithMany()
-                        .HasForeignKey("AnalysesTypeId");
+                        .HasForeignKey("AnalysesTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("zabotalaboratory.Analyses.Database.Entities.LaboratoryAnalyses", null)
                         .WithMany("Talons")

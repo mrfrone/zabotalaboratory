@@ -43,7 +43,8 @@ namespace zabotalaboratory.Auth.Datamodel.Mapping
             CreateMap<Database.Entities.SubRoles, ZabotaSubRoles>()
                 .IgnoreOther()
                 .ForMember(u => u.Id, opts => opts.MapFrom(u => u.Id))
-                .ForMember(u => u.Name, opts => opts.MapFrom(u => u.Name));
+                .ForMember(u => u.Name, opts => opts.MapFrom(u => u.Name))
+                .ForMember(u => u.IsValid, opts => opts.MapFrom(u => u.IsValid));
 
         }
     }

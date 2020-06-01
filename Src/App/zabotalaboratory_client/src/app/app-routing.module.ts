@@ -3,12 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import {AuthGuard} from "./core/guards/auth-guard";
 
 import {LoginComponent} from "./pages/auth/login/login.component";
+import {HeaderComponent} from "./pages/layers/header/header.component";
 import {AnalysesComponent} from "./pages/analyses/analyses/analyses.component";
 import {AddAnalysesComponent} from "./pages/analyses/add-analyses/add-analyses.component";
 import {AnalysesTestsComponent} from "./pages/analyses/analyses-tests/analyses-tests.component";
 import {AnalysesTypesComponent} from "./pages/analyses/analyses-types/analyses-types.component";
-import {HeaderComponent} from "./pages/layers/header/header.component";
 import {IdentitiesSettingsComponent} from "./pages/users/identities-settings/identities-settings.component";
+import {SubRolesSettingsComponent} from "./pages/users/sub-roles-settings/sub-roles-settings.component";
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
       {path: 'analyses/tests', component: AnalysesTestsComponent},
       {path: 'analyses/types', component: AnalysesTypesComponent},
       {path: 'users', component: IdentitiesSettingsComponent},
+      {path: 'users/sub-roles', component: SubRolesSettingsComponent},
       {path: '**', redirectTo: 'analyses'}
     ]
   },

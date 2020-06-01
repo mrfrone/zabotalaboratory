@@ -12,7 +12,12 @@
         EmptyResult = 1000007,
         IdentityExists = 1000008,
         CannotFindIdentityById = 1000009,
-        CannotDeleteCurrentUser = 1000010,
+        UpdateIdentityOperationError = 1000010,
+        CannotDeleteCurrentUser = 1000011,
+        AddSubRoleOperationError = 1000012,
+        UpdateSubRoleOperationError = 1000013,
+        CannotFindSubRoleById = 1000014
+        
     }
 
     public static class ErrorCodesExtensions

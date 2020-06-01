@@ -8,6 +8,8 @@
 
         public string Password { get; set; }
 
+        public bool ChangePassword { get; set; }
+
         public int RoleId { get; set; }
 
         public int? SubRoleId { get; set; }

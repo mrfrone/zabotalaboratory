@@ -38,11 +38,13 @@ namespace zabotalaboratory.Auth.Database.Migrations
 
                     b.Property<string>("Login")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("character varying(32)")
+                        .HasMaxLength(32);
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("character varying(32)")
+                        .HasMaxLength(32);
 
                     b.Property<int>("RoleId")
                         .HasColumnType("integer");
@@ -135,6 +137,9 @@ namespace zabotalaboratory.Auth.Database.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<bool>("IsValid")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
@@ -149,22 +154,18 @@ namespace zabotalaboratory.Auth.Database.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("character varying(256)")
                         .HasMaxLength(256);
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("character varying(32)")
                         .HasMaxLength(32);
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("character varying(32)")
                         .HasMaxLength(32);
 
                     b.Property<string>("PatronymicName")
-                        .IsRequired()
                         .HasColumnType("character varying(32)")
                         .HasMaxLength(32);
 

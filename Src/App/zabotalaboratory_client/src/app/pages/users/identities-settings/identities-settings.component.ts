@@ -5,10 +5,12 @@ import {Identity} from "../../../shared/models/users/identity";
 import {IdentitiesRolesApiClient} from "../../../core/apiClient/users/identities-roles.api-client";
 import {SubRoles} from "../../../shared/models/users/sub-roles";
 import {Roles} from "../../../shared/models/users/roles";
-import {NewAnalysesTestForm} from "../../../shared/forms/analyses-tests/new-analyses-test.form";
 import {DefaultSuccessMessages} from "../../../shared/consts/defaultSuccessMessages";
-import {NewIdentityForm} from "../../../shared/forms/identities/new-identity.form";
+import {AddNewIdentityForm} from "../../../shared/forms/identities/add-new-identity.form";
 import {MessageService} from "../../../core/services/message.service";
+import {AnalysesTestsDialogComponent} from "../../analyses/analyses-tests/analyses-tests-dialog/analyses-tests-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {IdentitiesSettingsDialogComponent} from "./identities-settings-dialog/identities-settings-dialog.component";
 
 @Component({
   selector: 'app-users-settings',
@@ -33,13 +35,14 @@ export class IdentitiesSettingsComponent implements OnInit {
 
   constructor(private readonly _identities: IdentitiesSettingsApiClient,
               private readonly _roles: IdentitiesRolesApiClient,
-              private readonly _messages: MessageService) { }
+              private readonly _messages: MessageService,
+              private readonly _dialog: MatDialog) { }
 
   ngOnInit(): void {
     this._roles.getRoles().subscribe(res => {
       this.roles = res.result;
     });
-    this._roles.getSubRoles().subscribe(res => {
+    this._roles.getOnlyValidSubRoles().subscribe(res => {
       this.subRoles = res.result;
     });
 
@@ -56,7 +59,7 @@ export class IdentitiesSettingsComponent implements OnInit {
       return
     }
 
-    const form: NewIdentityForm = {
+    const form: AddNewIdentityForm = {
       login: this.identitiesForm.controls['identitiesLogin'].value,
       password: this.identitiesForm.controls['identitiesPassword'].value,
       roleId: this.identitiesForm.controls['identitiesRole'].value,
@@ -71,7 +74,13 @@ export class IdentitiesSettingsComponent implements OnInit {
   }
 
   public onTableElementClick(id: number): void {
+    const dialog = this._dialog.open(IdentitiesSettingsDialogComponent, {
+      data: id
+    });
 
+    dialog.componentInstance.updateEvent.subscribe(() => {
+      this.updateData();
+    });
   }
 
   private updateData(): void{

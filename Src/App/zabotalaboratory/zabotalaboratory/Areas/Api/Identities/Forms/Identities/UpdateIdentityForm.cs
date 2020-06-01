@@ -11,9 +11,11 @@ namespace zabotalaboratory.Api.Identities.Forms
         [MaxLength(32)]
         public string Login { get; set; }
 
-        [Required]
         [MaxLength(32)]
         public string Password { get; set; }
+
+        [Required]
+        public bool ChangePassword { get; set; }
 
         [Required]
         public int RoleId { get; set; }

@@ -37,7 +37,8 @@ namespace zabotalaboratory.Analyses.Datamodel.Mapping
             CreateMap<Database.Entities.Clinics, ZabotaClinics>()
                 .IgnoreOther()
                 .ForMember(u => u.Id, opts => opts.MapFrom(u => u.Id))
-                .ForMember(u => u.Name, opts => opts.MapFrom(u => u.Name));
+                .ForMember(u => u.Name, opts => opts.MapFrom(u => u.Name))
+                .ForMember(u => u.IsValid, opts => opts.MapFrom(u => u.IsValid));
 
             CreateMap<Database.Entities.AnalysesTypes, ZabotaAnalysesTypes>()
                 .IgnoreOther()

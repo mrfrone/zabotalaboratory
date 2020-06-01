@@ -20,6 +20,9 @@ import { AnalysesTestsDialogComponent } from './pages/analyses/analyses-tests/an
 import { AnalysesTypesComponent } from './pages/analyses/analyses-types/analyses-types.component';
 import { AnalysesTypesDialogComponent } from './pages/analyses/analyses-types/analyses-types-dialog/analyses-types-dialog.component';
 import { IdentitiesSettingsComponent } from './pages/users/identities-settings/identities-settings.component';
+import { IdentitiesSettingsDialogComponent } from './pages/users/identities-settings/identities-settings-dialog/identities-settings-dialog.component';
+import { SubRolesSettingsComponent } from './pages/users/sub-roles-settings/sub-roles-settings.component';
+import { SubRolesSettingsDialogComponent } from './pages/users/sub-roles-settings/sub-roles-settings-dialog/sub-roles-settings-dialog.component';
 
 
 @NgModule({
@@ -33,7 +36,10 @@ import { IdentitiesSettingsComponent } from './pages/users/identities-settings/i
     AnalysesTestsDialogComponent,
     AnalysesTypesComponent,
     AnalysesTypesDialogComponent,
-    IdentitiesSettingsComponent
+    IdentitiesSettingsComponent,
+    IdentitiesSettingsDialogComponent,
+    SubRolesSettingsComponent,
+    SubRolesSettingsDialogComponent
   ],
   imports: [
     MaterialModule,
