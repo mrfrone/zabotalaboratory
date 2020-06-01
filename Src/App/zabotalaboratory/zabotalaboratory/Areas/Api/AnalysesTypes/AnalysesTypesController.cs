@@ -6,13 +6,14 @@ using zabotalaboratory.Analyses.Datamodel.Analyses;
 using zabotalaboratory.Analyses.Services.Analyses;
 using zabotalaboratory.Common;
 using zabotalaboratory.Common.Consts;
+using zabotalaboratory.Common.Consts.Roles;
 using zabotalaboratory.Common.Result;
 using zabotalaboratory.Web.Areas.Api.AnalysesTypes.Forms;
 using zabotalaboratory.Web.Common.Filters;
 
 namespace zabotalaboratory.Web.Areas.Api.AnalysesTypes
 {
-    [Authorize]
+    [Authorize(Roles = Roles.Admin + ", " + Roles.Laborant)]
     [Area(AreaNames.Api)]
     [Route(HttpRouteConsts.DefaultController)]
     public class AnalysesTypesController : BaseController

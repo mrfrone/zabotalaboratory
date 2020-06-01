@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using zabotalaboratory.Auth.Database.Entities;
+using zabotalaboratory.Common.Consts.Roles;
 
 namespace zabotalaboratory.Auth.Database.Context
 {
@@ -13,13 +14,13 @@ namespace zabotalaboratory.Auth.Database.Context
             modelBuilder.UseIdentityByDefaultColumns();
             modelBuilder.HasDefaultSchema(SchemaName);
 
-            modelBuilder.Entity<Roles>(e =>
+            modelBuilder.Entity<Entities.Roles>(e =>
             {
                 e.HasData(new[]
                 {
-                    new Roles() { Id = 1, Name="Администратор" },
-                    new Roles() { Id = 2, Name="Лаборант" },
-                    new Roles() { Id = 3, Name="Поликлиника" }
+                    new Entities.Roles() { Id = 1, Name = Common.Consts.Roles.Roles.Admin },
+                    new Entities.Roles() { Id = 2, Name = Common.Consts.Roles.Roles.Laborant },
+                    new Entities.Roles() { Id = 3, Name = Common.Consts.Roles.Roles.Clinic }
                 });
             });
         }
@@ -30,7 +31,7 @@ namespace zabotalaboratory.Auth.Database.Context
 
         public DbSet<UsersProfiles> UsersProfiles { get; set; }
 
-        public DbSet<Roles> Roles { get; set; }
+        public DbSet<Entities.Roles> Roles { get; set; }
 
         public DbSet<SubRoles> SubRoles { get; set; }
     }

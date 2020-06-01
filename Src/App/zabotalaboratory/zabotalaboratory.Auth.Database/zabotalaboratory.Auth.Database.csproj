@@ -9,4 +9,8 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\zabotalaboratory.Common.Consts\zabotalaboratory.Common.Consts.csproj" />
+  </ItemGroup>
+
 </Project>
