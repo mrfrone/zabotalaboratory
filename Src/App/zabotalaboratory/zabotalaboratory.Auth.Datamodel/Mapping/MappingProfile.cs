@@ -28,12 +28,10 @@ namespace zabotalaboratory.Auth.Datamodel.Mapping
             CreateMap<Database.Entities.UsersProfiles, ZabotaUserProfile>()
                 .IgnoreOther()
                 .ForMember(u => u.IdentityId, opts => opts.MapFrom(u => u.IdentityId))
-                .ForMember(u => u.FirstName, opts => opts.MapFrom(u => u.FirstName))
-                .ForMember(u => u.PatronymicName, opts => opts.MapFrom(u => u.PatronymicName))
-                .ForMember(u => u.LastName, opts => opts.MapFrom(u => u.LastName))
+                .ForMember(u => u.AbbreviatedNameOfCompany, opts => opts.MapFrom(u => u.AbbreviatedNameOfCompany))
+                .ForMember(u => u.FullNameOfCompany, opts => opts.MapFrom(u => u.FullNameOfCompany))
                 .ForMember(u => u.Email, opts => opts.MapFrom(u => u.Email))
-                .ForMember(u => u.Role, opts => opts.MapFrom(u => u.Identity.Role.Name))
-                .ForMember(u => u.SubRole, opts => opts.MapFrom(u => u.Identity.SubRole.Name));
+                .ForMember(u => u.Address, opts => opts.MapFrom(u => u.Address));
 
             CreateMap<Database.Entities.Roles, ZabotaRoles>()
                 .IgnoreOther()

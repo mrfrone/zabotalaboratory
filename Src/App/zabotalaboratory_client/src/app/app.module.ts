@@ -23,6 +23,7 @@ import { IdentitiesSettingsComponent } from './pages/users/identities-settings/i
 import { IdentitiesSettingsDialogComponent } from './pages/users/identities-settings/identities-settings-dialog/identities-settings-dialog.component';
 import { SubRolesSettingsComponent } from './pages/users/sub-roles-settings/sub-roles-settings.component';
 import { SubRolesSettingsDialogComponent } from './pages/users/sub-roles-settings/sub-roles-settings-dialog/sub-roles-settings-dialog.component';
+import { UserProfileComponent } from './pages/users/user-profile/user-profile.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { SubRolesSettingsDialogComponent } from './pages/users/sub-roles-setting
     IdentitiesSettingsComponent,
     IdentitiesSettingsDialogComponent,
     SubRolesSettingsComponent,
-    SubRolesSettingsDialogComponent
+    SubRolesSettingsDialogComponent,
+    UserProfileComponent
   ],
   imports: [
     MaterialModule,

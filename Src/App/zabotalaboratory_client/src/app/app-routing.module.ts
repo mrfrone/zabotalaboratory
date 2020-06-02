@@ -12,12 +12,13 @@ import {IdentitiesSettingsComponent} from "./pages/users/identities-settings/ide
 import {SubRolesSettingsComponent} from "./pages/users/sub-roles-settings/sub-roles-settings.component";
 import {RolesGuard} from "./core/guards/roles-guard";
 import {StaticRoles} from "./shared/consts/staticRoles";
+import {UserProfileComponent} from "./pages/users/user-profile/user-profile.component";
 
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: 'auth', component: LoginComponent },
   {
-    path: 'home',
+    path: '',
     component: HeaderComponent,
     canActivate: [AuthGuard],
     children: [
@@ -27,10 +28,11 @@ const routes: Routes = [
       {path: 'analyses/types', component: AnalysesTypesComponent, canActivate: [RolesGuard], data: { roles: [StaticRoles.admin, StaticRoles.laborant] }},
       {path: 'users', component: IdentitiesSettingsComponent, canActivate: [RolesGuard], data: { roles: [StaticRoles.admin] }},
       {path: 'users/sub-roles', component: SubRolesSettingsComponent, canActivate: [RolesGuard], data: { roles: [StaticRoles.admin] }},
-      {path: '**', redirectTo: 'analyses'}
+      {path: 'profile', component: UserProfileComponent},
+      {path: '**', redirectTo: 'auth'}
     ]
   },
-  { path: '**', redirectTo: 'analyses' }
+  { path: '**', redirectTo: 'auth' }
 ];
 
 @NgModule({

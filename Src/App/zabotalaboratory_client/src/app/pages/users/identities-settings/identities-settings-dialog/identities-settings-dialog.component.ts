@@ -96,6 +96,8 @@ export class IdentitiesSettingsDialogComponent implements OnInit {
 
     this._identities.updateIdentity(form).subscribe(res => {
       this._messages.showResult(res, DefaultSuccessMessages.onUpdateIdentity);
+      this.identityForm.reset();
+      this.onCheckBoxChanged();
       this.updateData();
       this.updateEvent.emit();
     });

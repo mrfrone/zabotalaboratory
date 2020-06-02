@@ -1,6 +1,6 @@
-﻿namespace zabotalaboratory.Auth.Datamodel.UserProfiles
+﻿namespace zabotalaboratory.Auth.Forms.UsersProfiles
 {
-    public class ZabotaUserProfile
+    public class UpdateUserProfileForm
     {
         public int IdentityId { get; set; }
 

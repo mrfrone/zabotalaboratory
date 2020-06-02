@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
       return true;
     }
     this._message.showMessage('Вы не авторизованы')
-    this.router.navigate([""]);
+    this.router.navigate(["auth"]);
     return false;
   }
 }

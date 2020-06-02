@@ -8,6 +8,7 @@ import {AuthApiClient} from "../../../core/apiClient/auth/auth.api-client";
 import {MessageService} from "../../../core/services/message.service";
 import {Router} from "@angular/router";
 import { StaticRoles } from "../../../shared/consts/staticRoles";
+import {UserProfileApiClient} from "../../../core/apiClient/users/user-profile.api-client";
 
 @Component({
   selector: 'app-header',
@@ -16,6 +17,7 @@ import { StaticRoles } from "../../../shared/consts/staticRoles";
 })
 export class HeaderComponent implements OnInit {
   public currentRole: string = 'Загрузка...';
+  public currentCompany: string = 'Загрузка...';
   public admin: string = StaticRoles.admin;
   public laborant: string = StaticRoles.laborant;
   public clinic: string = StaticRoles.clinic;
@@ -30,12 +32,17 @@ export class HeaderComponent implements OnInit {
   constructor(private readonly breakpointObserver: BreakpointObserver,
               private readonly _auth: AuthApiClient,
               private readonly _authCheckerService: AuthCheckerService,
+              private readonly _userProfile: UserProfileApiClient,
               private readonly _messages: MessageService,
               private readonly _router: Router) {
   }
 
   ngOnInit(): void {
     this.currentRole = this._authCheckerService.getCurrentRole();
+    this._userProfile.getCompanyName().subscribe(res => {
+      this.currentCompany = res.result
+      console.log(res);
+    });
   }
 
   public logOut(): void {
@@ -44,7 +51,7 @@ export class HeaderComponent implements OnInit {
 
       if (res.isCorrect === true){
         localStorage.removeItem('jwt');
-        this._router.navigate(['']);
+        this._router.navigate(['auth']);
       }
     });
   }

@@ -17,4 +17,6 @@ export class DefaultSuccessMessages {
   public static onNewSubRoleAdded: string = 'Роль доступа успешно добавлена';
   public static onUpdateSubRole: string = 'Роль доступа успешно обновлена';
   public static onUpdateSubRoleValid: string = 'Статус роли успешно изменен';
+
+  public static onUpdateUserProfile: string = 'Профиль успешно обновлен';
 }
