@@ -14,9 +14,9 @@ export class DefaultSuccessMessages {
   public static onUpdateIdentity: string = 'Пользователь успешно обновлен';
   public static onIdentityDeleted: string = 'Пользователь успешно удален';
 
-  public static onNewSubRoleAdded: string = 'Роль доступа успешно добавлена';
-  public static onUpdateSubRole: string = 'Роль доступа успешно обновлена';
-  public static onUpdateSubRoleValid: string = 'Статус роли успешно изменен';
+  public static onClinicAdded: string = 'Поликлиника успешно добавлена';
+  public static onUpdateClinic: string = 'Поликлиника успешно обновлена';
+  public static onUpdateClinicValid: string = 'Статус поликлиники успешно изменен';
 
   public static onUpdateUserProfile: string = 'Профиль успешно обновлен';
 }

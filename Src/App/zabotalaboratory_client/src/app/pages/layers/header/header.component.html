@@ -17,7 +17,7 @@
         <button mat-menu-item routerLink="/analyses/types/" *ngIf="isAvailableRoute([admin, laborant])">Настройки типов тестов</button>
         <button mat-menu-item routerLink="/analyses/tests/" *ngIf="isAvailableRoute([admin, laborant])">Настройки тестов</button>
         <button mat-menu-item routerLink="/users/" *ngIf="isAvailableRoute([admin])">Пользователи</button>
-        <button mat-menu-item routerLink="/users/sub-roles" *ngIf="isAvailableRoute([admin])">Настройки ролей доступа к анализам</button>
+        <button mat-menu-item routerLink="/clinics/" *ngIf="isAvailableRoute([admin])">Настройки поликлиник</button>
         <button mat-menu-item *ngIf="isAvailableRoute([admin])">Управление анализами</button>
       </mat-menu>
   </mat-sidenav>

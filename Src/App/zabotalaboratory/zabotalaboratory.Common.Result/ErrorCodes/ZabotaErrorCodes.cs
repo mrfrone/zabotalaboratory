@@ -14,9 +14,9 @@
         CannotFindIdentityById = 1000009,
         UpdateIdentityOperationError = 1000010,
         CannotDeleteCurrentUser = 1000011,
-        AddSubRoleOperationError = 1000012,
-        UpdateSubRoleOperationError = 1000013,
-        CannotFindSubRoleById = 1000014
+        AddClinicOperationError = 1000012,
+        UpdateClinicOperationError = 1000013,
+        CannotFindClinicById = 1000014
         
     }
 

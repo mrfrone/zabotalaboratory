@@ -4,7 +4,7 @@ import {ZabotaResult} from "../../../shared/models/zabota-result/zabota-result";
 import {Observable} from "rxjs";
 import {BaseApiClient} from "../base.api-client";
 import {Identity} from "../../../shared/models/users/identity";
-import {AddNewIdentityForm} from "../../../shared/forms/identities/add-new-identity.form";
+import {AddIdentityForm} from "../../../shared/forms/identities/add-identity.form";
 import {UpdateIdentityForm} from "../../../shared/forms/identities/update-identity.form";
 
 
@@ -23,8 +23,8 @@ export class IdentitiesSettingsApiClient extends BaseApiClient {
     return this.getWithId<ZabotaResult<Identity>>('/api/Identities/GetIdentityById', id);
   }
 
-  public addIdentity(form: AddNewIdentityForm): Observable<ZabotaResult<boolean>> {
-    return this.post<ZabotaResult<boolean>, AddNewIdentityForm>('/api/Identities/AddIdentity', form);
+  public addIdentity(form: AddIdentityForm): Observable<ZabotaResult<boolean>> {
+    return this.post<ZabotaResult<boolean>, AddIdentityForm>('/api/Identities/AddIdentity', form);
   }
 
   public updateIdentity(form: UpdateIdentityForm): Observable<ZabotaResult<boolean>> {

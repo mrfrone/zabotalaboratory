@@ -22,13 +22,13 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Роль доступа к анализам</mat-label>
-        <mat-select formControlName="identitiesSubRole">
+        <mat-label>Поликлиника</mat-label>
+        <mat-select formControlName="identitiesClinic">
           <mat-option [value]="null">
-            Без роли
+            Без поликлиники
           </mat-option>
-          <mat-option *ngFor="let subRole of subRoles" [value]="subRole.id">
-            {{subRole.name}}
+          <mat-option *ngFor="let clinics of clinics" [value]="clinics.id">
+            {{clinics.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>

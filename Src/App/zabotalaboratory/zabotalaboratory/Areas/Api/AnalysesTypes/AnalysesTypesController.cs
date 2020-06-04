@@ -28,13 +28,19 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTypes
         [HttpGet(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypesWithTests()
         {
-            return await _analysesService.GetAnalysesTypesWithTests();
+            return await _analysesService.GetAnalysesTypes(true);
         }
 
         [HttpGet(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypesWithoutTests()
         {
-            return await _analysesService.GetAnalysesTypesWithoutTests();
+            return await _analysesService.GetAnalysesTypes(false);
+        }
+
+        [HttpGet(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypesAddForm>>> GetAnalysesTypesToAddForm()
+        {
+            return await _analysesService.GetAnalysesTypesToAddForm();
         }
 
         [HttpGet(HttpRouteConsts.DefaultAction)]

@@ -84,26 +84,6 @@ namespace zabotalaboratory.Analyses.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clinics");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 0,
-                            IsValid = true,
-                            Name = "14"
-                        },
-                        new
-                        {
-                            Id = 1,
-                            IsValid = true,
-                            Name = "14а"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            IsValid = true,
-                            Name = "20"
-                        });
                 });
 
             modelBuilder.Entity("zabotalaboratory.Analyses.Database.Entities.LaboratoryAnalyses", b =>

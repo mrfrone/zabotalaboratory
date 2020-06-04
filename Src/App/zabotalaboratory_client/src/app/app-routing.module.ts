@@ -9,7 +9,7 @@ import {AddAnalysesComponent} from "./pages/analyses/add-analyses/add-analyses.c
 import {AnalysesTestsComponent} from "./pages/analyses/analyses-tests/analyses-tests.component";
 import {AnalysesTypesComponent} from "./pages/analyses/analyses-types/analyses-types.component";
 import {IdentitiesSettingsComponent} from "./pages/users/identities-settings/identities-settings.component";
-import {SubRolesSettingsComponent} from "./pages/users/sub-roles-settings/sub-roles-settings.component";
+import {ClinicsSettingsComponent} from "./pages/analyses/clinics-settings/clinics-settings.component";
 import {RolesGuard} from "./core/guards/roles-guard";
 import {StaticRoles} from "./shared/consts/staticRoles";
 import {UserProfileComponent} from "./pages/users/user-profile/user-profile.component";
@@ -27,7 +27,7 @@ const routes: Routes = [
       {path: 'analyses/tests', component: AnalysesTestsComponent, canActivate: [RolesGuard], data: { roles: [StaticRoles.admin, StaticRoles.laborant] }},
       {path: 'analyses/types', component: AnalysesTypesComponent, canActivate: [RolesGuard], data: { roles: [StaticRoles.admin, StaticRoles.laborant] }},
       {path: 'users', component: IdentitiesSettingsComponent, canActivate: [RolesGuard], data: { roles: [StaticRoles.admin] }},
-      {path: 'users/sub-roles', component: SubRolesSettingsComponent, canActivate: [RolesGuard], data: { roles: [StaticRoles.admin] }},
+      {path: 'users/clinics', component: ClinicsSettingsComponent, canActivate: [RolesGuard], data: { roles: [StaticRoles.admin] }},
       {path: 'profile', component: UserProfileComponent},
       {path: '**', redirectTo: 'auth'}
     ]

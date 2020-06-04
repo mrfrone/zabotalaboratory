@@ -1,1 +1,70 @@
-<p>addanalyses works!</p>
+<div class="main-box">
+  <div class="main-box-content" *ngIf="!mainTableIsProgress">
+    <form class="example-form" [formGroup]="analysesForm">
+      <div class="form-title">Добавление нового исследования</div>
+      <hr>
+      <mat-form-field class="example-full-width">
+        <mat-label>Фамилия</mat-label>
+        <input matInput type="text" formControlName="FirstName">
+        <mat-error *ngIf="analysesForm.controls['FirstName'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Имя</mat-label>
+        <input matInput type="text" formControlName="LastName">
+        <mat-error *ngIf="analysesForm.controls['LastName'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Отчество</mat-label>
+        <input matInput type="text" formControlName="PatronymicName">
+        <mat-error *ngIf="analysesForm.controls['PatronymicName'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Дата рождения</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="DateOfBirth">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="analysesForm.controls['DateOfBirth'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Поликлиника отправитель</mat-label>
+        <mat-select formControlName="Clinic">
+          <mat-option *ngFor="let clinic of clinics" [value]="clinic.id">
+            {{clinic.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="analysesForm.controls['Clinic'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Лечащий врач</mat-label>
+        <input matInput type="text" formControlName="Doctor">
+        <mat-error *ngIf="analysesForm.controls['Doctor'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+    </form>
+    <div *ngFor="let type of types">
+      <mat-checkbox [(ngModel)]="type.isNeeded"><h2>{{ type.name }}</h2></mat-checkbox>
+      <div *ngFor="let test of type.laboratoryAnalysesTests">
+        <mat-checkbox [(ngModel)]="test.isNeeded">{{ test.name }}</mat-checkbox>
+      </div>
+    </div>
+    <div class="form-button">
+      <button mat-stroked-button color="primary" type="button" (click)="onFormSubmit()">Отправить</button>
+    </div>
+  <div class="center" *ngIf="mainTableIsProgress">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
+</div>

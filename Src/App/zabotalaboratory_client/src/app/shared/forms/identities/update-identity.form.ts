@@ -4,5 +4,6 @@ export class UpdateIdentityForm {
   public password: string;
   public changePassword: boolean;
   public roleId: number;
-  public subRoleId: number;
+  public clinicId: number;
+  public clinicName: string;
 }

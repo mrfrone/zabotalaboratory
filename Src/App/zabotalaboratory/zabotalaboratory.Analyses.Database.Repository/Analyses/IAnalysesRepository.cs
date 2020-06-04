@@ -8,9 +8,7 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
     public interface IAnalysesRepository
     {
         #region Types
-        Task<AnalysesTypes[]> GetAnalysesTypesWithoutTests(bool trackChanges = false);
-
-        Task<AnalysesTypes[]> GetAnalysesTypesWithTests(bool trackChanges = false);
+        Task<AnalysesTypes[]> GetAnalysesTypes(bool withTests, bool trackChanges = false);
 
         Task<AnalysesTypes> GetAnalysesTypeById(int id, bool trackChanges = false);
 

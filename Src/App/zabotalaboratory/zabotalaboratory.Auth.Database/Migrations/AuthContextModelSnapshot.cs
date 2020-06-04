@@ -27,6 +27,12 @@ namespace zabotalaboratory.Auth.Database.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int?>("ClinicId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ClinicName")
+                        .HasColumnType("text");
+
                     b.Property<DateTimeOffset?>("Deleted")
                         .HasColumnType("timestamp with time zone");
 
@@ -49,14 +55,9 @@ namespace zabotalaboratory.Auth.Database.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("SubRoleId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
                     b.HasIndex("RoleId");
-
-                    b.HasIndex("SubRoleId");
 
                     b.ToTable("Identities");
                 });
@@ -131,25 +132,6 @@ namespace zabotalaboratory.Auth.Database.Migrations
                         });
                 });
 
-            modelBuilder.Entity("zabotalaboratory.Auth.Database.Entities.SubRoles", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("IsValid")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SubRoles");
-                });
-
             modelBuilder.Entity("zabotalaboratory.Auth.Database.Entities.UsersProfiles", b =>
                 {
                     b.Property<int>("IdentityId")
@@ -183,10 +165,6 @@ namespace zabotalaboratory.Auth.Database.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("zabotalaboratory.Auth.Database.Entities.SubRoles", "SubRole")
-                        .WithMany()
-                        .HasForeignKey("SubRoleId");
                 });
 
             modelBuilder.Entity("zabotalaboratory.Auth.Database.Entities.Jwts", b =>

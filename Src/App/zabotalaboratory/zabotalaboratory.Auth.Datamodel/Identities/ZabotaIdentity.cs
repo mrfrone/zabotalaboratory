@@ -10,6 +10,8 @@ namespace zabotalaboratory.Auth.Datamodel.Identities
 
         public ZabotaRoles Role { get; set; }
 
-        public ZabotaSubRoles SubRole { get; set; }
+        public int ClinicId { get; set; }
+
+        public string ClinicName { get; set; }
     }
 }

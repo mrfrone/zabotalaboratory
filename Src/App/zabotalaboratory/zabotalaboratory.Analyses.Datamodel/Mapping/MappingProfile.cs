@@ -55,6 +55,22 @@ namespace zabotalaboratory.Analyses.Datamodel.Mapping
                 .ForMember(u => u.Number1C, opts => opts.MapFrom(u => u.Number1C))
                 .ForMember(u => u.IsValid, opts => opts.MapFrom(u => u.IsValid))
                 .ForMember(u => u.AnalysesTypesId, opts => opts.MapFrom(u => u.AnalysesTypesId));
+
+            CreateMap<Database.Entities.AnalysesTypes, ZabotaAnalysesTypesAddForm>()
+                .IgnoreOther()
+                .ForMember(u => u.Id, opts => opts.MapFrom(u => u.Id))
+                .ForMember(u => u.Name, opts => opts.MapFrom(u => u.Name))
+                .ForMember(u => u.Number1C, opts => opts.MapFrom(u => u.Number1C))
+                .ForMember(u => u.IsNeeded, opts => opts.MapFrom(u => false))
+                .ForMember(u => u.LaboratoryAnalysesTests, opts => opts.MapFrom(u => u.LaboratoryAnalysesTests));
+
+            CreateMap<Database.Entities.LaboratoryAnalysesTests, ZabotaLaboratoryAnalysesTestsAddForm>()
+                .IgnoreOther()
+                .ForMember(u => u.Id, opts => opts.MapFrom(u => u.Id))
+                .ForMember(u => u.Name, opts => opts.MapFrom(u => u.Name))
+                .ForMember(u => u.Number1C, opts => opts.MapFrom(u => u.Number1C))
+                .ForMember(u => u.IsNeeded, opts => opts.MapFrom(u => false))
+                .ForMember(u => u.AnalysesTypesId, opts => opts.MapFrom(u => u.AnalysesTypesId));
         }
     }
 }

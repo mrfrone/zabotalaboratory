@@ -9,8 +9,6 @@ using zabotalaboratory.Auth.Forms.Login;
 using zabotalaboratory.Auth.Database.Entities;
 using zabotalaboratory.Common.EFCore.Extensions;
 using zabotalaboratory.Auth.Forms.Identity;
-using zabotalaboratory.Auth.Forms.Roles;
-using zabotalaboratory.Auth.Database.Repository.Extensions;
 
 namespace zabotalaboratory.Auth.Database.Repository.Identities
 {
@@ -26,14 +24,11 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
             _tokensRepository = tokensRepository;
             _passwordHashCalculator = passwordHashCalculator;
         }
-
-        #region Identities
         
-        public async Task<Entities.Identities[]> Get(bool trackChanges = false)
+        public async Task<Entities.Identities[]> GetIdentities(bool trackChanges = false)
         {
             return await _ac.Identities
                 .Include(u => u.Role)
-                .Include(u => u.SubRole)
                 .Where(x => x.IsDeleted != true)
                 .HasTracking(trackChanges)
                 .ToArrayAsync();
@@ -43,7 +38,6 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
         {
             return await _ac.Identities
                 .Include(u => u.Role)
-                .Include(u => u.SubRole)
                 .HasTracking(trackChanges)
                 .FirstOrDefaultAsync(u => u.Id == id && u.IsDeleted != true);
         }
@@ -56,7 +50,6 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
 
             return await _ac.Identities
                 .Include(u => u.Role)
-                .Include(u => u.SubRole)
                 .HasTracking(trackChanges)
                 .FirstOrDefaultAsync(u => u.Id == jwt.IdentityId && u.IsDeleted != true);
         }
@@ -65,7 +58,6 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
         {
             return await _ac.Identities
                 .Include(u => u.Role)
-                .Include(u => u.SubRole)
                 .HasTracking(trackChanges)
                 .FirstOrDefaultAsync(x => x.Login == login);
         }
@@ -76,7 +68,6 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
 
             var user = await _ac.Identities
                 .Include(u => u.Role)
-                .Include(u => u.SubRole)
                 .HasTracking(trackChanges)
                 .FirstOrDefaultAsync(u => u.Login == login && u.IsDeleted != true);
 
@@ -91,7 +82,8 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
                 Password = _passwordHashCalculator.Calc(form.Password),
                 IsDeleted = false,
                 RoleId = form.RoleId,
-                SubRoleId = form.SubRoleId
+                ClinicId = form.ClinicId,
+                ClinicName = form.ClinicName
             });
 
             await _ac.SaveChangesAsync();
@@ -113,7 +105,8 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
             }
             identity.Login = form.Login;
             identity.RoleId = form.RoleId;
-            identity.SubRoleId = form.SubRoleId;
+            identity.ClinicId = form.ClinicId;
+            identity.ClinicName = form.ClinicName;
 
             await _ac.SaveChangesAsync();
             return true;
@@ -129,10 +122,7 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
 
             await _ac.SaveChangesAsync();
         }
-
-        #endregion
-
-        #region Roles
+       
         public async Task<Roles[]> GetRoles(bool trackChanges = false)
         {
             return await _ac.Roles
@@ -140,77 +130,7 @@ namespace zabotalaboratory.Auth.Database.Repository.Identities
                 .ToArrayAsync();
         }
 
-        public async Task<SubRoles[]> GetSubRoles(bool onlyValid, bool trackChanges = false)
-        {
-            return await _ac.SubRoles
-                .HasTracking(trackChanges)
-                .HasValid(onlyValid)
-                .ToArrayAsync();
-        }
-
-        public async Task<SubRoles> GetSubRoleById(int id, bool trackChanges = false)
-        {
-            return await _ac.SubRoles
-                .HasTracking(trackChanges)
-                .FirstOrDefaultAsync(r => r.Id == id);
-        }
-
-        public async Task<bool> AddSubRole(AddNewSubRoleForm form)
-        {
-            if (SubRoleNameExists(form.Name))
-                return false;
-
-            _ac.SubRoles.Add(new SubRoles
-            {
-                Name = form.Name,
-                IsValid = true
-            });
-
-            await _ac.SaveChangesAsync();
-            return true;
-        }
-
-        public async Task<bool> UpdateSubRole(UpdateSubRoleForm form)
-        {
-            if (SubRoleNameExists(form.Name, form.Id))
-                return false;
-
-            var subRole = await GetSubRoleById(form.Id, true);
-
-            subRole.Name = form.Name;
-
-            await _ac.SaveChangesAsync();
-            return true;
-        }
-
-        public async Task UpdateSubRoleValid(UpdateSubRoleValidForm form)
-        {
-            var subRole = await GetSubRoleById(form.Id, true);
-
-            subRole.IsValid = form.IsValid;
-
-            await _ac.SaveChangesAsync();
-        }
-
-        private bool SubRoleNameExists(string name, int id)
-        {
-            var subRole = _ac.SubRoles.FirstOrDefault(r => r.Name == name && r.Id != id);
-            if (subRole != null)
-                return true;
-
-            return false;
-        }
-
-        private bool SubRoleNameExists(string name)
-        {
-            var subRole = _ac.SubRoles.FirstOrDefault(r => r.Name == name);
-            if (subRole != null)
-                return true;
-
-            return false;
-        }
-
-        #endregion
+        
     }
 }
 

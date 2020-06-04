@@ -21,9 +21,10 @@ import { AnalysesTypesComponent } from './pages/analyses/analyses-types/analyses
 import { AnalysesTypesDialogComponent } from './pages/analyses/analyses-types/analyses-types-dialog/analyses-types-dialog.component';
 import { IdentitiesSettingsComponent } from './pages/users/identities-settings/identities-settings.component';
 import { IdentitiesSettingsDialogComponent } from './pages/users/identities-settings/identities-settings-dialog/identities-settings-dialog.component';
-import { SubRolesSettingsComponent } from './pages/users/sub-roles-settings/sub-roles-settings.component';
-import { SubRolesSettingsDialogComponent } from './pages/users/sub-roles-settings/sub-roles-settings-dialog/sub-roles-settings-dialog.component';
+import { ClinicsSettingsComponent } from './pages/analyses/clinics-settings/clinics-settings.component';
+import { ClinicsSettingsDialogComponent } from './pages/analyses/clinics-settings/clinics-settings-dialog/clinics-settings-dialog.component';
 import { UserProfileComponent } from './pages/users/user-profile/user-profile.component';
+import {MAT_DATE_LOCALE} from "@angular/material/core";
 
 
 @NgModule({
@@ -39,8 +40,8 @@ import { UserProfileComponent } from './pages/users/user-profile/user-profile.co
     AnalysesTypesDialogComponent,
     IdentitiesSettingsComponent,
     IdentitiesSettingsDialogComponent,
-    SubRolesSettingsComponent,
-    SubRolesSettingsDialogComponent,
+    ClinicsSettingsComponent,
+    ClinicsSettingsDialogComponent,
     UserProfileComponent
   ],
   imports: [
@@ -59,7 +60,9 @@ import { UserProfileComponent } from './pages/users/user-profile/user-profile.co
     }),
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'ru-RU'}
+  ],
   bootstrap: [AppComponent],
   exports: [
     MaterialModule

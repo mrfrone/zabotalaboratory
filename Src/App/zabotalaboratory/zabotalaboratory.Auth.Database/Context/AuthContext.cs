@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using zabotalaboratory.Auth.Database.Entities;
-using zabotalaboratory.Common.Consts.Roles;
 
 namespace zabotalaboratory.Auth.Database.Context
 {
@@ -32,7 +31,5 @@ namespace zabotalaboratory.Auth.Database.Context
         public DbSet<UsersProfiles> UsersProfiles { get; set; }
 
         public DbSet<Entities.Roles> Roles { get; set; }
-
-        public DbSet<SubRoles> SubRoles { get; set; }
     }
 }

@@ -1,29 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using zabotalaboratory.Analyses.Database.Entities;
-using zabotalaboratory.Auth.Services.Identities;
 
 namespace zabotalaboratory.Analyses.Database.Context
 {
     public class AnalysesContext : DbContext
     {
         public const string SchemaName = "zabota_analyses";
-        private readonly IIdentityService _identityService;
 
-        public AnalysesContext(DbContextOptions<AnalysesContext> options, IIdentityService identityService) : base(options) 
-        {
-            _identityService = identityService;
-        }
+        public AnalysesContext(DbContextOptions<AnalysesContext> options) : base(options) {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.UseIdentityByDefaultColumns();
             modelBuilder.HasDefaultSchema(SchemaName);
-                        
-            modelBuilder.Entity<Clinics>(e =>
-            {
-                var subRolesData = _identityService.GetSubRoles(false).Result;
-                e.HasData(subRolesData.Result);
-            });
         }
 
         public DbSet<Clinics> Clinics { get; set; }

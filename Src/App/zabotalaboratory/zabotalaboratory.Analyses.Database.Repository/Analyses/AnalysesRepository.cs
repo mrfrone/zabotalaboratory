@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using zabotalaboratory.Analyses.Database.Context;
 using zabotalaboratory.Analyses.Forms.AnalysesTests;
 using zabotalaboratory.Analyses.Forms.AnalysesTypes;
+using zabotalaboratory.Analyses.Database.Repository.Extensions;
 
 namespace zabotalaboratory.Analyses.Database.Repository.Analyses
 {
@@ -18,18 +19,11 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
         }
 
         #region Types
-        public async Task<AnalysesTypes[]> GetAnalysesTypesWithoutTests(bool trackChanges = false)
+        public async Task<AnalysesTypes[]> GetAnalysesTypes(bool withTests, bool trackChanges = false)
         {
             return await _ac.AnalysesTypes
                 .HasTracking(trackChanges)
-                .ToArrayAsync();
-        }
-
-        public async Task<AnalysesTypes[]> GetAnalysesTypesWithTests(bool trackChanges = false)
-        {
-            return await _ac.AnalysesTypes
-                .HasTracking(trackChanges)
-                .Include(a => a.LaboratoryAnalysesTests)
+                .WithTests(withTests)
                 .ToArrayAsync();
         }
 

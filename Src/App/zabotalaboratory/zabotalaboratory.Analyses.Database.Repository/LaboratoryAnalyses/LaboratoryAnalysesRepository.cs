@@ -3,6 +3,7 @@ using zabotalaboratory.Analyses.Database.Entities;
 using zabotalaboratory.Common.EFCore.Extensions;
 using Microsoft.EntityFrameworkCore;
 using zabotalaboratory.Analyses.Database.Context;
+using System.Linq;
 
 namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
 {

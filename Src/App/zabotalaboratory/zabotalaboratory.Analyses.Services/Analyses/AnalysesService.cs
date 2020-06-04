@@ -22,9 +22,9 @@ namespace zabotalaboratory.Analyses.Services.Analyses
         }
 
         #region Types
-        public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypesWithoutTests()
+        public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypes(bool withTests)
         {
-            var result = await _analysesRepository.GetAnalysesTypesWithoutTests();
+            var result = await _analysesRepository.GetAnalysesTypes(withTests);
             if (result == null)
                 return ZabotaErrorCodes.EmptyResult;
 
@@ -33,15 +33,15 @@ namespace zabotalaboratory.Analyses.Services.Analyses
             return new ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>(mappedModel);
         }
 
-        public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypesWithTests()
+        public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypesAddForm>>> GetAnalysesTypesToAddForm()
         {
-            var result = await _analysesRepository.GetAnalysesTypesWithTests();
+            var result = await _analysesRepository.GetAnalysesTypes(true);
             if (result == null)
                 return ZabotaErrorCodes.EmptyResult;
 
-            var mappedModel = _mapper.Map<IEnumerable<ZabotaAnalysesTypes>>(result);
+            var mappedModel = _mapper.Map<IEnumerable<ZabotaAnalysesTypesAddForm>>(result);
 
-            return new ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>(mappedModel);
+            return new ZabotaResult<IEnumerable<ZabotaAnalysesTypesAddForm>>(mappedModel);
         }
 
         public async Task<ZabotaResult<ZabotaAnalysesTypes>> GetAnalysesTypeById(int id)

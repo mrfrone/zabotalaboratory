@@ -33,6 +33,5 @@ namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
         {
             return await _laboratoryAnalysesService.GetLaboratoryAnalyseById(id);
         }
-
     }
 }

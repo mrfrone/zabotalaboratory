@@ -6,9 +6,11 @@ import {IdentitiesRolesApiClient} from "../../../../core/apiClient/users/identit
 import {IdentitiesSettingsApiClient} from "../../../../core/apiClient/users/identities-settings.api-client";
 import {Identity} from "../../../../shared/models/users/identity";
 import {Roles} from "../../../../shared/models/users/roles";
-import {SubRoles} from "../../../../shared/models/users/sub-roles";
 import {DefaultSuccessMessages} from "../../../../shared/consts/defaultSuccessMessages";
 import {UpdateIdentityForm} from "../../../../shared/forms/identities/update-identity.form";
+import {ClinicsApiClient} from "../../../../core/apiClient/analyses/clinics.api-client";
+import {Clinic} from "../../../../shared/models/analyses/clinic";
+import { ClinicNameFilter } from 'src/app/core/filters/clinic-name.filter';
 
 @Component({
   selector: 'app-identities-settings-dialog',
@@ -26,27 +28,28 @@ export class IdentitiesSettingsDialogComponent implements OnInit {
     "identitiesPasswordConfirm": new FormControl({value: '', disabled: true}),
     "changePasswordCheck": new FormControl(),
     "identitiesRole": new FormControl("", Validators.required),
-    "identitiesSubRole": new FormControl()
+    "identitiesClinic": new FormControl()
   });
 
   public isProgress: boolean = true;
 
   public identity: Identity;
   public roles: Roles[];
-  public subRoles: SubRoles[];
+  public clinics: Clinic[];
 
   constructor(private readonly dialogRef: MatDialogRef<IdentitiesSettingsDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public id: number,
               private readonly _identities: IdentitiesSettingsApiClient,
               private readonly _roles: IdentitiesRolesApiClient,
+              private readonly _clinics: ClinicsApiClient,
               private readonly _messages: MessageService) { }
 
   ngOnInit(): void {
     this._roles.getRoles().subscribe(res => {
       this.roles = res.result;
     });
-    this._roles.getOnlyValidSubRoles().subscribe(res => {
-      this.subRoles = res.result;
+    this._clinics.getOnlyValidClinics().subscribe(res => {
+      this.clinics = res.result;
     });
 
     this.updateData();
@@ -85,13 +88,16 @@ export class IdentitiesSettingsDialogComponent implements OnInit {
       }
     }
 
+    let clinicName: string = ClinicNameFilter.getName(this.identityForm.controls['identitiesClinic'].value, this.clinics);
+
     const form: UpdateIdentityForm = {
       id: this.identity.id,
       login: this.identityForm.controls['identitiesLogin'].value,
       password: this.identityForm.controls['identitiesPassword'].value,
       changePassword: this.identityForm.controls['changePasswordCheck'].value,
       roleId: this.identityForm.controls['identitiesRole'].value,
-      subRoleId: this.identityForm.controls['identitiesSubRole'].value
+      clinicId: this.identityForm.controls['identitiesClinic'].value,
+      clinicName: clinicName
     };
 
     this._identities.updateIdentity(form).subscribe(res => {
@@ -120,7 +126,7 @@ export class IdentitiesSettingsDialogComponent implements OnInit {
       this.identityForm.controls['identitiesLogin'].setValue(res.result.login);
       this.identityForm.controls['identitiesRole'].setValue(res.result.role.id);
       this.identityForm.controls['changePasswordCheck'].setValue(false);
-      this.identityForm.controls['identitiesSubRole'].setValue(res.result.subRole?.id);
+      this.identityForm.controls['identitiesClinic'].setValue(res.result.clinicId);
 
       this.isProgress = false;
     });

@@ -2,6 +2,7 @@
 using zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses;
 using Microsoft.Extensions.DependencyInjection;
 using zabotalaboratory.Analyses.Database.Repository.Analyses;
+using zabotalaboratory.Analyses.Database.Repository.Clinics;
 
 namespace zabotalaboratory.Analyses.Database.Repository.Extentions
 {
@@ -12,6 +13,7 @@ namespace zabotalaboratory.Analyses.Database.Repository.Extentions
             services.AddAnalysesDatabase(connectionString);
             services.AddScoped<ILaboratoryAnalysesRepository, LaboratoryAnalysesRepository>();
             services.AddScoped<IAnalysesRepository, AnalysesRepository>();
+            services.AddScoped<IClinicsRepository, ClinicsRepository>();
             return services;
         }
     }

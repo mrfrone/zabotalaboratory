@@ -23,9 +23,9 @@ namespace zabotalaboratory.Auth.Database.Entities
         [Required]
         public virtual Roles Role { get; set; }
 
-        [ForeignKey(nameof(SubRole))]
-        public virtual int? SubRoleId { get; set; }
-        public virtual SubRoles SubRole { get; set; }
+        public virtual int? ClinicId { get; set; }
+
+        public virtual string ClinicName { get; set; }
 
         public virtual bool? IsDeleted { get; set; }
 

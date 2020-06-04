@@ -12,7 +12,7 @@ using zabotalaboratory.Common.Consts.Roles;
 using zabotalaboratory.Common.Result;
 using zabotalaboratory.Web.Common.Filters;
 
-namespace zabotalaboratory.Web.Areas.Api.UsersProfiles
+namespace zabotalaboratory.Web.Areas.Api.Identities
 {
     [Authorize(Roles = Roles.Admin)]
     [Area(AreaNames.Api)]
@@ -46,7 +46,8 @@ namespace zabotalaboratory.Web.Areas.Api.UsersProfiles
                 Login = form.Login,
                 Password = form.Password,
                 RoleId = form.RoleId,
-                SubRoleId = form.SubRoleId
+                ClinicId = form.ClinicId,
+                ClinicName = form.ClinicName
             });
         }
 
@@ -61,7 +62,8 @@ namespace zabotalaboratory.Web.Areas.Api.UsersProfiles
                 Password = form.Password,
                 ChangePassword = form.ChangePassword,
                 RoleId = form.RoleId,
-                SubRoleId = form.SubRoleId
+                ClinicId = form.ClinicId,
+                ClinicName = form.ClinicName
             });
         }
 
@@ -75,56 +77,6 @@ namespace zabotalaboratory.Web.Areas.Api.UsersProfiles
         public async Task<ZabotaResult<IEnumerable<ZabotaRoles>>> GetRoles()
         {
             return await _identityService.GetRoles();
-        }
-
-        [HttpGet(HttpRouteConsts.DefaultAction)]
-        public async Task<ZabotaResult<IEnumerable<ZabotaSubRoles>>> GetOnlyValidSubRoles()
-        {
-            return await _identityService.GetSubRoles(true);
-        }
-
-        [HttpGet(HttpRouteConsts.DefaultAction)]
-        public async Task<ZabotaResult<IEnumerable<ZabotaSubRoles>>> GetSubRoles()
-        {
-            return await _identityService.GetSubRoles(false);
-        }
-
-        [HttpGet(HttpRouteConsts.DefaultAction)]
-        public async Task<ZabotaResult<ZabotaSubRoles>> GetSubRoleById(int id)
-        {
-            return await _identityService.GetSubRoleById(id);
-        }
-
-        [ValidModelState]
-        [HttpPost(HttpRouteConsts.DefaultAction)]
-        public async Task<ZabotaResult<bool>> AddSubRole([FromBody] AddNewSubRoleForm form)
-        {
-            return await _identityService.AddSubRole(new zabotalaboratory.Auth.Forms.Roles.AddNewSubRoleForm
-            {
-                Name = form.Name
-            });
-        }
-
-        [ValidModelState]
-        [HttpPost(HttpRouteConsts.DefaultAction)]
-        public async Task<ZabotaResult<bool>> UpdateSubRole([FromBody] UpdateSubRoleForm form)
-        {
-            return await _identityService.UpdateSubRole(new zabotalaboratory.Auth.Forms.Roles.UpdateSubRoleForm
-            {
-                Id = form.Id,
-                Name = form.Name
-            });
-        }
-
-        [ValidModelState]
-        [HttpPost(HttpRouteConsts.DefaultAction)]
-        public async Task<ZabotaResult<bool>> UpdateSubRoleValid([FromBody] UpdateSubRoleValidForm form)
-        {
-            return await _identityService.UpdateSubRoleValid(new zabotalaboratory.Auth.Forms.Roles.UpdateSubRoleValidForm
-            {
-                Id = form.Id,
-                IsValid = form.IsValid
-            });
         }
     }
 }

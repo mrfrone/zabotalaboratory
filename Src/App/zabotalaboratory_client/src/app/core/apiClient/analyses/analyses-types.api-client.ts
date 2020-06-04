@@ -7,12 +7,17 @@ import {AnalysesTypes} from "../../../shared/models/analyses/analyses-types";
 import {UpdateAnalysesTestValidForm} from "../../../shared/forms/analyses-tests/update-analyses-test-valid.form";
 import {UpdateAnalysesTypeForm} from "../../../shared/forms/analyses-types/update-analyses-type.form";
 import {AddNewAnalysesTypeForm} from "../../../shared/forms/analyses-types/add-new-analyses-type.form";
+import {AnalysesTypesAddForm} from "../../../shared/models/analyses/add-form/analyses-types.add-form";
 
 @Injectable({providedIn: 'root'})
 
 export class AnalysesTypesApiClient extends BaseApiClient{
   constructor(httpClient: HttpClient) {
     super(httpClient);
+  }
+
+  public getAnalysesTypesWithTestsToAddForm(): Observable<ZabotaResult<AnalysesTypesAddForm[]>> {
+    return this.get<ZabotaResult<AnalysesTypesAddForm[]>>('/api/AnalysesTypes/GetAnalysesTypesToAddForm');
   }
 
   public getAnalysesTypesWithTests(): Observable<ZabotaResult<AnalysesTypes[]>> {

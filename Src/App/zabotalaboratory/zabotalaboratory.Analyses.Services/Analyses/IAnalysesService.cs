@@ -11,9 +11,9 @@ namespace zabotalaboratory.Analyses.Services.Analyses
     {
         #region Types
 
-        Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypesWithoutTests();
+        Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypes(bool withTests);
 
-        Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypesWithTests();
+        Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypesAddForm>>> GetAnalysesTypesToAddForm();
 
         Task<ZabotaResult<ZabotaAnalysesTypes>> GetAnalysesTypeById(int id);
 

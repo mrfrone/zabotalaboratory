@@ -41,7 +41,6 @@ export class HeaderComponent implements OnInit {
     this.currentRole = this._authCheckerService.getCurrentRole();
     this._userProfile.getCompanyName().subscribe(res => {
       this.currentCompany = res.result
-      console.log(res);
     });
   }
 
