@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using zabotalaboratory.Common.Datamodel.Abstractions;
 
 namespace zabotalaboratory.Common.EFCore.Extensions
 {
@@ -13,6 +15,15 @@ namespace zabotalaboratory.Common.EFCore.Extensions
             }
 
             return source.AsNoTracking();
+        }
+
+        public static IQueryable<TEntity> HasValid<TEntity>(this IQueryable<TEntity> source, bool onlyValid) where TEntity : IValidatable
+        {
+            if (onlyValid)
+            {
+                return source.Where(c => c.IsValid);
+            }
+            return source;
         }
     }
 }

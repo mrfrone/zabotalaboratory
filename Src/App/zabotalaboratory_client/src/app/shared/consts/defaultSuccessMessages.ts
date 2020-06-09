@@ -19,4 +19,6 @@ export class DefaultSuccessMessages {
   public static onUpdateClinicValid: string = 'Статус поликлиники успешно изменен';
 
   public static onUpdateUserProfile: string = 'Профиль успешно обновлен';
+
+  public static onLaboratoryAnalyseAdded: string = 'Исследование добавлено успешно';
 }

@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MaterialModule} from "../assets/material.module";
+import {MAT_DATE_LOCALE} from "@angular/material/core";
 
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,7 +25,7 @@ import { IdentitiesSettingsDialogComponent } from './pages/users/identities-sett
 import { ClinicsSettingsComponent } from './pages/analyses/clinics-settings/clinics-settings.component';
 import { ClinicsSettingsDialogComponent } from './pages/analyses/clinics-settings/clinics-settings-dialog/clinics-settings-dialog.component';
 import { UserProfileComponent } from './pages/users/user-profile/user-profile.component';
-import {MAT_DATE_LOCALE} from "@angular/material/core";
+import { AnalysesDialogComponent } from './pages/analyses/analyses/analyses-dialog/analyses-dialog.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {MAT_DATE_LOCALE} from "@angular/material/core";
     IdentitiesSettingsDialogComponent,
     ClinicsSettingsComponent,
     ClinicsSettingsDialogComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AnalysesDialogComponent
   ],
   imports: [
     MaterialModule,

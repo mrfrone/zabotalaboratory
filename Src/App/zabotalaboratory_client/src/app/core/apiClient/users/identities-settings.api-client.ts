@@ -23,6 +23,10 @@ export class IdentitiesSettingsApiClient extends BaseApiClient {
     return this.getWithId<ZabotaResult<Identity>>('/api/Identities/GetIdentityById', id);
   }
 
+  public getCurrentIdentity(): Observable<ZabotaResult<Identity>> {
+    return this.get<ZabotaResult<Identity>>('/api/Identities/GetCurrentIdentity');
+  }
+
   public addIdentity(form: AddIdentityForm): Observable<ZabotaResult<boolean>> {
     return this.post<ZabotaResult<boolean>, AddIdentityForm>('/api/Identities/AddIdentity', form);
   }

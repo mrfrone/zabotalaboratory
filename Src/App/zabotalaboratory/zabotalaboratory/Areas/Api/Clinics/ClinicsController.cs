@@ -13,7 +13,7 @@ using zabotalaboratory.Web.Common.Filters;
 
 namespace zabotalaboratory.Web.Areas.Api.Clinics
 {
-    [Authorize(Roles = Roles.Admin + ", " + Roles.Laborant)]
+    [Authorize(Roles = Roles.Admin + ", " + Roles.Laborant + ", " + Roles.Clinic)]
     [Area(AreaNames.Api)]
     [Route(HttpRouteConsts.DefaultController)]
     public class ClinicsController : BaseController
@@ -25,6 +25,7 @@ namespace zabotalaboratory.Web.Areas.Api.Clinics
             _clinicsService = clinicsService;
         }
 
+        [Authorize(Roles = Roles.Admin + ", " + Roles.Laborant)]
         [HttpGet(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<IEnumerable<ZabotaClinics>>> GetOnlyValidClinics()
         {
@@ -32,17 +33,26 @@ namespace zabotalaboratory.Web.Areas.Api.Clinics
         }
 
         [HttpGet(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<IEnumerable<ZabotaClinics>>> GetClinicsForCurrentUser()
+        {
+            return await _clinicsService.GetClinics(true, CurrentIdentity.ClinicId);
+        }
+
+        [Authorize(Roles = Roles.Admin + ", " + Roles.Laborant)]
+        [HttpGet(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<IEnumerable<ZabotaClinics>>> GetClinics()
         {
             return await _clinicsService.GetClinics(false);
         }
 
+        [Authorize(Roles = Roles.Admin + ", " + Roles.Laborant)]
         [HttpGet(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<ZabotaClinics>> GetClinicById(int id)
         {
             return await _clinicsService.GetClinicById(id);
         }
 
+        [Authorize(Roles = Roles.Admin + ", " + Roles.Laborant)]
         [ValidModelState]
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<bool>> AddClinic([FromBody] AddClinicForm form)
@@ -53,6 +63,7 @@ namespace zabotalaboratory.Web.Areas.Api.Clinics
             });
         }
 
+        [Authorize(Roles = Roles.Admin + ", " + Roles.Laborant)]
         [ValidModelState]
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<bool>> UpdateClinic([FromBody] UpdateClinicForm form)
@@ -64,6 +75,7 @@ namespace zabotalaboratory.Web.Areas.Api.Clinics
             });
         }
 
+        [Authorize(Roles = Roles.Admin + ", " + Roles.Laborant)]
         [ValidModelState]
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<bool>> UpdateClinicValid([FromBody] UpdateClinicValidForm form)

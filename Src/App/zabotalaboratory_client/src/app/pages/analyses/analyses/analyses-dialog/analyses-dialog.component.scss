@@ -1,0 +1,69 @@
+mat-dialog-content{
+  min-width: 80vh;
+  min-height: 80vh;
+
+  .download-section{
+    button{
+      margin-top: 1vh;
+      margin-bottom: 1vh;
+      outline: none;
+    }
+    button:focus
+  }
+
+  table {
+    width: 100%;
+    max-width: 100%;
+    background-color: white;
+    box-shadow: none;
+
+    thead{
+      tr{
+        td{
+          text-align: center;
+        }
+      }
+    }
+
+    tbody{
+
+      tr{
+        .row-center{
+          text-align: center;
+        }
+        .type-name-center{
+          text-align: center;
+          font-size: 110%;
+          font-weight: 600;
+        }
+        .type-name-center:hover, .type-name-center:active{
+          cursor: default;
+          background-color: white;
+        }
+        td{
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+
+        }
+      }
+      tr:hover{
+        cursor: pointer;
+      }
+      tr:active{
+        background-color: lighten(gray, 30);
+      }
+    }
+  }
+}
+.center{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 80vh;
+  width: 100%;
+}

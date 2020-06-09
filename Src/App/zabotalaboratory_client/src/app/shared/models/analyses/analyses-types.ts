@@ -6,4 +6,5 @@ export class AnalysesTypes {
   public name: string;
   public isValid: boolean;
   public laboratoryAnalysesTests: LaboratoryAnalysesTests[];
+  public bioMaterial: string;
 }

@@ -18,7 +18,7 @@ import {UserProfileComponent} from "./pages/users/user-profile/user-profile.comp
 const routes: Routes = [
   { path: 'auth', component: LoginComponent },
   {
-    path: '',
+    path: 'laboratory',
     component: HeaderComponent,
     canActivate: [AuthGuard],
     children: [
@@ -27,12 +27,12 @@ const routes: Routes = [
       {path: 'analyses/tests', component: AnalysesTestsComponent, canActivate: [RolesGuard], data: { roles: [StaticRoles.admin, StaticRoles.laborant] }},
       {path: 'analyses/types', component: AnalysesTypesComponent, canActivate: [RolesGuard], data: { roles: [StaticRoles.admin, StaticRoles.laborant] }},
       {path: 'users', component: IdentitiesSettingsComponent, canActivate: [RolesGuard], data: { roles: [StaticRoles.admin] }},
-      {path: 'users/clinics', component: ClinicsSettingsComponent, canActivate: [RolesGuard], data: { roles: [StaticRoles.admin] }},
+      {path: 'analyses/clinics', component: ClinicsSettingsComponent, canActivate: [RolesGuard], data: { roles: [StaticRoles.admin, StaticRoles.laborant] }},
       {path: 'profile', component: UserProfileComponent},
-      {path: '**', redirectTo: 'auth'}
+      {path: '**', redirectTo: 'analyses'}
     ]
   },
-  { path: '**', redirectTo: 'auth' }
+  { path: '**', redirectTo: 'laboratory/analyses' }
 ];
 
 @NgModule({

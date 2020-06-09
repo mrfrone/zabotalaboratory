@@ -56,19 +56,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public isAvailableRoute(roles: string[]): boolean {
-    let access: boolean = false;
-    let currentRole: string = this._authCheckerService.getCurrentRole()
-
-    roles.forEach(function (value) {
-      if(value == currentRole) {
-        access = true;
-        return;
-      }
-    });
-
-    if(access)
-      return true;
-
-    return false;
+    const currentRole: string = this._authCheckerService.getCurrentRole()
+    return roles.includes(currentRole);
   }
 }

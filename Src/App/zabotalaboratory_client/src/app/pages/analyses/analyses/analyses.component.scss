@@ -30,6 +30,12 @@
       background-color: white;
       box-shadow: none;
 
+      thead{
+        tr{
+          text-align: center;
+        }
+      }
+
       tbody{
 
         tr{
@@ -40,6 +46,9 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+          }
+          .content-center{
+            text-align: center;
           }
         }
         tr:hover{

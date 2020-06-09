@@ -4,4 +4,6 @@ export class LaboratoryAnalysesTests {
   public name: string;
   public isValid: boolean;
   public analysesTypesId: number;
+  public units: string;
+  public referenceLimits: string;
 }

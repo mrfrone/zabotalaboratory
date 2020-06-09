@@ -14,7 +14,7 @@ using zabotalaboratory.Web.Common.Filters;
 
 namespace zabotalaboratory.Web.Areas.Api.Identities
 {
-    [Authorize(Roles = Roles.Admin)]
+    [Authorize(Roles = Roles.Admin + ", " + Roles.Laborant + ", " + Roles.Clinic)]
     [Area(AreaNames.Api)]
     [Route(HttpRouteConsts.DefaultController)]
     public class IdentitiesController : BaseController
@@ -26,18 +26,21 @@ namespace zabotalaboratory.Web.Areas.Api.Identities
             _identityService = identityService;
         }
 
+        [Authorize(Roles = Roles.Admin)]
         [HttpGet(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<IEnumerable<ZabotaIdentity>>> GetIdentities()
         {
             return await _identityService.GetIdentities();
         }
 
+        [Authorize(Roles = Roles.Admin)]
         [HttpGet(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<ZabotaIdentity>> GetIdentityById(int id)
         {
             return await _identityService.GetIdentityById(id);
         }
 
+        [Authorize(Roles = Roles.Admin)]
         [ValidModelState]
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<bool>> AddIdentity([FromBody] AddIdentityForm form)
@@ -51,6 +54,7 @@ namespace zabotalaboratory.Web.Areas.Api.Identities
             });
         }
 
+        [Authorize(Roles = Roles.Admin)]
         [ValidModelState]
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<bool>> UpdateIdentity([FromBody] UpdateIdentityForm form)
@@ -67,16 +71,24 @@ namespace zabotalaboratory.Web.Areas.Api.Identities
             });
         }
 
+        [Authorize(Roles = Roles.Admin)]
         [HttpGet(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<bool>> DeleteIdentityById(int id)
         {
             return await _identityService.DeleteIdentity(id, CurrentIdentity.Id);
         }
 
+        [Authorize(Roles = Roles.Admin)]
         [HttpGet(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<IEnumerable<ZabotaRoles>>> GetRoles()
         {
             return await _identityService.GetRoles();
+        }
+
+        [HttpGet(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<ZabotaIdentity>> GetCurrentIdentity()
+        {
+            return await _identityService.GetIdentityById(CurrentIdentity.Id);
         }
     }
 }

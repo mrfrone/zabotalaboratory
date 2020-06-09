@@ -52,6 +52,9 @@ namespace zabotalaboratory.Analyses.Database.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("BioMaterial")
+                        .HasColumnType("text");
+
                     b.Property<bool>("IsValid")
                         .HasColumnType("boolean");
 
@@ -99,6 +102,9 @@ namespace zabotalaboratory.Analyses.Database.Migrations
                     b.Property<DateTimeOffset>("DateOfBirth")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("Doctor")
+                        .HasColumnType("text");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("character varying(32)")
@@ -144,6 +150,12 @@ namespace zabotalaboratory.Analyses.Database.Migrations
                     b.Property<int>("Number1C")
                         .HasColumnType("integer");
 
+                    b.Property<string>("ReferenceLimits")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Units")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AnalysesTypesId");
@@ -163,6 +175,9 @@ namespace zabotalaboratory.Analyses.Database.Migrations
 
                     b.Property<int?>("LaboratoryAnalysesId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("PerformedBy")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

@@ -6,17 +6,21 @@
         <th scope="col">#</th>
         <th scope="col">Название</th>
         <th scope="col">Номер 1С</th>
+        <th scope="col">Единицы измерения</th>
+        <th scope="col">Референтные пределы</th>
         <th scope="col">Статус</th>
       </tr>
       </thead>
       <tbody *ngFor="let type of types">
       <tr>
-         <td colspan="4" class="type-name-center">{{type.name}}</td>
+         <td colspan="6" class="type-name-center">{{type.name}}</td>
       </tr>
       <tr *ngFor="let test of type.laboratoryAnalysesTests;" (click)="onTableElementClick(test.id)">
         <th class="row-center">{{ test.id }}</th>
         <td>{{ test.name }}</td>
         <td class="row-center">{{ test.number1C }}</td>
+        <td class="row-center">{{ test.units }}</td>
+        <td class="row-center">{{ test.referenceLimits }}</td>
         <td class="row-center" *ngIf="test.isValid"><font color="green">Действителен</font></td>
         <td class="row-center" *ngIf="!test.isValid"><font color="red">Недействителен</font></td>
       </tr>
@@ -48,6 +52,22 @@
           </mat-option>
         </mat-select>
         <mat-error *ngIf="testsForm.controls['testType'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Единицы измерения</mat-label>
+        <input matInput type="text" formControlName="testUnits">
+        <mat-error *ngIf="testsForm.controls['testUnits'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Референтные пределы</mat-label>
+        <input matInput type="text" formControlName="testReferenceLimits">
+        <mat-error *ngIf="testsForm.controls['testReferenceLimits'].invalid">
           Поле не должно быть пустым
         </mat-error>
       </mat-form-field>

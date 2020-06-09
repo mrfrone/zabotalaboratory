@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using zabotalaboratory.Common.Datamodel.Abstractions;
 
 namespace zabotalaboratory.Analyses.Database.Entities
 {
-    public class AnalysesTypes
+    public class AnalysesTypes : IValidatable
     {
         public virtual int Id { get; set; }
 
@@ -17,5 +18,7 @@ namespace zabotalaboratory.Analyses.Database.Entities
         public virtual bool IsValid { get; set; }
         
         public virtual List<LaboratoryAnalysesTests> LaboratoryAnalysesTests { get; set; }
+
+        public virtual string BioMaterial { get; set; }
     }
 }

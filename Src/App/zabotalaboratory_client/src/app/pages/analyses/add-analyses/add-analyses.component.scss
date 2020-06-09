@@ -40,4 +40,15 @@
       width: 40%;
     }
   }
+  .types-list{
+    ul{
+      li{
+        list-style: none;
+
+        h2{
+          margin-bottom: 0px;
+        }
+      }
+    }
+  }
 }

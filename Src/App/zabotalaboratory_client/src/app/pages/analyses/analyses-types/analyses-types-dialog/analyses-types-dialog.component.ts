@@ -22,7 +22,8 @@ export class AnalysesTypesDialogComponent implements OnInit {
     "type1C": new FormControl("", [
       Validators.pattern("^[0-9]*$"),
       Validators.required
-    ])
+    ]),
+    "typeBioMaterial": new FormControl("", Validators.required)
   });
 
   public isProgress: boolean = true;
@@ -42,7 +43,8 @@ export class AnalysesTypesDialogComponent implements OnInit {
     const form: UpdateAnalysesTypeForm = {
       id: this.type.id,
       name: this.typeForm.controls['typeName'].value,
-      number1C: this.typeForm.controls['type1C'].value
+      number1C: this.typeForm.controls['type1C'].value,
+      bioMaterial: this.typeForm.controls['typeBioMaterial'].value
     };
 
       this._analysesTypes.updateAnalysesType(form).subscribe(res => {
@@ -75,6 +77,7 @@ export class AnalysesTypesDialogComponent implements OnInit {
 
       this.typeForm.controls['typeName'].setValue(res.result.name);
       this.typeForm.controls['type1C'].setValue(res.result.number1C);
+      this.typeForm.controls['typeBioMaterial'].setValue(res.result.bioMaterial);
 
       this.isProgress = false;
     });

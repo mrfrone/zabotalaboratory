@@ -13,7 +13,7 @@ using zabotalaboratory.Web.Common.Filters;
 
 namespace zabotalaboratory.Web.Areas.Api.AnalysesTypes
 {
-    [Authorize(Roles = Roles.Admin + ", " + Roles.Laborant)]
+    [Authorize(Roles = Roles.Admin + ", " + Roles.Laborant + ", " + Roles.Clinic)]
     [Area(AreaNames.Api)]
     [Route(HttpRouteConsts.DefaultController)]
     public class AnalysesTypesController : BaseController
@@ -49,6 +49,7 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTypes
             return await _analysesService.GetAnalysesTypeById(id);
         }
 
+        [Authorize(Roles = Roles.Admin + ", " + Roles.Laborant)]
         [ValidModelState]
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<bool>> AddAnalysesType([FromBody] NewAnalysesTypeForm form)
@@ -56,10 +57,12 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTypes
             return await _analysesService.AddNewAnalysesType(new zabotalaboratory.Analyses.Forms.AnalysesTypes.NewAnalysesTypeForm
             {
                 Name = form.Name,
-                Number1C = form.Number1C
+                Number1C = form.Number1C,
+                BioMaterial = form.BioMaterial
             });
         }
 
+        [Authorize(Roles = Roles.Admin + ", " + Roles.Laborant)]
         [ValidModelState]
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<bool>> UpdateAnalysesType([FromBody] UpdateAnalysesTypeForm form)
@@ -68,10 +71,12 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTypes
             {
                 Id = form.Id,
                 Name = form.Name,
-                Number1C = form.Number1C
+                Number1C = form.Number1C,
+                BioMaterial = form.BioMaterial
             });
         }
 
+        [Authorize(Roles = Roles.Admin + ", " + Roles.Laborant)]
         [ValidModelState]
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<bool>> UpdateAnalysesTypeValid([FromBody] UpdateAnalysesTypeValidForm form)

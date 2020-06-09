@@ -7,5 +7,7 @@
         public string Name { get; set; }
     
         public int Number1C { get; set; }
+
+        public string BioMaterial { get; set; }
     }
 }

@@ -27,7 +27,7 @@ export class RolesGuard implements CanActivate{
       return true;
 
     this._message.showMessage('Нет доступа');
-    this._router.navigate(["home/analyses"])
+    this._router.navigate(["laboratory/analyses"])
     return false;
   }
 }

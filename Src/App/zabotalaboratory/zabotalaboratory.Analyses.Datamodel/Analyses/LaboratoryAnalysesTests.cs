@@ -11,5 +11,9 @@
         public bool IsValid { get; set; }
 
         public int AnalysesTypesId { get; set; }
+
+        public string Units { get; set; }
+
+        public string ReferenceLimits { get; set; }
     }
 }

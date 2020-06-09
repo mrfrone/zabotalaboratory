@@ -12,5 +12,8 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTypes.Forms
 
         [Required]
         public int Number1C { get; set; }
+
+        [Required]
+        public string BioMaterial { get; set; }
     }
 }

@@ -16,5 +16,7 @@ namespace zabotalaboratory.Analyses.Database.Entities
 
         public virtual List<AnalysesResult> AnalysesResult { get; set; }
 
+        public virtual string PerformedBy { get; set; }
+
     }
 }

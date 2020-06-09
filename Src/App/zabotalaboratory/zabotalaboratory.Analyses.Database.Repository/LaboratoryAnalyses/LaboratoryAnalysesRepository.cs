@@ -4,6 +4,9 @@ using zabotalaboratory.Common.EFCore.Extensions;
 using Microsoft.EntityFrameworkCore;
 using zabotalaboratory.Analyses.Database.Context;
 using System.Linq;
+using zabotalaboratory.Analyses.Forms.LaboratoryAnalyses;
+using System;
+using System.Collections.Generic;
 
 namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
 {
@@ -34,6 +37,44 @@ namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
                     .ThenInclude(tal => tal.AnalysesResult)
                         .ThenInclude(res => res.LaboratoryAnalysesTests)
                 .FirstOrDefaultAsync(a => a.Id == id);
+        }
+
+        public async Task AddLaboratoryAnalyse(AddLaboratoryAnalysesForm form)
+        {
+            var talons = new List<Talons>();
+
+            foreach(var talon in form.Talons)
+            {
+                    var results = new List<AnalysesResult>();
+                    foreach (var result in talon.AnalysesResult)
+                    {
+                            results.Add(new AnalysesResult
+                            {
+                                LaboratoryAnalysesTestsId = result.LaboratoryAnalysesTestsId
+                            });
+                    }
+
+                    talons.Add(new Talons
+                    {
+                        AnalysesTypeId = talon.AnalysesTypeId,
+                        AnalysesResult = results
+                    });
+            }
+            
+
+            _ac.LaboratoryAnalyses.Add(new Entities.LaboratoryAnalyses {
+                FirstName = form.FirstName,
+                LastName = form.LastName,
+                PatronymicName = form.PatronymicName,
+                DateOfBirth = DateTime.Parse(form.DateOfBirth),
+                PickUpDate = DateTime.UtcNow,
+                ClinicId = form.ClinicId,
+                Doctor = form.Doctor,
+                Talons = talons
+
+            });
+
+            await _ac.SaveChangesAsync();
         }
     }
 }

@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200518115544_AddNullableToSubRoles.cs" />
     <Compile Remove="Migrations\20200518115544_AddNullableToSubRoles.Designer.cs" />
+    <Compile Remove="Migrations\20200608123124_NewColumnsOnTests.cs" />
+    <Compile Remove="Migrations\20200608123124_NewColumnsOnTests.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -28,6 +28,22 @@
         Поле не должно быть пустым
       </mat-error>
     </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Единицы измерения</mat-label>
+      <input matInput type="text" formControlName="testUnits">
+      <mat-error *ngIf="testForm.controls['testUnits'].invalid">
+        Поле не должно быть пустым
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Референтные пределы</mat-label>
+      <input matInput type="text" formControlName="testReferenceLimits">
+      <mat-error *ngIf="testForm.controls['testReferenceLimits'].invalid">
+        Поле не должно быть пустым
+      </mat-error>
+    </mat-form-field>
     <div class="form-buttons">
       <button mat-stroked-button color="primary" type="button" [disabled]="testForm.invalid" (click)="onFormSubmit()">Изменить</button>
       <button mat-stroked-button color="primary" type="button" *ngIf="!test.isValid" (click)="onValidButton()">Активировать</button>

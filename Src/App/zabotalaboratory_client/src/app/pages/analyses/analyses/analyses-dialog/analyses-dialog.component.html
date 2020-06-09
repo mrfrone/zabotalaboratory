@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Исследование №{{ id }}</h2>
+<mat-dialog-content class="mat-typography">
+  <div *ngIf="!isProgress">
+    <div class="analysis-info">
+      <p>Результат анализа <u>№ {{ laboratoryAnalyse.id }}</u> от <u>{{ laboratoryAnalyse.pickUpDate | date: 'dd.MM.yyyy' }}</u></p>
+      <p>Ф.И.О. <u><b>{{ laboratoryAnalyse.fullName }}</b></u></p>
+      <p>Дата рождения <u>{{ laboratoryAnalyse.dateOfBirth | date: 'dd.MM.yyyy' }}</u></p>
+      <p>Врач <u>{{ laboratoryAnalyse.doctor }}</u></p>
+    </div>
+    <div class="download-section">
+      <button mat-button type="button" color="primary" (click)="downloadResult(id)">Скачать результат</button>
+    </div>
+    <div class="main-table">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <td scope="col">Тест</td>
+          <td scope="col">Результат</td>
+          <td scope="col">Единицы измерения</td>
+          <td scope="col">Референтные пределы</td>
+        </tr>
+        </thead>
+        <tbody *ngFor="let talon of laboratoryAnalyse.talons">
+        <tr>
+          <td colspan="4" class="type-name-center">{{talon.analysesType.name}} (Выполнил Биолог КДЛ {{ talon.performedBy }})</td>
+        </tr>
+        <tr *ngFor="let result of talon.analysesResult;">
+          <td>{{ result.laboratoryAnalysesTest.name }}</td>
+          <td class="row-center" *ngIf="result.result">{{ result.result }}</td>
+          <td class="row-center" *ngIf="!result.result">Пусто</td>
+          <td class="row-center">{{ result.laboratoryAnalysesTest.units }}</td>
+          <td class="row-center">{{ result.laboratoryAnalysesTest.referenceLimits }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="center" *ngIf="isProgress">
+    <mat-spinner></mat-spinner>
+  </div>
+</mat-dialog-content>
+
+

@@ -15,5 +15,11 @@ namespace zabotalaboratory.Api.AnalysesTests.Forms
 
         [Required]
         public int AnalysesTypesId { get; set; }
+
+        [Required]
+        public string Units { get; set; }
+
+        [Required]
+        public string ReferenceLimits { get; set; }
     }
 }

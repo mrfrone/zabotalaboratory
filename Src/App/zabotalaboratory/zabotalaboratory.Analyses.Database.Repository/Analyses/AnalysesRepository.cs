@@ -5,7 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using zabotalaboratory.Analyses.Database.Context;
 using zabotalaboratory.Analyses.Forms.AnalysesTests;
 using zabotalaboratory.Analyses.Forms.AnalysesTypes;
-using zabotalaboratory.Analyses.Database.Repository.Extensions;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace zabotalaboratory.Analyses.Database.Repository.Analyses
 {
@@ -19,12 +20,20 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
         }
 
         #region Types
-        public async Task<AnalysesTypes[]> GetAnalysesTypes(bool withTests, bool trackChanges = false)
+        public async Task<AnalysesTypes[]> GetAnalysesTypes(bool withTests, bool onlyValid = false, bool trackChanges = false)
         {
-            return await _ac.AnalysesTypes
+            var query = _ac.AnalysesTypes
+                .AsQueryable()
                 .HasTracking(trackChanges)
-                .WithTests(withTests)
-                .ToArrayAsync();
+                .OrderBy(t => t.Id)
+                .HasValid(onlyValid);
+
+            if (withTests)
+            {
+                query = query.Include(u => u.LaboratoryAnalysesTests);
+            }
+
+            return await query.ToArrayAsync();
         }
 
         public async Task<AnalysesTypes> GetAnalysesTypeById(int id, bool trackChanges = false)
@@ -41,7 +50,8 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
             {
                 Name = form.Name,
                 Number1C = form.Number1C,
-                IsValid = true
+                IsValid = true,
+                BioMaterial = form.BioMaterial
             });
 
             await _ac.SaveChangesAsync();
@@ -53,6 +63,7 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
 
             result.Name = form.Name;
             result.Number1C = form.Number1C;
+            result.BioMaterial = form.BioMaterial;
 
             await _ac.SaveChangesAsync();
         }
@@ -69,6 +80,17 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
         #endregion
 
         #region Tests
+        
+        public async Task<List<LaboratoryAnalysesTests>> GetAnalysesTestsByTypeId(int typeId, bool onlyValid = false, bool trackChanges = false) 
+        {
+            return await _ac.LaboratoryAnalysesTests
+                .HasTracking(trackChanges)
+                .Where(t => t.AnalysesTypesId == typeId)
+                .OrderBy(t => t.Id)
+                .HasValid(onlyValid)
+                .ToListAsync();
+        }
+        
         public async Task<LaboratoryAnalysesTests> GetAnalysesTestById(int id, bool trackChanges = false)
         {
             return await _ac.LaboratoryAnalysesTests
@@ -83,7 +105,9 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
                 Name = form.Name,
                 Number1C = form.Number1C,
                 AnalysesTypesId = form.AnalysesTypesId,
-                IsValid = true
+                IsValid = true,
+                ReferenceLimits = form.ReferenceLimits,
+                Units = form.Units
             });
 
             await _ac.SaveChangesAsync();
@@ -96,6 +120,8 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
             result.Name = form.Name;
             result.Number1C = form.Number1C;
             result.AnalysesTypesId = form.AnalysesTypesId;
+            result.Units = form.Units;
+            result.ReferenceLimits = form.ReferenceLimits;
 
             await _ac.SaveChangesAsync();
         }

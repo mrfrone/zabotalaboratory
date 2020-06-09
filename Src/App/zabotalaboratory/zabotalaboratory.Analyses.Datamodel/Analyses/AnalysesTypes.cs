@@ -13,5 +13,7 @@ namespace zabotalaboratory.Analyses.Datamodel.Analyses
         public bool IsValid { get; set; }
         
         public IEnumerable<ZabotaLaboratoryAnalysesTests> LaboratoryAnalysesTests { get; set; }
+
+        public string BioMaterial { get; set; }
     }
 }

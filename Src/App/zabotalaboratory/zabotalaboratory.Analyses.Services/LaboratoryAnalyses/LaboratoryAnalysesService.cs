@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses;
 using zabotalaboratory.Analyses.Datamodel.LaboratoryAnalyses;
+using zabotalaboratory.Analyses.Forms.LaboratoryAnalyses;
 using zabotalaboratory.Common.Result;
 using zabotalaboratory.Common.Result.ErrorCodes;
 
@@ -39,6 +40,13 @@ namespace zabotalaboratory.Analyses.Services.LaboratoryAnalyses
             var mappedModel = _mapper.Map<ZabotaLaboratoryAnalyses>(result);
 
             return new ZabotaResult<ZabotaLaboratoryAnalyses>(mappedModel);
+        }
+
+        public async Task<ZabotaResult<bool>> AddLaboratoryAnalyse(AddLaboratoryAnalysesForm form)
+        {
+            await _laboratoryAnalysesRepository.AddLaboratoryAnalyse(form);
+
+            return new ZabotaResult<bool>(true);
         }
     }
 }

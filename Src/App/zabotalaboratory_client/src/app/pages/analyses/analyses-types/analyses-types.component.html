@@ -6,6 +6,7 @@
         <th scope="col">#</th>
         <th scope="col">Название</th>
         <th scope="col">Номер 1С</th>
+        <th scope="col">Биоматериал</th>
         <th scope="col">Статус</th>
       </tr>
       </thead>
@@ -14,6 +15,7 @@
         <th class="row-center">{{ type.id }}</th>
         <td>{{ type.name }}</td>
         <td class="row-center">{{ type.number1C }}</td>
+        <td class="row-center">{{ type.bioMaterial }}</td>
         <td class="row-center" *ngIf="type.isValid"><font color="green">Действителен</font></td>
         <td class="row-center" *ngIf="!type.isValid"><font color="red">Недействителен</font></td>
       </tr>
@@ -35,6 +37,14 @@
         <input matInput type="number" formControlName="type1C">
         <mat-error *ngIf="typesForm.controls['type1C'].invalid">
           Поле не должно быть пустым и в нем могут быть только цифры
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Биоматериал</mat-label>
+        <input matInput type="text" formControlName="typeBioMaterial">
+        <mat-error *ngIf="typesForm.controls['typeBioMaterial'].invalid">
+          Поле не должно быть пустым
         </mat-error>
       </mat-form-field>
       <div class="form-button">

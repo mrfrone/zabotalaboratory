@@ -20,7 +20,8 @@ export class AnalysesTypesComponent implements OnInit {
     "type1C": new FormControl("", [
       Validators.pattern("^[0-9]*$"),
       Validators.required
-    ])
+    ]),
+    "typeBioMaterial": new FormControl("", Validators.required)
   });
 
   public mainWindowIsProgress: boolean = true;
@@ -49,7 +50,8 @@ export class AnalysesTypesComponent implements OnInit {
 
     const form: AddNewAnalysesTypeForm = {
       name: this.typesForm.controls['typeName'].value,
-      number1C: this.typesForm.controls['type1C'].value
+      number1C: this.typesForm.controls['type1C'].value,
+      bioMaterial: this.typesForm.controls['typeBioMaterial'].value
     };
 
     this._analysesTypes.addNewAnalysesType(form).subscribe(res => {

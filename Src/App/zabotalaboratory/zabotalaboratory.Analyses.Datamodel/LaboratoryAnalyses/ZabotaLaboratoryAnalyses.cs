@@ -23,6 +23,8 @@ namespace zabotalaboratory.Analyses.Datamodel.LaboratoryAnalyses
 
         public DateTimeOffset PickUpDate { get; set; }
 
+        public string Doctor { get; set; }
+
         public IEnumerable<ZabotaTalons> Talons { get; set; }
     }
 }

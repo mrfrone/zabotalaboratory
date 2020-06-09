@@ -23,7 +23,9 @@ export class AnalysesTestsComponent implements OnInit {
       Validators.pattern("^[0-9]*$"),
       Validators.required
     ]),
-    "testType": new FormControl("", Validators.required)
+    "testType": new FormControl("", Validators.required),
+    "testUnits": new FormControl("", Validators.required),
+    "testReferenceLimits": new FormControl("", Validators.required)
   });
 
   public mainWindowIsProgress: boolean = true;
@@ -54,7 +56,9 @@ export class AnalysesTestsComponent implements OnInit {
     const form: AddNewAnalysesTestForm = {
       name: this.testsForm.controls['testName'].value,
       number1C: this.testsForm.controls['test1C'].value,
-      analysesTypesId: this.testsForm.controls['testType'].value
+      analysesTypesId: this.testsForm.controls['testType'].value,
+      units: this.testsForm.controls['testUnits'].value,
+      referenceLimits: this.testsForm.controls['testReferenceLimits'].value
     };
 
     this._analysesTests.addNewAnalysesTest(form).subscribe(res => {

@@ -17,6 +17,14 @@
           Поле не должно быть пустым и в нем могут быть только цифры
         </mat-error>
       </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Биоматериал</mat-label>
+        <input matInput type="text" formControlName="typeBioMaterial">
+        <mat-error *ngIf="typeForm.controls['typeBioMaterial'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
       <div class="form-buttons">
         <button mat-stroked-button color="primary" type="button" [disabled]="typeForm.invalid" (click)="onFormSubmit()">Изменить</button>
         <button mat-stroked-button color="primary" type="button" *ngIf="!type.isValid" (click)="onValidButton()">Активировать</button>

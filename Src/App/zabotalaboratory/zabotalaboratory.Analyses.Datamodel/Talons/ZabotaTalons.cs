@@ -11,5 +11,7 @@ namespace zabotalaboratory.Analyses.Datamodel.Talons
 
         public IEnumerable<ZabotaAnalysesResult> AnalysesResult { get; set; }
 
+        public string PerformedBy { get; set; }
+
     }
 }

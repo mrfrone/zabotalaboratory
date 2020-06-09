@@ -11,5 +11,6 @@ export class LaboratoryAnalyses{
   public clinicId: number;
   public clinic: Clinic;
   public pickUpDate: Date;
-  public Talons: Talons[];
+  public talons: Talons[];
+  public doctor: string;
 }

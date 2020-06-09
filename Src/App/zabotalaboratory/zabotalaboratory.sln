@@ -43,7 +43,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Analyses.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Analyses.Forms", "zabotalaboratory.Analyses.Forms\zabotalaboratory.Analyses.Forms.csproj", "{697FDCAC-82BF-4B59-9916-4B8F3356DBEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Common.Consts", "zabotalaboratory.Common.Consts\zabotalaboratory.Common.Consts.csproj", "{4441A9DD-76C1-4D4A-ABBD-6DD5ACD024BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Common.Consts", "zabotalaboratory.Common.Consts\zabotalaboratory.Common.Consts.csproj", "{4441A9DD-76C1-4D4A-ABBD-6DD5ACD024BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

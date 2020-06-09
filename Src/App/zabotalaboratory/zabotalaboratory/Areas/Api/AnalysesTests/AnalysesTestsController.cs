@@ -37,7 +37,9 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTests
             return await _analysesService.AddNewAnalysesTest(new zabotalaboratory.Analyses.Forms.AnalysesTests.NewAnalysesTestForm {
                 Name = form.Name,
                 Number1C = form.Number1C,
-                AnalysesTypesId = form.AnalysesTypesId
+                AnalysesTypesId = form.AnalysesTypesId,
+                Units = form.Units,
+                ReferenceLimits = form.ReferenceLimits
             });
         }
 
@@ -50,7 +52,9 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTests
                 Id = form.Id,
                 Name = form.Name,
                 Number1C = form.Number1C,
-                AnalysesTypesId = form.AnalysesTypesId
+                AnalysesTypesId = form.AnalysesTypesId,
+                Units = form.Units,
+                ReferenceLimits = form.ReferenceLimits
             });
         }
 

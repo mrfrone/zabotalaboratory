@@ -34,6 +34,8 @@ namespace zabotalaboratory.Analyses.Database.Entities
         [Required]
         public virtual DateTimeOffset PickUpDate { get; set; }
 
+        public virtual string Doctor { get; set; }
+
         public virtual List<Talons> Talons { get; set; }
     }
 }

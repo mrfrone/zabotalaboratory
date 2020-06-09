@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using zabotalaboratory.Analyses.Datamodel.LaboratoryAnalyses;
 using zabotalaboratory.Analyses.Services.LaboratoryAnalyses;
+using zabotalaboratory.Api.LaboratoryAnalyses.Forms;
 using zabotalaboratory.Common;
 using zabotalaboratory.Common.Consts;
 using zabotalaboratory.Common.Result;
+using zabotalaboratory.Web.Common.Filters;
 
 namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
 {
@@ -32,6 +34,50 @@ namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
         public async Task<ZabotaResult<ZabotaLaboratoryAnalyses>> LaboratoryAnalyseById(int id)
         {
             return await _laboratoryAnalysesService.GetLaboratoryAnalyseById(id);
+        }
+
+        [ValidModelState]
+        [HttpPost(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<bool>> AddLaboratoryAnalyse([FromBody] AddLaboratoryAnalysesForm form)
+        {
+            return await _laboratoryAnalysesService.AddLaboratoryAnalyse(new Analyses.Forms.LaboratoryAnalyses.AddLaboratoryAnalysesForm {
+                FirstName = form.FirstName,
+                LastName = form.LastName,
+                PatronymicName = form.PatronymicName,
+                DateOfBirth = form.DateOfBirth,
+                ClinicId = form.ClinicId,
+                Doctor = form.Doctor,
+                Talons = Convert(form.Talons)
+            }); 
+        }
+
+        private IEnumerable<Analyses.Forms.LaboratoryAnalyses.AddTalonsForm> Convert(IEnumerable<AddTalonsForm> source)
+        {
+            var talons = new List<Analyses.Forms.LaboratoryAnalyses.AddTalonsForm>();
+
+            foreach (var talon in source)
+            {
+                if (talon.IsNeeded)
+                {
+                    var results = new List<Analyses.Forms.LaboratoryAnalyses.AddAnalysesResultForm>();
+                    foreach (var result in talon.AnalysesResult)
+                    {
+                        if (result.IsNeeded)
+                            results.Add(new Analyses.Forms.LaboratoryAnalyses.AddAnalysesResultForm
+                            {
+                                LaboratoryAnalysesTestsId = result.LaboratoryAnalysesTestsId
+                            });
+                    }
+
+                    talons.Add(new Analyses.Forms.LaboratoryAnalyses.AddTalonsForm
+                    {
+                        AnalysesTypeId = talon.AnalysesTypeId,
+                        AnalysesResult = results
+                    });
+                }
+            }
+
+            return talons;
         }
     }
 }

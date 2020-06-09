@@ -4,6 +4,6 @@ export class AnalysesTypesAddForm {
   public id: number;
   public number1C: number;
   public name: string;
-  public isNeeded?: string;
+  public isNeeded?: boolean;
   public laboratoryAnalysesTests: LaboratoryAnalysesTestsAddForm[];
 }

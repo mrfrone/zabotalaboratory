@@ -6,6 +6,7 @@ using zabotalaboratory.Common.Result.ErrorCodes;
 using zabotalaboratory.Analyses.Database.Repository.Clinics;
 using zabotalaboratory.Analyses.Datamodel.Clinics;
 using zabotalaboratory.Analyses.Forms.Clinics;
+using System.Linq;
 
 namespace zabotalaboratory.Analyses.Services.Clinics
 {
@@ -20,10 +21,13 @@ namespace zabotalaboratory.Analyses.Services.Clinics
             _mapper = mapper;
         }
 
-        public async Task<ZabotaResult<IEnumerable<ZabotaClinics>>> GetClinics(bool onlyValid)
+        public async Task<ZabotaResult<IEnumerable<ZabotaClinics>>> GetClinics(bool onlyValid, int? currentUserClinicId = null)
         {
             var model = await _clinicsRepository.GetClinics(onlyValid);
             var mappedModel = _mapper.Map<IEnumerable<ZabotaClinics>>(model);
+
+            if (currentUserClinicId != null)
+                mappedModel = mappedModel.Where(c => c.Id == currentUserClinicId);
 
             return new ZabotaResult<IEnumerable<ZabotaClinics>>(mappedModel);
         }

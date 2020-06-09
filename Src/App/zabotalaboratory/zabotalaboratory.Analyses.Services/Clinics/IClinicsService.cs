@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using AutoMapper;
 using System.Collections.Generic;
 using zabotalaboratory.Common.Result;
 using zabotalaboratory.Analyses.Datamodel.Clinics;
@@ -9,7 +8,7 @@ namespace zabotalaboratory.Analyses.Services.Clinics
 {
     public interface IClinicsService
     {
-        Task<ZabotaResult<IEnumerable<ZabotaClinics>>> GetClinics(bool onlyValid);
+        Task<ZabotaResult<IEnumerable<ZabotaClinics>>> GetClinics(bool onlyValid, int? currentUserClinicId = null);
 
         Task<ZabotaResult<ZabotaClinics>> GetClinicById(int id);
 

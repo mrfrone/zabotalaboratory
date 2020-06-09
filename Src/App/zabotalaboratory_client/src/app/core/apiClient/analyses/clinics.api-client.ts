@@ -24,6 +24,10 @@ export class ClinicsApiClient extends BaseApiClient {
     return this.get<ZabotaResult<Clinic[]>>('/api/Clinics/GetOnlyValidClinics');
   }
 
+  public getClinicsForCurrentUser(): Observable<ZabotaResult<Clinic[]>> {
+    return this.get<ZabotaResult<Clinic[]>>('/api/Clinics/GetClinicsForCurrentUser');
+  }
+
   public getClinicById(id: number): Observable<ZabotaResult<Clinic>> {
     return this.getWithId<ZabotaResult<Clinic>>('/api/Clinics/GetClinicById', id);
   }
