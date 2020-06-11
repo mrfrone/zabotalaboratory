@@ -5,6 +5,8 @@ import {Observable} from "rxjs";
 import {ZabotaResult} from "../../../shared/models/zabota-result/zabota-result";
 import {LaboratoryAnalyses} from "../../../shared/models/analyses/laboratory-analyses";
 import {AddLaboratoryAnalysesForm} from "../../../shared/forms/laboratory-analyses/add-laboratory-analyses.form";
+import {Pager} from "../../../shared/models/pager/pager";
+import {SearchLaboratoryAnalysesForm} from "../../../shared/forms/laboratory-analyses/search-laboratory-analyses.form";
 
 @Injectable({providedIn: 'root'})
 
@@ -13,8 +15,12 @@ export class LaboratoryAnalysesApiClient extends BaseApiClient{
     super(httpClient);
   }
 
-  public getLaboratoryAnalyses(): Observable<ZabotaResult<LaboratoryAnalyses[]>> {
-    return this.get<ZabotaResult<LaboratoryAnalyses[]>>('/api/LaboratoryAnalyses/GetLaboratoryAnalyses');
+  public getLaboratoryAnalyses(page: number): Observable<ZabotaResult<Pager<LaboratoryAnalyses[]>>> {
+    return this.getWithId<ZabotaResult<Pager<LaboratoryAnalyses[]>>>('/api/LaboratoryAnalyses/GetLaboratoryAnalyses', page);
+  }
+
+  public getSearchLaboratoryAnalyses(form: SearchLaboratoryAnalysesForm): Observable<ZabotaResult<Pager<LaboratoryAnalyses[]>>> {
+    return this.post<ZabotaResult<Pager<LaboratoryAnalyses[]>>, SearchLaboratoryAnalysesForm>('/api/LaboratoryAnalyses/GetLaboratoryAnalyses', form);
   }
 
   public getLaboratoryAnalyseById(id: number): Observable<ZabotaResult<LaboratoryAnalyses>> {

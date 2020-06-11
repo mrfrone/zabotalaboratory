@@ -45,6 +45,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Analyses.F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Common.Consts", "zabotalaboratory.Common.Consts\zabotalaboratory.Common.Consts.csproj", "{4441A9DD-76C1-4D4A-ABBD-6DD5ACD024BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Common.Pagination", "zabotalaboratory.Common.Pagination\zabotalaboratory.Common.Pagination.csproj", "{94E61BD8-C290-42E5-A644-AF2324810C35}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -119,6 +121,10 @@ Global
 		{4441A9DD-76C1-4D4A-ABBD-6DD5ACD024BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4441A9DD-76C1-4D4A-ABBD-6DD5ACD024BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4441A9DD-76C1-4D4A-ABBD-6DD5ACD024BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94E61BD8-C290-42E5-A644-AF2324810C35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94E61BD8-C290-42E5-A644-AF2324810C35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94E61BD8-C290-42E5-A644-AF2324810C35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94E61BD8-C290-42E5-A644-AF2324810C35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,6 +147,7 @@ Global
 		{801C3245-BA22-4D9D-B527-F2051C1AF569} = {11401A91-C9DB-4A78-8817-F840BB307B3E}
 		{697FDCAC-82BF-4B59-9916-4B8F3356DBEE} = {11401A91-C9DB-4A78-8817-F840BB307B3E}
 		{4441A9DD-76C1-4D4A-ABBD-6DD5ACD024BD} = {777252BA-E2DD-4676-AE4D-3B3EDD217A21}
+		{94E61BD8-C290-42E5-A644-AF2324810C35} = {777252BA-E2DD-4676-AE4D-3B3EDD217A21}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4BC89C9E-2F41-4726-B9B2-2BB855D03E69}

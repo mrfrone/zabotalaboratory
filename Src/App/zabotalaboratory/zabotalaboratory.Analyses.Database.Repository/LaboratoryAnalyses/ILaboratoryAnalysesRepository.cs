@@ -1,11 +1,12 @@
 ﻿using System.Threading.Tasks;
 using zabotalaboratory.Analyses.Forms.LaboratoryAnalyses;
+using zabotalaboratory.Common.Pagination.Models;
 
 namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
 {
     public interface ILaboratoryAnalysesRepository
     {
-        Task<Entities.LaboratoryAnalyses[]> GetLaboratoryAnalyses(bool trackChanges = false);
+        Task<Pager<Entities.LaboratoryAnalyses[]>> GetLaboratoryAnalysesWithPager(int? clinicId, LaboratoryAnalysesSearchForm form, int page, bool trackChanges = false);
 
         Task<Entities.LaboratoryAnalyses> GetLaboratoryAnalysesById(int id, bool trackChanges = false);
 

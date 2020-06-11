@@ -3,10 +3,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using zabotalaboratory.Analyses.Datamodel.LaboratoryAnalyses;
+using zabotalaboratory.Analyses.Datamodel.Pager;
 using zabotalaboratory.Analyses.Services.LaboratoryAnalyses;
 using zabotalaboratory.Api.LaboratoryAnalyses.Forms;
 using zabotalaboratory.Common;
 using zabotalaboratory.Common.Consts;
+using zabotalaboratory.Common.Pagination.Models;
 using zabotalaboratory.Common.Result;
 using zabotalaboratory.Web.Common.Filters;
 
@@ -24,10 +26,21 @@ namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
             _laboratoryAnalysesService = laboratoryAnalysesService;
         }
 
-        [HttpGet(HttpRouteConsts.DefaultAction)]
-        public async Task<ZabotaResult<IEnumerable<ZabotaLaboratoryAnalyses>>> GetLaboratoryAnalyses()
+        [HttpPost(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<ZabotaPager<IEnumerable<ZabotaLaboratoryAnalyses>>>> GetLaboratoryAnalyses([FromBody] LaboratoryAnalysesSearchForm form)
         {
-            return await _laboratoryAnalysesService.GetLaboratoryAnalyses();
+            return await _laboratoryAnalysesService.GetLaboratoryAnalyses(form.Page, CurrentIdentity.ClinicId, new Analyses.Forms.LaboratoryAnalyses.LaboratoryAnalysesSearchForm { 
+                FirstName = form.FirstName,
+                LastName = form.LastName,
+                PatronymicName = form.PatronymicName,
+                PickUpDate = form.PickUpDate
+            });
+        }
+
+        [HttpGet(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<ZabotaPager<IEnumerable<ZabotaLaboratoryAnalyses>>>> GetLaboratoryAnalyses(int id = 1)
+        {
+            return await _laboratoryAnalysesService.GetLaboratoryAnalyses(id, CurrentIdentity.ClinicId);
         }
 
         [HttpGet(HttpRouteConsts.DefaultAction)]

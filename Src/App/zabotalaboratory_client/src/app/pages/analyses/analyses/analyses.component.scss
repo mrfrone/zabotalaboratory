@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 85vh;
+  min-height: 60vh;
   width: 100%;
 }
 .main-box {
@@ -19,10 +19,6 @@
     width: 100%;
     height: 100%;
     padding: 3%;
-
-    mat-form-field {
-      width: 100%;
-    }
 
     table {
       width: 100%;
@@ -57,6 +53,33 @@
         tr:active{
           background-color: lighten(gray, 30);
         }
+      }
+    }
+    .search-form {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      mat-form-field {
+        min-width: 25%;
+      }
+
+      button{
+        height: 2%;
+        width: 10%;
+      }
+    }
+
+    .paginator{
+      margin: 5px 0px;
+      text-align: center;
+
+      button{
+        width: 20%;
+      }
+      span{
+        margin: 0px 20px;
+        font-size: 120%;
       }
     }
   }

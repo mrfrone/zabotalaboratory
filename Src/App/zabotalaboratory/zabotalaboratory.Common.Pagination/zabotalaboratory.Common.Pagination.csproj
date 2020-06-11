@@ -9,9 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\zabotalaboratory.Analyses.Database\zabotalaboratory.Analyses.Database.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Common.AutoMapper\zabotalaboratory.Common.AutoMapper.csproj" />
-    <ProjectReference Include="..\zabotalaboratory.Common.Pagination\zabotalaboratory.Common.Pagination.csproj" />
   </ItemGroup>
 
 </Project>

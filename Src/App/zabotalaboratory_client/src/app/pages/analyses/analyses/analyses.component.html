@@ -1,9 +1,22 @@
 <div class="main-box">
-  <div class="main-box-content" *ngIf="!mainTableIsProgress">
-    <mat-form-field>
-      <mat-label>Поиск по имени</mat-label>
-      <input matInput (keyup)="onNameSearchKeyUp()" placeholder="Введите имя пациента">
-    </mat-form-field>
+  <div class="main-box-content">
+    <div class="search-form">
+      <mat-form-field>
+        <mat-label>Фамилия</mat-label>
+        <input matInput type="text" name="lastName" [(ngModel)]="lastName" placeholder="Введите фамилию пациента">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Имя</mat-label>
+        <input matInput type="text" name="firstName" [(ngModel)]="firstName" placeholder="Введите имя пациента">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Отчество</mat-label>
+        <input matInput type="text" name="patronymicName" [(ngModel)]="patronymicName" placeholder="Введите отчество пациента">
+      </mat-form-field>
+      <button mat-stroked-button color="primary" (click)="onSearchButtonClick()">Найти</button>
+      <button mat-stroked-button color="primary" (click)="resetSearching()" [disabled]="!this.isSearchingData">Сбросить</button>
+    </div>
+    <div *ngIf="!mainTableIsProgress">
     <table class="table table-hover">
       <thead>
       <tr>
@@ -17,7 +30,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let data of laboratoryAnalyses;" (click)="onTableElementClick(data.id)">
+      <tr *ngFor="let data of laboratoryAnalyses.pageResult;" (click)="onTableElementClick(data.id)">
         <th scope="row" class="content-center">{{ data.id }}</th>
         <td>{{ data.fullName }}</td>
         <td class="content-center">{{ data.dateOfBirth | date: 'dd.MM.yyyy'}}</td>
@@ -28,9 +41,15 @@
       </tr>
       </tbody>
     </table>
-  </div>
-  <div class="center" *ngIf="mainTableIsProgress">
-    <mat-spinner></mat-spinner>
+      <div class="paginator">
+        <button mat-stroked-button color="primary" (click)="changePage(laboratoryAnalyses.pageNumber - 1)" [disabled]="!laboratoryAnalyses.hasPreviousPage"> Предыдущая </button>
+        <span>{{ laboratoryAnalyses.pageNumber }}</span>
+        <button mat-stroked-button color="primary" (click)="changePage(laboratoryAnalyses.pageNumber + 1)" [disabled]="!laboratoryAnalyses.hasNextPage"> Следующая </button>
+      </div>
+    </div>
+    <div class="center" *ngIf="mainTableIsProgress">
+      <mat-spinner></mat-spinner>
+    </div>
   </div>
 </div>
 

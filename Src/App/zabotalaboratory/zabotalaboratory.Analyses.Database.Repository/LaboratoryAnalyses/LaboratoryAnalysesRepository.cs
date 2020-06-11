@@ -7,25 +7,51 @@ using System.Linq;
 using zabotalaboratory.Analyses.Forms.LaboratoryAnalyses;
 using System;
 using System.Collections.Generic;
+using zabotalaboratory.Common.Pagination.Models;
+using Microsoft.Extensions.Options;
+using zabotalaboratory.Common.Datamodel.Pager;
+using zabotalaboratory.Analyses.Database.Repository.Extentions;
 
 namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
 {
     internal class LaboratoryAnalysesRepository : ILaboratoryAnalysesRepository
     {
+        private readonly LaboratoryAnalysesSearchForm emptyForm = new LaboratoryAnalysesSearchForm {
+            LastName = "",
+            FirstName = "",
+            PatronymicName = ""
+        };
+
+        private readonly IOptionsMonitor<PagerSettings> _options;
         private readonly AnalysesContext _ac;
 
-        public LaboratoryAnalysesRepository(AnalysesContext ac)
+        public LaboratoryAnalysesRepository(AnalysesContext ac, IOptionsMonitor<PagerSettings> options)
         {
             _ac = ac;
+            _options = options;
         }
-        
-        public async Task<Entities.LaboratoryAnalyses[]> GetLaboratoryAnalyses(bool trackChanges = false)
+
+        public async Task<Pager<Entities.LaboratoryAnalyses[]>> GetLaboratoryAnalysesWithPager(int? clinicId, LaboratoryAnalysesSearchForm form, int page, bool trackChanges = false)
         {
-            return await _ac.LaboratoryAnalyses
-                .HasTracking(trackChanges)
-                .Include(a => a.Clinic)
-                .ToArrayAsync();
+            if (form == null)
+                form = emptyForm;
+
+            var query = _ac.LaboratoryAnalyses
+                           .HasTracking(trackChanges)
+                           .HasClinic(clinicId)
+                           .Where(a => 
+                                EF.Functions.ILike(a.LastName, $"%{form.LastName}%") && 
+                                EF.Functions.ILike(a.FirstName, $"%{form.FirstName}%") && 
+                                EF.Functions.ILike(a.PatronymicName, $"%{form.PatronymicName}%"))
+                           .OrderByDescending(a => a.PickUpDate)
+                           .Include(a => a.Clinic);
+
+            var count = await query.CountAsync();
+            int pageSize = _options.CurrentValue.PageSize;
+
+            return new Pager<Entities.LaboratoryAnalyses[]>(count, page, pageSize, await query.Skip((page - 1) * pageSize).Take(pageSize).ToArrayAsync());
         }
+
         public async Task<Entities.LaboratoryAnalyses> GetLaboratoryAnalysesById(int id, bool trackChanges = false)
         {
             return await _ac.LaboratoryAnalyses

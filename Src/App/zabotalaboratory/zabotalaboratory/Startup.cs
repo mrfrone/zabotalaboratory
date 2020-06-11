@@ -13,6 +13,7 @@ using zabotalaboratory.Common.PasswordService.Extensions;
 using zabotalaboratory.Common.Storage;
 using zabotalaboratory.Common.Filters;
 using zabotalaboratory.Analyses.Services.Extensions;
+using zabotalaboratory.Common.Datamodel.Pager;
 
 namespace zabotalaboratory
 {
@@ -44,6 +45,7 @@ namespace zabotalaboratory
 
             services.Configure<JwtSettings>(Configuration.GetSection(nameof(JwtSettings)));
             services.Configure<PasswordHashingSettings>(Configuration.GetSection(nameof(PasswordHashingSettings)));
+            services.Configure<PagerSettings>(Configuration.GetSection(nameof(PagerSettings)));
 
             services.AddAuthServices(Configuration.GetConnectionString("PostgreSQL"));
             services.AddAnalysesServices(Configuration.GetConnectionString("PostgreSQL"));
