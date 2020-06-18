@@ -14,6 +14,7 @@ using zabotalaboratory.Common.Storage;
 using zabotalaboratory.Common.Filters;
 using zabotalaboratory.Analyses.Services.Extensions;
 using zabotalaboratory.Common.Datamodel.Pager;
+using zabotalaboratory.Common.Razor.Extensions;
 
 namespace zabotalaboratory
 {
@@ -50,6 +51,7 @@ namespace zabotalaboratory
             services.AddAuthServices(Configuration.GetConnectionString("PostgreSQL"));
             services.AddAnalysesServices(Configuration.GetConnectionString("PostgreSQL"));
             services.AddPasswordHashing();
+            services.AddRazorPagesReports();
             services.AddScoped<IIdentityRequestStorage, IdentityRequestStorage>();
 
             services.AddMiMapping(

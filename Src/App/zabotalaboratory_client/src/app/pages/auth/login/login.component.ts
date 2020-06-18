@@ -7,6 +7,10 @@ import {DefaultSuccessMessages} from "../../../shared/consts/defaultSuccessMessa
 import {AuthApiClient} from "../../../core/apiClient/auth/auth.api-client";
 import {MessageService} from "../../../core/services/message.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {GetLaboratoryAnalyseToNotAuthForm} from "../../../shared/forms/auth/get-laboratory-analyse-to-not-auth.form";
+import {LaboratoryAnalysesApiClient} from "../../../core/apiClient/analyses/laboratory-analyses.api-client";
+import {AnalysesDialogComponent} from "../../analyses/analyses/analyses-dialog/analyses-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-login',
@@ -19,17 +23,46 @@ export class LoginComponent implements OnInit {
     "authPassword": new FormControl("", Validators.required)
   });
 
+  public getLaboratoryAnalyseForm: FormGroup = new FormGroup({
+    "laboratoryAnalyseNumber": new FormControl("", [
+      Validators.required,
+      Validators.pattern("^[0-9]*$")
+    ]),
+    "laboratoryAnalyseLastName": new FormControl("", Validators.required)
+  });
+
+  public isLogin: boolean = true;
   public isProgress: boolean = false
 
   constructor(private readonly _auth: AuthApiClient,
               private readonly _authChecker: AuthCheckerService,
+              private readonly _analyses: LaboratoryAnalysesApiClient,
               private readonly  _router: Router,
-              private readonly _messages: MessageService) { }
+              private readonly _messages: MessageService,
+              private readonly _dialog: MatDialog) { }
 
   ngOnInit(): void {
     if(this._authChecker.isAuth()) {
       this.goToMainPage();
     }
+  }
+
+  public getLaboratoryAnalyse(): void{
+    const form: GetLaboratoryAnalyseToNotAuthForm = {
+      id: this.getLaboratoryAnalyseForm.controls['laboratoryAnalyseNumber'].value,
+      lastName: this.getLaboratoryAnalyseForm.controls['laboratoryAnalyseLastName'].value
+    };
+
+    this._analyses.getLaboratoryAnalyseId(form).subscribe(res => {
+      if(res.isNotCorrect)
+        this._messages.showMessage(res.error.message)
+
+      if(res.isCorrect) {
+        this._dialog.open(AnalysesDialogComponent, {
+          data: res.result
+        });
+      }
+    });
   }
 
   public login(): void {

@@ -65,6 +65,15 @@ namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
 
+        public async Task<int?> GetLaboratoryAnalyseId(GetLaboratoryAnalyseIdForm form, bool trackChanges = false)
+        {
+            return await _ac.LaboratoryAnalyses
+                .HasTracking(trackChanges)
+                .Where(a => a.Id == form.Id && a.LastName == form.LastName)
+                .Select(a => a.Id)
+                .FirstOrDefaultAsync();
+        }
+
         public async Task AddLaboratoryAnalyse(AddLaboratoryAnalysesForm form)
         {
             var talons = new List<Talons>();

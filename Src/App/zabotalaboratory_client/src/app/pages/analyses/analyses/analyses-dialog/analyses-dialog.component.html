@@ -2,13 +2,13 @@
 <mat-dialog-content class="mat-typography">
   <div *ngIf="!isProgress">
     <div class="analysis-info">
-      <p>Результат анализа <u>№ {{ laboratoryAnalyse.id }}</u> от <u>{{ laboratoryAnalyse.pickUpDate | date: 'dd.MM.yyyy' }}</u></p>
+      <p>Результат исследования <u>№ {{ laboratoryAnalyse.id }}</u> от <u>{{ laboratoryAnalyse.pickUpDate | date: 'dd.MM.yyyy' }}</u></p>
       <p>Ф.И.О. <u><b>{{ laboratoryAnalyse.fullName }}</b></u></p>
       <p>Дата рождения <u>{{ laboratoryAnalyse.dateOfBirth | date: 'dd.MM.yyyy' }}</u></p>
       <p>Врач <u>{{ laboratoryAnalyse.doctor }}</u></p>
     </div>
     <div class="download-section">
-      <button mat-button type="button" color="primary" (click)="downloadResult(id)">Скачать результат</button>
+      <button mat-button type="button" color="primary" (click)="downloadResult(id)" [disabled]="isReportHasRendering">Скачать результат</button>
     </div>
     <div class="main-table">
       <table class="table table-hover">

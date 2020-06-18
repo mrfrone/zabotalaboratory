@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\zabotalaboratory.Analyses.Datamodel\zabotalaboratory.Analyses.Datamodel.csproj" />
+    <ProjectReference Include="..\zabotalaboratory.Analyses.Services\zabotalaboratory.Analyses.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Select.HtmlToPdf.NetCore" Version="20.1.0" />
+  </ItemGroup>
+
+
+</Project>

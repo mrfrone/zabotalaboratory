@@ -1,31 +1,35 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using zabotalaboratory.Analyses.Datamodel.LaboratoryAnalyses;
-using zabotalaboratory.Analyses.Datamodel.Pager;
 using zabotalaboratory.Analyses.Services.LaboratoryAnalyses;
 using zabotalaboratory.Api.LaboratoryAnalyses.Forms;
 using zabotalaboratory.Common;
 using zabotalaboratory.Common.Consts;
-using zabotalaboratory.Common.Pagination.Models;
+using zabotalaboratory.Common.Pagination.Datamodel;
+using zabotalaboratory.Common.RazorReports.Reports.Analyses;
 using zabotalaboratory.Common.Result;
 using zabotalaboratory.Web.Common.Filters;
+using zabotalaboratory.Web.Common.Forms;
 
 namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
 {
-    [Authorize]
     [Area(AreaNames.Api)]
     [Route(HttpRouteConsts.DefaultController)]
     public class LaboratoryAnalysesController : BaseController
     {
         private readonly ILaboratoryAnalysesService _laboratoryAnalysesService;
+        private readonly IAnalysesReportsService _analysesReportsService;
 
-        public LaboratoryAnalysesController(ILaboratoryAnalysesService laboratoryAnalysesService)
+        public LaboratoryAnalysesController(ILaboratoryAnalysesService laboratoryAnalysesService, IAnalysesReportsService analysesReportsService)
         {
             _laboratoryAnalysesService = laboratoryAnalysesService;
+            _analysesReportsService = analysesReportsService;
         }
 
+        [Authorize]
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<ZabotaPager<IEnumerable<ZabotaLaboratoryAnalyses>>>> GetLaboratoryAnalyses([FromBody] LaboratoryAnalysesSearchForm form)
         {
@@ -37,10 +41,28 @@ namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
             });
         }
 
+        [Authorize]
         [HttpGet(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<ZabotaPager<IEnumerable<ZabotaLaboratoryAnalyses>>>> GetLaboratoryAnalyses(int id = 1)
         {
             return await _laboratoryAnalysesService.GetLaboratoryAnalyses(id, CurrentIdentity.ClinicId);
+        }
+
+        [HttpPost(HttpRouteConsts.DefaultAction)]
+        public async Task<IActionResult> GetLaboratoryAnalyseReportById([FromBody] DownloadFileByIdForm form)
+        {
+            var result = await _analysesReportsService.GetAnalysesResultReportById(form.Id);
+
+            return File(result.Result, "application/pdf");
+        }
+
+        [HttpPost(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<int?>> LaboratoryAnalyseId([FromBody] GetLaboratoryAnalyseIdForm form)
+        {
+            return await _laboratoryAnalysesService.GetLaboratoryAnalyseId(new Analyses.Forms.LaboratoryAnalyses.GetLaboratoryAnalyseIdForm { 
+                Id = form.Id,
+                LastName = form.LastName
+            });
         }
 
         [HttpGet(HttpRouteConsts.DefaultAction)]
@@ -49,6 +71,7 @@ namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
             return await _laboratoryAnalysesService.GetLaboratoryAnalyseById(id);
         }
 
+        [Authorize]
         [ValidModelState]
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<bool>> AddLaboratoryAnalyse([FromBody] AddLaboratoryAnalysesForm form)

@@ -25,7 +25,12 @@
     <ProjectReference Include="..\zabotalaboratory.Common.AutoMapper\zabotalaboratory.Common.AutoMapper.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Common.Consts\zabotalaboratory.Common.Consts.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Common.PasswordService\zabotalaboratory.Common.PasswordService.csproj" />
+    <ProjectReference Include="..\zabotalaboratory.Common.Razor\zabotalaboratory.Common.RazorReports.csproj" />
     <ProjectReference Include="..\zabotalaboratory.Common.Result\zabotalaboratory.Common.Result.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

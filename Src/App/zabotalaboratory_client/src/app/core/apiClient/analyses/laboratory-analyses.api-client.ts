@@ -7,6 +7,8 @@ import {LaboratoryAnalyses} from "../../../shared/models/analyses/laboratory-ana
 import {AddLaboratoryAnalysesForm} from "../../../shared/forms/laboratory-analyses/add-laboratory-analyses.form";
 import {Pager} from "../../../shared/models/pager/pager";
 import {SearchLaboratoryAnalysesForm} from "../../../shared/forms/laboratory-analyses/search-laboratory-analyses.form";
+import {DownloadFileForm} from "../../../shared/forms/download-file.form";
+import {GetLaboratoryAnalyseToNotAuthForm} from "../../../shared/forms/auth/get-laboratory-analyse-to-not-auth.form";
 
 @Injectable({providedIn: 'root'})
 
@@ -25,6 +27,14 @@ export class LaboratoryAnalysesApiClient extends BaseApiClient{
 
   public getLaboratoryAnalyseById(id: number): Observable<ZabotaResult<LaboratoryAnalyses>> {
     return this.getWithId<ZabotaResult<LaboratoryAnalyses>>('/api/LaboratoryAnalyses/LaboratoryAnalyseById', id);
+  }
+
+  public getLaboratoryAnalyseId(form: GetLaboratoryAnalyseToNotAuthForm): Observable<ZabotaResult<number>> {
+    return this.post<ZabotaResult<number>, GetLaboratoryAnalyseToNotAuthForm>('/api/LaboratoryAnalyses/LaboratoryAnalyseId', form);
+  }
+
+  public getLaboratoryAnalyseReportById(form: DownloadFileForm): Observable<Blob> {
+    return this.getFile('/api/LaboratoryAnalyses/GetLaboratoryAnalyseReportById', form);
   }
 
   public addLaboratoryAnalyse(form: AddLaboratoryAnalysesForm): Observable<ZabotaResult<boolean>> {

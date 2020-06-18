@@ -4,7 +4,7 @@
       <img src="/assets/img/logo/logo-main.png"><span>Лаборатория</span>
     </div>
     <div class="padding">
-      <form class="example-form" [formGroup]="authForm">
+      <form class="example-form" [formGroup]="authForm" *ngIf="isLogin">
         <mat-form-field class="example-full-width">
           <mat-label>Логин</mat-label>
           <input matInput type="text" formControlName="authLogin">
@@ -20,8 +20,30 @@
             Поле не должно быть пустым
           </mat-error>
         </mat-form-field>
+        <span *ngIf="isLogin"><a (click)="isLogin=false" class="changeFormTypeButton">Забрать результат?</a></span>
         <div class="items-center">
           <button mat-stroked-button color="primary" type="button" (click)="login()" [disabled]="this.authForm.invalid">Войти</button>
+        </div>
+      </form>
+      <form class="example-form" [formGroup]="getLaboratoryAnalyseForm" *ngIf="!isLogin">
+        <mat-form-field class="example-full-width">
+          <mat-label>Номер исследования</mat-label>
+          <input matInput type="number" formControlName="laboratoryAnalyseNumber">
+          <mat-error *ngIf="getLaboratoryAnalyseForm.controls['laboratoryAnalyseNumber'].invalid">
+            Поле не должно быть пустым и может содержать только цифры
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Фамилия пациента</mat-label>
+          <input matInput type="text" formControlName="laboratoryAnalyseLastName">
+          <mat-error *ngIf="getLaboratoryAnalyseForm.controls['laboratoryAnalyseLastName'].invalid">
+            Поле не должно быть пустым
+          </mat-error>
+        </mat-form-field>
+        <span *ngIf="!isLogin"><a class="changeFormTypeButton" (click)="isLogin=true">Авторизоваться?</a></span>
+        <div class="items-center">
+          <button mat-stroked-button color="primary" type="button" (click)="getLaboratoryAnalyse()" [disabled]="this.getLaboratoryAnalyseForm.invalid">Получить</button>
         </div>
       </form>
     </div>

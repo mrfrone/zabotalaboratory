@@ -10,6 +10,8 @@ namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
 
         Task<Entities.LaboratoryAnalyses> GetLaboratoryAnalysesById(int id, bool trackChanges = false);
 
+        Task<int?> GetLaboratoryAnalyseId(GetLaboratoryAnalyseIdForm form, bool trackChanges = false);
+
         Task AddLaboratoryAnalyse(AddLaboratoryAnalysesForm form);
     }
 }

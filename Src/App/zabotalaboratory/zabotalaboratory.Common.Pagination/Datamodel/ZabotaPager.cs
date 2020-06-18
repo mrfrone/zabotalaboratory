@@ -1,4 +1,4 @@
-﻿namespace zabotalaboratory.Analyses.Datamodel.Pager
+﻿namespace zabotalaboratory.Common.Pagination.Datamodel
 {
     public class ZabotaPager<TResult>
     {
