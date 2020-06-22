@@ -34,7 +34,7 @@ export class BaseApiClient {
     return this._httpClient.get<TRes>(DefaultUrls.ServerUrl + url + "/?id=" + id).pipe(take(1));
   }
 
-  protected getFile(url: string, form: DownloadFileForm): Observable<Blob> {
+  protected getFile<TForm>(url: string, form: TForm): Observable<Blob> {
     const serializedForm = JSON.stringify(form);
     return this._httpClient.post<Blob>(DefaultUrls.ServerUrl + url, serializedForm, {
       headers: new HttpHeaders({

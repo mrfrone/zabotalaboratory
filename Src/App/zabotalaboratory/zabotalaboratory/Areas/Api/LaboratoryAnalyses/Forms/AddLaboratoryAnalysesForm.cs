@@ -15,6 +15,9 @@ namespace zabotalaboratory.Api.LaboratoryAnalyses.Forms
         public string PatronymicName { get; set; }
 
         [Required]
+        public int GenderId { get; set; }
+
+        [Required]
         public string DateOfBirth { get; set; }
 
         [Required]

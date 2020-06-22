@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses;
@@ -38,6 +39,16 @@ namespace zabotalaboratory.Analyses.Services.LaboratoryAnalyses
             return new ZabotaResult<ZabotaPager<IEnumerable<ZabotaLaboratoryAnalyses>>>(mappedModel);
         }
 
+        public async Task<ZabotaResult<IEnumerable<ZabotaLaboratoryAnalyses>>> GetLaboratoryAnalysesByDate(DateTimeOffset date)
+        {
+            var result = await _laboratoryAnalysesRepository.GetLaboratoryAnalysesByDate(date);
+            if (result == null)
+                return ZabotaErrorCodes.EmptyResult;
+
+            var mappedModel = _mapper.Map<IEnumerable<ZabotaLaboratoryAnalyses>>(result);
+            return new ZabotaResult<IEnumerable<ZabotaLaboratoryAnalyses>>(mappedModel);
+        }
+
         public async Task<ZabotaResult<ZabotaLaboratoryAnalyses>> GetLaboratoryAnalyseById(int id)
         {
             var result = await _laboratoryAnalysesRepository.GetLaboratoryAnalysesById(id);
@@ -63,6 +74,17 @@ namespace zabotalaboratory.Analyses.Services.LaboratoryAnalyses
             await _laboratoryAnalysesRepository.AddLaboratoryAnalyse(form);
 
             return new ZabotaResult<bool>(true);
+        }
+
+        public async Task<ZabotaResult<IEnumerable<ZabotaGender>>> GetGender()
+        {
+            var result = await _laboratoryAnalysesRepository.GetGenders();
+            if (result == null)
+                return ZabotaErrorCodes.EmptyResult;
+
+            var mappedModel = _mapper.Map<IEnumerable<ZabotaGender>>(result);
+
+            return new ZabotaResult<IEnumerable<ZabotaGender>>(mappedModel);
         }
     }
 }

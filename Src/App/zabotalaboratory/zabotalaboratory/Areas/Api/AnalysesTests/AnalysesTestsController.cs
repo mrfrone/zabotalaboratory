@@ -36,10 +36,10 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTests
         {
             return await _analysesService.AddNewAnalysesTest(new zabotalaboratory.Analyses.Forms.AnalysesTests.NewAnalysesTestForm {
                 Name = form.Name,
+                PDFName = form.PDFName,
+                ExcelName = form.ExcelName,
                 Number1C = form.Number1C,
-                AnalysesTypesId = form.AnalysesTypesId,
-                Units = form.Units,
-                ReferenceLimits = form.ReferenceLimits
+                AnalysesTypesId = form.AnalysesTypesId
             });
         }
 
@@ -51,10 +51,10 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTests
             {
                 Id = form.Id,
                 Name = form.Name,
+                ExcelName = form.ExcelName,
+                PDFName = form.PDFName,
                 Number1C = form.Number1C,
-                AnalysesTypesId = form.AnalysesTypesId,
-                Units = form.Units,
-                ReferenceLimits = form.ReferenceLimits
+                AnalysesTypesId = form.AnalysesTypesId
             });
         }
 

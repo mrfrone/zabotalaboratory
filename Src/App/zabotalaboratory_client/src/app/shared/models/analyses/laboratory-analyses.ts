@@ -1,5 +1,6 @@
 import { Clinic } from './clinic';
 import { Talons } from './talons';
+import {Gender} from "./gender";
 
 export class LaboratoryAnalyses{
   public id: number;
@@ -8,6 +9,7 @@ export class LaboratoryAnalyses{
   public patronymicName: string;
   public fullName: string;
   public dateOfBirth: Date;
+  public gender: Gender;
   public clinicId: number;
   public clinic: Clinic;
   public pickUpDate: Date;

@@ -4,8 +4,10 @@
     <div class="analysis-info">
       <p>Результат исследования <u>№ {{ laboratoryAnalyse.id }}</u> от <u>{{ laboratoryAnalyse.pickUpDate | date: 'dd.MM.yyyy' }}</u></p>
       <p>Ф.И.О. <u><b>{{ laboratoryAnalyse.fullName }}</b></u></p>
+      <p>Пол <u>{{ laboratoryAnalyse.gender.name }}</u></p>
       <p>Дата рождения <u>{{ laboratoryAnalyse.dateOfBirth | date: 'dd.MM.yyyy' }}</u></p>
       <p>Врач <u>{{ laboratoryAnalyse.doctor }}</u></p>
+      <p>Отправитель <u>{{ laboratoryAnalyse.clinic.name }}</u></p>
     </div>
     <div class="download-section">
       <button mat-button type="button" color="primary" (click)="downloadResult(id)" [disabled]="isReportHasRendering">Скачать результат</button>

@@ -7,20 +7,22 @@ namespace zabotalaboratory.Analyses.Database.Entities
     {
         public virtual int Id { get; set; }
 
+        public virtual int NumberInOrder { get; set; }
+
         [Required]
         public virtual int Number1C { get; set; }
 
         [Required]
         public virtual string Name { get; set; }
 
+        public virtual string ExcelName { get; set; }
+
+        public virtual string PDFName { get; set; }
+
         [Required]
         public virtual bool IsValid { get; set; }
 
         [Required]
         public virtual int AnalysesTypesId { get; set; }
-
-        public virtual string Units { get; set; }
-
-        public virtual string ReferenceLimits { get; set; }
     }
 }

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.95.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\zabotalaboratory.Analyses.Services\zabotalaboratory.Analyses.Services.csproj" />
+  </ItemGroup>
+
+</Project>

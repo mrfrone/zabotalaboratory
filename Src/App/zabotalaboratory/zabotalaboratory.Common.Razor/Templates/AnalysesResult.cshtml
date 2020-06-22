@@ -69,7 +69,9 @@
         <p>Результат исследования <u>№ @Model.Id</u> от <u>@Model.PickUpDate.ToString("dd.MM.yyyy")</u></p>
         <p>Ф.И.О. <u><b>@Model.FullName</b></u></p>
         <p>Дата рождения <u>@Model.DateOfBirth.ToString("dd.MM.yyyy")</u></p>
+        <p>Пол <u>@Model.Gender.Name</u></p>
         <p>Врач <u>@Model.Doctor</u></p>
+        <p>Отправитель <u>@Model.Clinic.Name</u></p>
     </div>
     <div class="text-center table-title">
         <b>Исследование № @Model.Id</b>
@@ -94,10 +96,10 @@
                     {
                         <tr>
 
-                            <td width="500">@result.LaboratoryAnalysesTest.Name</td>
+                            <td width="500">@result.LaboratoryAnalysesTest.PDFName</td>
                             <td class="text-center" width="100">@result.Result</td>
-                            <td class="text-center" width="100">@result.LaboratoryAnalysesTest.Units</td>
-                            <td class="text-center" width="100">@result.LaboratoryAnalysesTest.ReferenceLimits</td>
+                            <td class="text-center" width="100">@result.Units</td>
+                            <td class="text-center" width="100">@result.ReferenceLimits</td>
 
                         </tr>
                     }
@@ -106,7 +108,7 @@
         </table>
     </div>
     <div class="table-footer">
-        <i>*Дубликат исследования выполнен на официальном веб-ресурсе ООО "Диагностический центр "Забота"</i>
+        <i>*Дубликат исследования выдан на официальном веб-ресурсе ООО "Диагностический центр "Забота"</i>
     </div>
 </body>
 </html>

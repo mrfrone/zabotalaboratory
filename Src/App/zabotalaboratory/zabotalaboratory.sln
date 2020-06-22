@@ -49,6 +49,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Common.Pag
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zabotalaboratory.Common.RazorReports", "zabotalaboratory.Common.Razor\zabotalaboratory.Common.RazorReports.csproj", "{F1A993DB-3383-4C59-BBE8-57DBE7877C7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabotalaboratory.Common.ExcelReports", "zabotalaboratory.Common.ExcelReports\zabotalaboratory.Common.ExcelReports.csproj", "{8740298B-45E0-417D-8A79-692188F1E3E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,6 +133,10 @@ Global
 		{F1A993DB-3383-4C59-BBE8-57DBE7877C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1A993DB-3383-4C59-BBE8-57DBE7877C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1A993DB-3383-4C59-BBE8-57DBE7877C7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8740298B-45E0-417D-8A79-692188F1E3E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8740298B-45E0-417D-8A79-692188F1E3E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8740298B-45E0-417D-8A79-692188F1E3E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8740298B-45E0-417D-8A79-692188F1E3E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -155,6 +161,7 @@ Global
 		{4441A9DD-76C1-4D4A-ABBD-6DD5ACD024BD} = {777252BA-E2DD-4676-AE4D-3B3EDD217A21}
 		{94E61BD8-C290-42E5-A644-AF2324810C35} = {777252BA-E2DD-4676-AE4D-3B3EDD217A21}
 		{F1A993DB-3383-4C59-BBE8-57DBE7877C7D} = {777252BA-E2DD-4676-AE4D-3B3EDD217A21}
+		{8740298B-45E0-417D-8A79-692188F1E3E4} = {777252BA-E2DD-4676-AE4D-3B3EDD217A21}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4BC89C9E-2F41-4726-B9B2-2BB855D03E69}

@@ -40,7 +40,7 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTypes
         [HttpGet(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypesAddForm>>> GetAnalysesTypesToAddForm()
         {
-            return await _analysesService.GetAnalysesTypesToAddForm();
+            return await _analysesService.GetAnalysesTypesWithOnlyValidTests();
         }
 
         [HttpGet(HttpRouteConsts.DefaultAction)]
@@ -57,6 +57,8 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTypes
             return await _analysesService.AddNewAnalysesType(new zabotalaboratory.Analyses.Forms.AnalysesTypes.NewAnalysesTypeForm
             {
                 Name = form.Name,
+                ExcelName = form.ExcelName,
+                PDFName = form.PDFName,
                 Number1C = form.Number1C,
                 BioMaterial = form.BioMaterial
             });
@@ -71,6 +73,8 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTypes
             {
                 Id = form.Id,
                 Name = form.Name,
+                ExcelName = form.ExcelName,
+                PDFName = form.PDFName,
                 Number1C = form.Number1C,
                 BioMaterial = form.BioMaterial
             });

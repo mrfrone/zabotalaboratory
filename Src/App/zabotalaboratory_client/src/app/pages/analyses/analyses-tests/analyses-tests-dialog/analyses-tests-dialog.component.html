@@ -11,6 +11,22 @@
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
+      <mat-label>Название в отчетах Excel</mat-label>
+      <input matInput type="text" formControlName="testExcelName">
+      <mat-error *ngIf="testForm.controls['testExcelName'].invalid">
+        Поле не должно быть пустым
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Название в отчетах PDF</mat-label>
+      <input matInput type="text" formControlName="testPDFName">
+      <mat-error *ngIf="testForm.controls['testPDFName'].invalid">
+        Поле не должно быть пустым
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
       <mat-label>Номер теста в 1С</mat-label>
       <input matInput type="number" formControlName="test1C">
       <mat-error *ngIf="testForm.controls['test1C'].invalid">
@@ -25,22 +41,6 @@
         </mat-option>
       </mat-select>
       <mat-error *ngIf="testForm.controls['testType'].invalid">
-        Поле не должно быть пустым
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width">
-      <mat-label>Единицы измерения</mat-label>
-      <input matInput type="text" formControlName="testUnits">
-      <mat-error *ngIf="testForm.controls['testUnits'].invalid">
-        Поле не должно быть пустым
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width">
-      <mat-label>Референтные пределы</mat-label>
-      <input matInput type="text" formControlName="testReferenceLimits">
-      <mat-error *ngIf="testForm.controls['testReferenceLimits'].invalid">
         Поле не должно быть пустым
       </mat-error>
     </mat-form-field>

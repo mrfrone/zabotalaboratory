@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using zabotalaboratory.Analyses.Datamodel.LaboratoryAnalyses;
 using zabotalaboratory.Analyses.Forms.LaboratoryAnalyses;
@@ -11,10 +12,14 @@ namespace zabotalaboratory.Analyses.Services.LaboratoryAnalyses
     {
         Task<ZabotaResult<ZabotaPager<IEnumerable<ZabotaLaboratoryAnalyses>>>> GetLaboratoryAnalyses(int page = 1, int? clinicId = null, LaboratoryAnalysesSearchForm form = null);
 
+        Task<ZabotaResult<IEnumerable<ZabotaLaboratoryAnalyses>>> GetLaboratoryAnalysesByDate(DateTimeOffset date);
+
         Task<ZabotaResult<ZabotaLaboratoryAnalyses>> GetLaboratoryAnalyseById(int id);
 
         Task<ZabotaResult<int?>> GetLaboratoryAnalyseId(GetLaboratoryAnalyseIdForm form);
 
         Task<ZabotaResult<bool>> AddLaboratoryAnalyse(AddLaboratoryAnalysesForm form);
+
+        Task<ZabotaResult<IEnumerable<ZabotaGender>>> GetGender();
     }
 }

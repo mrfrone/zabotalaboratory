@@ -6,8 +6,6 @@
         <th scope="col">#</th>
         <th scope="col">Название</th>
         <th scope="col">Номер 1С</th>
-        <th scope="col">Единицы измерения</th>
-        <th scope="col">Референтные пределы</th>
         <th scope="col">Статус</th>
       </tr>
       </thead>
@@ -19,8 +17,6 @@
         <th class="row-center">{{ test.id }}</th>
         <td>{{ test.name }}</td>
         <td class="row-center">{{ test.number1C }}</td>
-        <td class="row-center">{{ test.units }}</td>
-        <td class="row-center">{{ test.referenceLimits }}</td>
         <td class="row-center" *ngIf="test.isValid"><font color="green">Действителен</font></td>
         <td class="row-center" *ngIf="!test.isValid"><font color="red">Недействителен</font></td>
       </tr>
@@ -37,6 +33,22 @@
       </mat-error>
     </mat-form-field>
 
+      <mat-form-field class="example-full-width">
+        <mat-label>Название в отчетах Excel</mat-label>
+        <input matInput type="text" formControlName="testExcelName">
+        <mat-error *ngIf="testsForm.controls['testExcelName'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Название в отчетах PDF</mat-label>
+        <input matInput type="text" formControlName="testPDFName">
+        <mat-error *ngIf="testsForm.controls['testPDFName'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+
     <mat-form-field class="example-full-width">
       <mat-label>Номер теста в 1С</mat-label>
       <input matInput type="number" formControlName="test1C">
@@ -52,22 +64,6 @@
           </mat-option>
         </mat-select>
         <mat-error *ngIf="testsForm.controls['testType'].invalid">
-          Поле не должно быть пустым
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width">
-        <mat-label>Единицы измерения</mat-label>
-        <input matInput type="text" formControlName="testUnits">
-        <mat-error *ngIf="testsForm.controls['testUnits'].invalid">
-          Поле не должно быть пустым
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width">
-        <mat-label>Референтные пределы</mat-label>
-        <input matInput type="text" formControlName="testReferenceLimits">
-        <mat-error *ngIf="testsForm.controls['testReferenceLimits'].invalid">
           Поле не должно быть пустым
         </mat-error>
       </mat-form-field>

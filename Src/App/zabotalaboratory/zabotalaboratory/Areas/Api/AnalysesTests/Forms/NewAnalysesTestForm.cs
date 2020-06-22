@@ -8,15 +8,15 @@ namespace zabotalaboratory.Api.AnalysesTests.Forms
         public string Name { get; set; }
 
         [Required]
+        public string ExcelName { get; set; }
+
+        [Required]
+        public string PDFName { get; set; }
+
+        [Required]
         public int Number1C { get; set; }
 
         [Required]
         public int AnalysesTypesId { get; set; }
-
-        [Required]
-        public string Units { get; set; }
-
-        [Required]
-        public string ReferenceLimits { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace zabotalaboratory.Analyses.Datamodel.Mapping
                 .ForMember(u => u.LastName, opts => opts.MapFrom(u => u.LastName))
                 .ForMember(u => u.PatronymicName, opts => opts.MapFrom(u => u.PatronymicName))
                 .ForMember(u => u.DateOfBirth, opts => opts.MapFrom(u => u.DateOfBirth))
+                .ForMember(u => u.Gender, opts => opts.MapFrom(u => u.Gender))
                 .ForMember(u => u.Clinic, opts => opts.MapFrom(u => u.Clinic))
                 .ForMember(u => u.PickUpDate, opts => opts.MapFrom(u => u.PickUpDate))
                 .ForMember(u => u.Doctor, opts => opts.MapFrom(u => u.Doctor))
@@ -34,7 +35,9 @@ namespace zabotalaboratory.Analyses.Datamodel.Mapping
                 .IgnoreOther()
                 .ForMember(u => u.Id, opts => opts.MapFrom(u => u.Id))
                 .ForMember(u => u.Result, opts => opts.MapFrom(u => u.Result))
-                .ForMember(u => u.LaboratoryAnalysesTest, opts => opts.MapFrom(u => u.LaboratoryAnalysesTests));
+                .ForMember(u => u.LaboratoryAnalysesTest, opts => opts.MapFrom(u => u.LaboratoryAnalysesTests))
+                .ForMember(u => u.Units, opts => opts.MapFrom(u => u.Units))
+                .ForMember(u => u.ReferenceLimits, opts => opts.MapFrom(u => u.ReferenceLimits));
 
             CreateMap<Database.Entities.Clinics, ZabotaClinics>()
                 .IgnoreOther()
@@ -46,7 +49,10 @@ namespace zabotalaboratory.Analyses.Datamodel.Mapping
                 .IgnoreOther()
                 .ForMember(u => u.Id, opts => opts.MapFrom(u => u.Id))
                 .ForMember(u => u.Name, opts => opts.MapFrom(u => u.Name))
+                .ForMember(u => u.ExcelName, opts => opts.MapFrom(u => u.ExcelName))
+                .ForMember(u => u.PDFName, opts => opts.MapFrom(u => u.PDFName))
                 .ForMember(u => u.Number1C, opts => opts.MapFrom(u => u.Number1C))
+                .ForMember(u => u.NumberInOrder, opts => opts.MapFrom(u => u.NumberInOrder))
                 .ForMember(u => u.IsValid, opts => opts.MapFrom(u => u.IsValid))
                 .ForMember(u => u.LaboratoryAnalysesTests, opts => opts.MapFrom(u => u.LaboratoryAnalysesTests))
                 .ForMember(u => u.BioMaterial, opts => opts.MapFrom(u => u.BioMaterial));
@@ -56,16 +62,20 @@ namespace zabotalaboratory.Analyses.Datamodel.Mapping
                 .ForMember(u => u.Id, opts => opts.MapFrom(u => u.Id))
                 .ForMember(u => u.Name, opts => opts.MapFrom(u => u.Name))
                 .ForMember(u => u.Number1C, opts => opts.MapFrom(u => u.Number1C))
+                .ForMember(u => u.NumberInOrder, opts => opts.MapFrom(u => u.NumberInOrder))
                 .ForMember(u => u.IsValid, opts => opts.MapFrom(u => u.IsValid))
                 .ForMember(u => u.AnalysesTypesId, opts => opts.MapFrom(u => u.AnalysesTypesId))
-                .ForMember(u => u.Units, opts => opts.MapFrom(u => u.Units))
-                .ForMember(u => u.ReferenceLimits, opts => opts.MapFrom(u => u.ReferenceLimits));
+                .ForMember(u => u.ExcelName, opts => opts.MapFrom(u => u.ExcelName))
+                .ForMember(u => u.PDFName, opts => opts.MapFrom(u => u.PDFName));
 
             CreateMap<Database.Entities.AnalysesTypes, ZabotaAnalysesTypesAddForm>()
                 .IgnoreOther()
                 .ForMember(u => u.Id, opts => opts.MapFrom(u => u.Id))
                 .ForMember(u => u.Name, opts => opts.MapFrom(u => u.Name))
+                .ForMember(u => u.PDFName, opts => opts.MapFrom(u => u.PDFName))
+                .ForMember(u => u.ExcelName, opts => opts.MapFrom(u => u.ExcelName))
                 .ForMember(u => u.Number1C, opts => opts.MapFrom(u => u.Number1C))
+                .ForMember(u => u.NumberInOrder, opts => opts.MapFrom(u => u.NumberInOrder))
                 .ForMember(u => u.IsNeeded, opts => opts.MapFrom(u => false))
                 .ForMember(u => u.LaboratoryAnalysesTests, opts => opts.MapFrom(u => u.LaboratoryAnalysesTests));
 
@@ -73,9 +83,18 @@ namespace zabotalaboratory.Analyses.Datamodel.Mapping
                 .IgnoreOther()
                 .ForMember(u => u.Id, opts => opts.MapFrom(u => u.Id))
                 .ForMember(u => u.Name, opts => opts.MapFrom(u => u.Name))
+                .ForMember(u => u.ExcelName, opts => opts.MapFrom(u => u.ExcelName))
+                .ForMember(u => u.PDFName, opts => opts.MapFrom(u => u.PDFName))
                 .ForMember(u => u.Number1C, opts => opts.MapFrom(u => u.Number1C))
+                .ForMember(u => u.NumberInOrder, opts => opts.MapFrom(u => u.NumberInOrder))
                 .ForMember(u => u.IsNeeded, opts => opts.MapFrom(u => false))
                 .ForMember(u => u.AnalysesTypesId, opts => opts.MapFrom(u => u.AnalysesTypesId));
+
+            CreateMap<Database.Entities.Gender, ZabotaGender>()
+                .IgnoreOther()
+                .ForMember(u => u.Id, opts => opts.MapFrom(u => u.Id))
+                .ForMember(u => u.Name, opts => opts.MapFrom(u => u.Name))
+                .ForMember(u => u.ShortName, opts => opts.MapFrom(u => u.ShortName));
         }
     }
 }

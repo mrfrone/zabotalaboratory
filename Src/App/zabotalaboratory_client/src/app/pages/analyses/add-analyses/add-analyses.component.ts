@@ -11,6 +11,8 @@ import {AddTalonsForm} from "../../../shared/forms/laboratory-analyses/add-talon
 import {MessageService} from "../../../core/services/message.service";
 import {DefaultSuccessMessages} from "../../../shared/consts/defaultSuccessMessages";
 import {AuthCheckerService} from "../../../core/services/auth-checker.service";
+import {DownloadFileByDateForm} from "../../../shared/forms/download-file-by-date.form";
+import {Gender} from "../../../shared/models/analyses/gender";
 
 @Component({
   selector: 'app-add-analyses',
@@ -24,14 +26,21 @@ export class AddAnalysesComponent implements OnInit {
     "LastName": new FormControl("", Validators.required),
     "PatronymicName": new FormControl("", Validators.required),
     "DateOfBirth": new FormControl("", Validators.required),
+    "Gender": new FormControl("", Validators.required),
     "Clinic": new FormControl("", Validators.required),
     "Doctor": new FormControl("", Validators.required)
   });
 
+  public reportForm: FormGroup = new FormGroup({
+    "date": new FormControl("", Validators.required)
+  });
+
   public types: AnalysesTypesAddForm[];
   public clinics: Clinic[];
+  public gender: Gender[];
 
   public mainTableIsProgress: boolean = true;
+  public reportButtonDisabled: boolean = false;
 
   constructor(private readonly _analysesTypes: AnalysesTypesApiClient,
               private readonly _analyses: LaboratoryAnalysesApiClient,
@@ -40,7 +49,24 @@ export class AddAnalysesComponent implements OnInit {
               private readonly _auth: AuthCheckerService) {}
 
   ngOnInit(): void {
+    this._analyses.getGenders().subscribe(res => {
+      this.gender = res.result;
+    });
+
     this.updateData();
+  }
+
+  public getAnalysesReport(): void {
+    this.reportButtonDisabled = true;
+
+    const form: DownloadFileByDateForm = {
+      date: this.reportForm.controls['date'].value
+    };
+
+    this._analyses.getLaboratoryAnalyseReportByDate(form).subscribe(res => {
+      window.open(window.URL.createObjectURL(res), "_blank");
+      this.reportButtonDisabled = false;
+    });
   }
 
   public onFormSubmit(): void {
@@ -58,11 +84,12 @@ export class AddAnalysesComponent implements OnInit {
       talons.push({analysesTypeId: type.id, analysesResult: results, isNeeded: type.isNeeded});
     });
 
-    let form: AddLaboratoryAnalysesForm = {
+    const form: AddLaboratoryAnalysesForm = {
       firstName: this.analysesForm.controls['FirstName'].value,
       lastName: this.analysesForm.controls['LastName'].value,
       patronymicName: this.analysesForm.controls['PatronymicName'].value,
       dateOfBirth: this.analysesForm.controls['DateOfBirth'].value,
+      genderId: this.analysesForm.controls['Gender'].value,
       clinicId: this.analysesForm.controls['Clinic'].value,
       doctor: this.analysesForm.controls['Doctor'].value,
       talons: talons

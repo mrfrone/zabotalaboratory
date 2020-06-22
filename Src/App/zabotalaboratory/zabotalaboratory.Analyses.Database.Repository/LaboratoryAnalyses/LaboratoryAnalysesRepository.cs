@@ -44,7 +44,8 @@ namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
                                 EF.Functions.ILike(a.FirstName, $"%{form.FirstName}%") && 
                                 EF.Functions.ILike(a.PatronymicName, $"%{form.PatronymicName}%"))
                            .OrderByDescending(a => a.PickUpDate)
-                           .Include(a => a.Clinic);
+                           .Include(a => a.Clinic)
+                           .Include(a => a.Gender);
 
             var count = await query.CountAsync();
             int pageSize = _options.CurrentValue.PageSize;
@@ -52,10 +53,26 @@ namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
             return new Pager<Entities.LaboratoryAnalyses[]>(count, page, pageSize, await query.Skip((page - 1) * pageSize).Take(pageSize).ToArrayAsync());
         }
 
+        public async Task<Entities.LaboratoryAnalyses[]> GetLaboratoryAnalysesByDate(DateTimeOffset date, bool trackChanges = false)
+        {
+            return await _ac.LaboratoryAnalyses
+                            .Where(a => a.PickUpDate >= date && a.PickUpDate <= date.AddDays(1))
+                            .HasTracking(trackChanges)
+                            .Include(a => a.Gender)
+                            .Include(a => a.Clinic)
+                            .Include(a => a.Talons)
+                                .ThenInclude(tal => tal.AnalysesType)
+                            .Include(a => a.Talons)
+                                .ThenInclude(tal => tal.AnalysesResult)
+                                    .ThenInclude(res => res.LaboratoryAnalysesTests)
+                            .ToArrayAsync();
+        }
+
         public async Task<Entities.LaboratoryAnalyses> GetLaboratoryAnalysesById(int id, bool trackChanges = false)
         {
             return await _ac.LaboratoryAnalyses
                 .HasTracking(trackChanges)
+                .Include(a => a.Gender)
                 .Include(a => a.Clinic)
                 .Include(a => a.Talons)
                     .ThenInclude(tal => tal.AnalysesType)
@@ -101,6 +118,7 @@ namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
                 FirstName = form.FirstName,
                 LastName = form.LastName,
                 PatronymicName = form.PatronymicName,
+                GenderId = form.GenderId,
                 DateOfBirth = DateTime.Parse(form.DateOfBirth),
                 PickUpDate = DateTime.UtcNow,
                 ClinicId = form.ClinicId,
@@ -110,6 +128,13 @@ namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
             });
 
             await _ac.SaveChangesAsync();
+        }
+
+        public async Task<Gender[]> GetGenders(bool trackChanges = false)
+        {
+            return await _ac.Gender
+                .HasTracking(trackChanges)
+                .ToArrayAsync();
         }
     }
 }

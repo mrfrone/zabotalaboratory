@@ -52,6 +52,7 @@ namespace zabotalaboratory
             services.AddAnalysesServices(Configuration.GetConnectionString("PostgreSQL"));
             services.AddPasswordHashing();
             services.AddRazorPagesReports();
+            services.AddExcelReports();
             services.AddScoped<IIdentityRequestStorage, IdentityRequestStorage>();
 
             services.AddMiMapping(

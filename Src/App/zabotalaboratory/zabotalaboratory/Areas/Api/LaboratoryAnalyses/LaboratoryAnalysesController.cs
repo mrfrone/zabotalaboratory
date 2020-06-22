@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +12,9 @@ using zabotalaboratory.Common.RazorReports.Reports.Analyses;
 using zabotalaboratory.Common.Result;
 using zabotalaboratory.Web.Common.Filters;
 using zabotalaboratory.Web.Common.Forms;
+using zabotalaboratory.Common.ExcelReports.Analyses;
+using zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses.Forms;
+using System;
 
 namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
 {
@@ -22,11 +24,15 @@ namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
     {
         private readonly ILaboratoryAnalysesService _laboratoryAnalysesService;
         private readonly IAnalysesReportsService _analysesReportsService;
+        private readonly ILaboratoryAnalysesExcelReportsService _laboratoryAnalysesExcelReportsService;
 
-        public LaboratoryAnalysesController(ILaboratoryAnalysesService laboratoryAnalysesService, IAnalysesReportsService analysesReportsService)
+        public LaboratoryAnalysesController(ILaboratoryAnalysesService laboratoryAnalysesService,
+                                            IAnalysesReportsService analysesReportsService,
+                                            ILaboratoryAnalysesExcelReportsService laboratoryAnalysesExcelReportsService)
         {
             _laboratoryAnalysesService = laboratoryAnalysesService;
             _analysesReportsService = analysesReportsService;
+            _laboratoryAnalysesExcelReportsService = laboratoryAnalysesExcelReportsService;
         }
 
         [Authorize]
@@ -57,6 +63,14 @@ namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
         }
 
         [HttpPost(HttpRouteConsts.DefaultAction)]
+        public async Task<IActionResult> GetLaboratoryAnalyseExcelReportByDate([FromBody] DownloadFileByDateForm form)
+        {
+            var result = await _laboratoryAnalysesExcelReportsService.GetLaboratoryAnalysesExcelReportByDate(DateTimeOffset.Parse(form.Date));
+
+            return File(result.Result, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "excel-report");
+        }
+
+        [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<int?>> LaboratoryAnalyseId([FromBody] GetLaboratoryAnalyseIdForm form)
         {
             return await _laboratoryAnalysesService.GetLaboratoryAnalyseId(new Analyses.Forms.LaboratoryAnalyses.GetLaboratoryAnalyseIdForm { 
@@ -71,6 +85,12 @@ namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
             return await _laboratoryAnalysesService.GetLaboratoryAnalyseById(id);
         }
 
+        [HttpGet(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<IEnumerable<ZabotaGender>>> GetGenders()
+        {
+            return await _laboratoryAnalysesService.GetGender();
+        }
+
         [Authorize]
         [ValidModelState]
         [HttpPost(HttpRouteConsts.DefaultAction)]
@@ -80,6 +100,7 @@ namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
                 FirstName = form.FirstName,
                 LastName = form.LastName,
                 PatronymicName = form.PatronymicName,
+                GenderId = form.GenderId,
                 DateOfBirth = form.DateOfBirth,
                 ClinicId = form.ClinicId,
                 Doctor = form.Doctor,

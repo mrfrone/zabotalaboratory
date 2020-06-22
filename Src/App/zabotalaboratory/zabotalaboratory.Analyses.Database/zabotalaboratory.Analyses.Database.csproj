@@ -9,6 +9,14 @@
     <Compile Remove="Migrations\20200518115544_AddNullableToSubRoles.Designer.cs" />
     <Compile Remove="Migrations\20200608123124_NewColumnsOnTests.cs" />
     <Compile Remove="Migrations\20200608123124_NewColumnsOnTests.Designer.cs" />
+    <Compile Remove="Migrations\20200619133557_NewNameColumns.cs" />
+    <Compile Remove="Migrations\20200619133557_NewNameColumns.Designer.cs" />
+    <Compile Remove="Migrations\20200619134029_NewNameColumns.cs" />
+    <Compile Remove="Migrations\20200619134029_NewNameColumns.Designer.cs" />
+    <Compile Remove="Migrations\20200619134232_NotNullableGender.cs" />
+    <Compile Remove="Migrations\20200619134232_NotNullableGender.Designer.cs" />
+    <Compile Remove="Migrations\20200622091223_GenderChanges.cs" />
+    <Compile Remove="Migrations\20200622091223_GenderChanges.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

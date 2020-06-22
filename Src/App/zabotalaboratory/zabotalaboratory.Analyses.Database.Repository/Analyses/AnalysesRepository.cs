@@ -49,6 +49,8 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
             _ac.AnalysesTypes.Add(new AnalysesTypes
             {
                 Name = form.Name,
+                ExcelName = form.ExcelName,
+                PDFName = form.PDFName,
                 Number1C = form.Number1C,
                 IsValid = true,
                 BioMaterial = form.BioMaterial
@@ -62,6 +64,8 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
             var result = await GetAnalysesTypeById(form.Id, true);
 
             result.Name = form.Name;
+            result.ExcelName = form.ExcelName;
+            result.PDFName = form.PDFName;
             result.Number1C = form.Number1C;
             result.BioMaterial = form.BioMaterial;
 
@@ -103,11 +107,11 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
             _ac.LaboratoryAnalysesTests.Add(new LaboratoryAnalysesTests
             {
                 Name = form.Name,
+                ExcelName = form.ExcelName,
+                PDFName = form.PDFName,
                 Number1C = form.Number1C,
                 AnalysesTypesId = form.AnalysesTypesId,
-                IsValid = true,
-                ReferenceLimits = form.ReferenceLimits,
-                Units = form.Units
+                IsValid = true
             });
 
             await _ac.SaveChangesAsync();
@@ -118,10 +122,10 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
             var result = await GetAnalysesTestById(form.Id, true);
 
             result.Name = form.Name;
+            result.ExcelName = form.ExcelName;
+            result.PDFName = form.PDFName;
             result.Number1C = form.Number1C;
             result.AnalysesTypesId = form.AnalysesTypesId;
-            result.Units = form.Units;
-            result.ReferenceLimits = form.ReferenceLimits;
 
             await _ac.SaveChangesAsync();
         }

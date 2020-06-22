@@ -11,6 +11,12 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTypes.Forms
         public string Name { get; set; }
 
         [Required]
+        public string ExcelName { get; set; }
+
+        [Required]
+        public string PDFName { get; set; }
+
+        [Required]
         public int Number1C { get; set; }
 
         [Required]

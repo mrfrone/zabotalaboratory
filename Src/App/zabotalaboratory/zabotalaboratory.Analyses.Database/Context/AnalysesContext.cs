@@ -13,9 +13,20 @@ namespace zabotalaboratory.Analyses.Database.Context
         {
             modelBuilder.UseIdentityByDefaultColumns();
             modelBuilder.HasDefaultSchema(SchemaName);
+
+            modelBuilder.Entity<Gender>(e =>
+            {
+                e.HasData(new[]
+                {
+                    new Gender() { Id = 1, Name = "Мужской", ShortName = "M"},
+                    new Gender() { Id = 2, Name = "Женский", ShortName = "F" }
+                });
+            });
         }
 
         public DbSet<Clinics> Clinics { get; set; }
+
+        public DbSet<Gender> Gender { get; set; }
 
         public DbSet<LaboratoryAnalyses> LaboratoryAnalyses { get; set; }
 

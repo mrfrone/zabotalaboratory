@@ -5,6 +5,7 @@ export class AddLaboratoryAnalysesForm {
   public lastName: string;
   public patronymicName: string;
   public dateOfBirth: string;
+  public genderId: number;
   public clinicId: number;
   public doctor: string;
   public talons: AddTalonsForm[];

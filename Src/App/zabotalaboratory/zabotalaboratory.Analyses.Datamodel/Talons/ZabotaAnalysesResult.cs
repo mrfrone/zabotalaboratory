@@ -9,5 +9,9 @@ namespace zabotalaboratory.Analyses.Datamodel.Talons
         public string Result { get; set; }
 
         public ZabotaLaboratoryAnalysesTests LaboratoryAnalysesTest { get; set; }
+
+        public string Units { get; set; }
+
+        public string ReferenceLimits { get; set; }
     }
 }

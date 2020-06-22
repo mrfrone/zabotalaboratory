@@ -19,6 +19,8 @@ export class AnalysesTypesDialogComponent implements OnInit {
 
   public typeForm: FormGroup = new FormGroup({
     "typeName": new FormControl("", Validators.required),
+    "typeExcelName": new FormControl("", Validators.required),
+    "typePDFName": new FormControl("", Validators.required),
     "type1C": new FormControl("", [
       Validators.pattern("^[0-9]*$"),
       Validators.required
@@ -78,6 +80,8 @@ export class AnalysesTypesDialogComponent implements OnInit {
       this.typeForm.controls['typeName'].setValue(res.result.name);
       this.typeForm.controls['type1C'].setValue(res.result.number1C);
       this.typeForm.controls['typeBioMaterial'].setValue(res.result.bioMaterial);
+      this.typeForm.controls['typeExcelName'].setValue(res.result.excelName);
+      this.typeForm.controls['typePDFName'].setValue(res.result.pdfName);
 
       this.isProgress = false;
     });

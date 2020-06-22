@@ -24,6 +24,12 @@ namespace zabotalaboratory.Analyses.Database.Entities
         [Required]
         public virtual DateTimeOffset DateOfBirth { get; set; }
 
+        [ForeignKey(nameof(Gender))]
+        public virtual int GenderId { get; set; }
+
+        [Required]
+        public virtual Gender Gender { get; set; }
+
         [Required]
         [ForeignKey(nameof(Clinic))]
         public virtual int ClinicId { get; set; }

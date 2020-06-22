@@ -9,12 +9,18 @@ import {Pager} from "../../../shared/models/pager/pager";
 import {SearchLaboratoryAnalysesForm} from "../../../shared/forms/laboratory-analyses/search-laboratory-analyses.form";
 import {DownloadFileForm} from "../../../shared/forms/download-file.form";
 import {GetLaboratoryAnalyseToNotAuthForm} from "../../../shared/forms/auth/get-laboratory-analyse-to-not-auth.form";
+import {DownloadFileByDateForm} from "../../../shared/forms/download-file-by-date.form";
+import {Gender} from "../../../shared/models/analyses/gender";
 
 @Injectable({providedIn: 'root'})
 
 export class LaboratoryAnalysesApiClient extends BaseApiClient{
   constructor(httpClient: HttpClient) {
     super(httpClient);
+  }
+
+  public getGenders(): Observable<ZabotaResult<Gender[]>> {
+    return this.get<ZabotaResult<Gender[]>>('/api/LaboratoryAnalyses/GetGenders');
   }
 
   public getLaboratoryAnalyses(page: number): Observable<ZabotaResult<Pager<LaboratoryAnalyses[]>>> {
@@ -35,6 +41,10 @@ export class LaboratoryAnalysesApiClient extends BaseApiClient{
 
   public getLaboratoryAnalyseReportById(form: DownloadFileForm): Observable<Blob> {
     return this.getFile('/api/LaboratoryAnalyses/GetLaboratoryAnalyseReportById', form);
+  }
+
+  public getLaboratoryAnalyseReportByDate(form: DownloadFileByDateForm): Observable<Blob> {
+    return this.getFile('/api/LaboratoryAnalyses/GetLaboratoryAnalyseExcelReportByDate', form);
   }
 
   public addLaboratoryAnalyse(form: AddLaboratoryAnalysesForm): Observable<ZabotaResult<boolean>> {

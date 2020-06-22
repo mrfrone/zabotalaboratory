@@ -24,8 +24,8 @@ export class AnalysesTestsComponent implements OnInit {
       Validators.required
     ]),
     "testType": new FormControl("", Validators.required),
-    "testUnits": new FormControl("", Validators.required),
-    "testReferenceLimits": new FormControl("", Validators.required)
+    "testExcelName": new FormControl("", Validators.required),
+    "testPDFName": new FormControl("", Validators.required)
   });
 
   public mainWindowIsProgress: boolean = true;
@@ -57,8 +57,8 @@ export class AnalysesTestsComponent implements OnInit {
       name: this.testsForm.controls['testName'].value,
       number1C: this.testsForm.controls['test1C'].value,
       analysesTypesId: this.testsForm.controls['testType'].value,
-      units: this.testsForm.controls['testUnits'].value,
-      referenceLimits: this.testsForm.controls['testReferenceLimits'].value
+      excelName: this.testsForm.controls['testExcelName'].value,
+      pdfName: this.testsForm.controls['testPDFName'].value
     };
 
     this._analysesTests.addNewAnalysesTest(form).subscribe(res => {

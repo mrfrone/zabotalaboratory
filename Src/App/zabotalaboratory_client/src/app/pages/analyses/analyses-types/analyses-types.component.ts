@@ -17,6 +17,8 @@ export class AnalysesTypesComponent implements OnInit {
 
   public typesForm: FormGroup = new FormGroup({
     "typeName": new FormControl("", Validators.required),
+    "typeExcelName": new FormControl("", Validators.required),
+    "typePDFName": new FormControl("", Validators.required),
     "type1C": new FormControl("", [
       Validators.pattern("^[0-9]*$"),
       Validators.required
@@ -50,6 +52,8 @@ export class AnalysesTypesComponent implements OnInit {
 
     const form: AddNewAnalysesTypeForm = {
       name: this.typesForm.controls['typeName'].value,
+      excelName: this.typesForm.controls['typeExcelName'].value,
+      pdfName: this.typesForm.controls['typePDFName'].value,
       number1C: this.typesForm.controls['type1C'].value,
       bioMaterial: this.typesForm.controls['typeBioMaterial'].value
     };

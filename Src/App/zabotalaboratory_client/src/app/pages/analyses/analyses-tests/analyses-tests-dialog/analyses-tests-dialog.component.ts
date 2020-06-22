@@ -26,8 +26,8 @@ export class AnalysesTestsDialogComponent implements OnInit {
       Validators.required
     ]),
     "testType": new FormControl("", Validators.required),
-    "testUnits": new FormControl("", Validators.required),
-    "testReferenceLimits": new FormControl("", Validators.required)
+    "testExcelName": new FormControl("", Validators.required),
+    "testPDFName": new FormControl("", Validators.required)
   });
 
   public isProgress: boolean = true;
@@ -56,8 +56,8 @@ export class AnalysesTestsDialogComponent implements OnInit {
       name: this.testForm.controls['testName'].value,
       number1C: this.testForm.controls['test1C'].value,
       analysesTypesId: this.testForm.controls['testType'].value,
-      units: this.testForm.controls['testUnits'].value,
-      referenceLimits: this.testForm.controls['testReferenceLimits'].value
+      excelName: this.testForm.controls['testExcelName'].value,
+      pdfName: this.testForm.controls['testPDFName'].value
     };
 
     this._analysesTests.updateAnalysesTest(form).subscribe(res => {
@@ -91,8 +91,8 @@ export class AnalysesTestsDialogComponent implements OnInit {
       this.testForm.controls['testName'].setValue(res.result.name);
       this.testForm.controls['test1C'].setValue(res.result.number1C);
       this.testForm.controls['testType'].setValue(res.result.analysesTypesId);
-      this.testForm.controls['testUnits'].setValue(res.result.units);
-      this.testForm.controls['testReferenceLimits'].setValue(res.result.referenceLimits);
+      this.testForm.controls['testExcelName'].setValue(res.result.excelName);
+      this.testForm.controls['testPDFName'].setValue(res.result.pdfName);
 
       this.isProgress = false;
     });

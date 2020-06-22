@@ -11,6 +11,22 @@
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
+        <mat-label>Название группы в отчете Excel</mat-label>
+        <input matInput type="text" formControlName="typeExcelName">
+        <mat-error *ngIf="typeForm.controls['typeExcelName'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Название группы в отчете PDF</mat-label>
+        <input matInput type="text" formControlName="typePDFName">
+        <mat-error *ngIf="typeForm.controls['typePDFName'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
         <mat-label>Номер теста в 1С</mat-label>
         <input matInput type="number" formControlName="type1C">
         <mat-error *ngIf="typeForm.controls['type1C'].invalid">

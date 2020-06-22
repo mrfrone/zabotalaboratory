@@ -28,10 +28,19 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Дата рождения</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="DateOfBirth">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <input matInput formControlName="DateOfBirth">
         <mat-error *ngIf="analysesForm.controls['DateOfBirth'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Пол</mat-label>
+        <mat-select formControlName="Gender">
+          <mat-option *ngFor="let gen of gender" [value]="gen.id">
+            {{gen.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="analysesForm.controls['Gender'].invalid">
           Поле не должно быть пустым
         </mat-error>
       </mat-form-field>
@@ -65,6 +74,22 @@
     <div class="form-button">
       <button mat-stroked-button color="primary" type="button" (click)="onFormSubmit()" [disabled]="analysesForm.invalid">Отправить</button>
     </div>
+    <form class="example-form" [formGroup]="reportForm" style="margin-top: 20px">
+      <div class="form-title">Отчет для работы</div>
+      <hr>
+      <mat-form-field>
+        <mat-label>Дата отчета</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="reportForm.controls['date'].invalid">
+          Поле не должно быть пустым
+        </mat-error>
+      </mat-form-field>
+      <div class="form-button">
+        <button mat-stroked-button color="primary" type="button" (click)="getAnalysesReport()" [disabled]="reportForm.invalid || reportButtonDisabled">Дневной отчет</button>
+      </div>
+    </form>
 </div>
   <div class="center" *ngIf="mainTableIsProgress">
     <mat-spinner></mat-spinner>

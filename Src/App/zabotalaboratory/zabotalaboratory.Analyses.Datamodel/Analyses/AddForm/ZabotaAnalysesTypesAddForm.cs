@@ -8,7 +8,13 @@ namespace zabotalaboratory.Analyses.Datamodel.Analyses
 
         public string Name { get; set; }
 
+        public string ExcelName { get; set; }
+
+        public string PDFName { get; set; }
+
         public int Number1C { get; set; }    
+
+        public int NumberInOrder { get; set; }
 
         public bool IsNeeded { get; set; }
         

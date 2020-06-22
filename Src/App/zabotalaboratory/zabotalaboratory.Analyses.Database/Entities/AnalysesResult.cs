@@ -15,5 +15,9 @@ namespace zabotalaboratory.Analyses.Database.Entities
 
         [Required]
         public virtual LaboratoryAnalysesTests LaboratoryAnalysesTests { get; set; }
+
+        public virtual string Units { get; set; }
+
+        public virtual string ReferenceLimits { get; set; }
     }
 }

@@ -12,6 +12,8 @@ namespace zabotalaboratory.Analyses.Forms.LaboratoryAnalyses
 
         public string DateOfBirth { get; set; }
 
+        public int GenderId { get; set; }
+
         public int ClinicId { get; set; }
 
         public string Doctor { get; set; }

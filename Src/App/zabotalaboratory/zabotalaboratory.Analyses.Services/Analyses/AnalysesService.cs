@@ -33,7 +33,7 @@ namespace zabotalaboratory.Analyses.Services.Analyses
             return new ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>(mappedModel);
         }
 
-        public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypesAddForm>>> GetAnalysesTypesToAddForm()
+        public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypesAddForm>>> GetAnalysesTypesWithOnlyValidTests()
         {
             var result = await _analysesRepository.GetAnalysesTypes(false, true);
             if (result == null)

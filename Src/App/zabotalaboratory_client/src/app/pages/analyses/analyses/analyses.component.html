@@ -22,21 +22,25 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">ФИО</th>
+        <th scope="col">Пол</th>
         <th scope="col">Дата рождения</th>
         <th scope="col">Дата забора</th>
         <th scope="col">Отправитель</th>
         <th scope="col">Лечащий врач</th>
         <th scope="col">Статус</th>
+        <th scope="col">Мед.карта</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let data of laboratoryAnalyses.pageResult;" (click)="onTableElementClick(data.id)">
         <th scope="row" class="content-center">{{ data.id }}</th>
         <td>{{ data.fullName }}</td>
+        <td class="content-center">{{ data.gender.name }}</td>
         <td class="content-center">{{ data.dateOfBirth | date: 'dd.MM.yyyy'}}</td>
         <td class="content-center">{{data.pickUpDate | date: 'dd.MM.yyyy'}}</td>
         <td class="content-center">{{data.clinic.name}}</td>
         <td class="content-center">{{data.doctor}}</td>
+        <td class="content-center"> В разработке... </td>
         <td class="content-center"> В разработке... </td>
       </tr>
       </tbody>
