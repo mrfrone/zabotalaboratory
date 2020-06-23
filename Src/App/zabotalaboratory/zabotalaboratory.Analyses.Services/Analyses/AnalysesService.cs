@@ -22,11 +22,17 @@ namespace zabotalaboratory.Analyses.Services.Analyses
         }
 
         #region Types
-        public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypes(bool withTests)
+        public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypes(bool withTests, bool onlyValidTests = false)
         {
             var result = await _analysesRepository.GetAnalysesTypes(withTests);
             if (result == null)
                 return ZabotaErrorCodes.EmptyResult;
+
+            if(withTests)
+                foreach (var type in result)
+                {
+                    type.LaboratoryAnalysesTests = await _analysesRepository.GetAnalysesTestsByTypeId(type.Id, onlyValidTests);
+                }
 
             var mappedModel = _mapper.Map<IEnumerable<ZabotaAnalysesTypes>>(result);
 
@@ -81,6 +87,13 @@ namespace zabotalaboratory.Analyses.Services.Analyses
             return new ZabotaResult<bool>(true);
         }
         
+        public async Task<ZabotaResult<bool>> UpdateAnalysesTypeNumber(UpdateTypesNumberInOrderForm form)
+        {
+            await _analysesRepository.UpdateAnalysesTypeNumber(form);
+
+            return new ZabotaResult<bool>(true);
+        }
+
         #endregion
 
         #region Tests
@@ -115,6 +128,14 @@ namespace zabotalaboratory.Analyses.Services.Analyses
 
             return new ZabotaResult<bool>(true);
         }
+
+        public async Task<ZabotaResult<bool>> UpdateAnalysesTestNumber(UpdateTestsNumberInOrderForm form)
+        {
+            await _analysesRepository.UpdateAnalysesTestNumber(form);
+
+            return new ZabotaResult<bool>(true);
+        }
+
         #endregion
     }
 }

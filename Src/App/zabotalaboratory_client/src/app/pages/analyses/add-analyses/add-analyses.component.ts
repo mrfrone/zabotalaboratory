@@ -11,7 +11,7 @@ import {AddTalonsForm} from "../../../shared/forms/laboratory-analyses/add-talon
 import {MessageService} from "../../../core/services/message.service";
 import {DefaultSuccessMessages} from "../../../shared/consts/defaultSuccessMessages";
 import {AuthCheckerService} from "../../../core/services/auth-checker.service";
-import {DownloadFileByDateForm} from "../../../shared/forms/download-file-by-date.form";
+import {DownloadFileByDateForm} from "../../../shared/forms/common/download-file-by-date.form";
 import {Gender} from "../../../shared/models/analyses/gender";
 
 @Component({

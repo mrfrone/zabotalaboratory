@@ -7,6 +7,8 @@ import {AddNewAnalysesTestForm} from "../../../shared/forms/analyses-tests/add-n
 import {LaboratoryAnalysesTests} from "../../../shared/models/analyses/laboratory-analyses-tests";
 import {UpdateAnalysesTestForm} from "../../../shared/forms/analyses-tests/update-analyses-test.form";
 import {UpdateAnalysesTestValidForm} from "../../../shared/forms/analyses-tests/update-analyses-test-valid.form";
+import {UpdateAnalysesTypesNumberInOrderForm} from "../../../shared/forms/analyses-types/update-analyses-types-number-in-order.form";
+import {UpdateAnalysesTestsNumberInOrderForm} from "../../../shared/forms/analyses-tests/update-analyses-tests-number-in-order.form";
 
 @Injectable({providedIn: 'root'})
 
@@ -29,5 +31,9 @@ export class AnalysesTestsApiClient extends BaseApiClient{
 
   public updateTestValidation(form: UpdateAnalysesTestValidForm): Observable<ZabotaResult<boolean>>{
     return this.post<ZabotaResult<boolean>, UpdateAnalysesTestValidForm>('/api/AnalysesTests/UpdateAnalysesTestValid', form);
+  }
+
+  public updateTestNumberInOrder(form: UpdateAnalysesTestsNumberInOrderForm): Observable<ZabotaResult<boolean>>{
+    return this.post<ZabotaResult<boolean>, UpdateAnalysesTestsNumberInOrderForm>('/api/AnalysesTests/UpdateAnalysesTestNumber', form);
   }
 }

@@ -8,6 +8,7 @@ import {DefaultSuccessMessages} from "../../../shared/consts/defaultSuccessMessa
 import {MatDialog} from "@angular/material/dialog";
 import {AnalysesTestsDialogComponent} from "./analyses-tests-dialog/analyses-tests-dialog.component";
 import {AnalysesTypesApiClient} from "../../../core/apiClient/analyses/analyses-types.api-client";
+import {UpdateAnalysesTestsNumberInOrderForm} from "../../../shared/forms/analyses-tests/update-analyses-tests-number-in-order.form";
 
 @Component({
   selector: 'app-analyses-tests',
@@ -65,6 +66,18 @@ export class AnalysesTestsComponent implements OnInit {
       this._messages.showResult(res, DefaultSuccessMessages.onNewTestAdded);
       this.testsForm.reset();
       this.updateData();
+    });
+  }
+
+  public changeNumberInOrder(number: number, isUp: boolean, typeId: number){
+    const form: UpdateAnalysesTestsNumberInOrderForm = {
+      numberInOrder: number,
+      isUp: isUp,
+      typeId: typeId
+    };
+
+    this._analysesTests.updateTestNumberInOrder(form).subscribe(() => {
+      this.updateData()
     });
   }
 

@@ -11,7 +11,7 @@ namespace zabotalaboratory.Analyses.Services.Analyses
     {
         #region Types
 
-        Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypes(bool withTests);
+        Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypes(bool withTests, bool onlyValidTests = false);
 
         Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypesAddForm>>> GetAnalysesTypesWithOnlyValidTests();
 
@@ -22,6 +22,8 @@ namespace zabotalaboratory.Analyses.Services.Analyses
         Task<ZabotaResult<bool>> UpdateAnalysesType(UpdateAnalysesTypeForm form);
 
         Task<ZabotaResult<bool>> UpdateAnalysesTypeValid(UpdateAnalysesTypeValidForm form);
+
+        Task<ZabotaResult<bool>> UpdateAnalysesTypeNumber(UpdateTypesNumberInOrderForm form);
 
         #endregion
 
@@ -34,6 +36,8 @@ namespace zabotalaboratory.Analyses.Services.Analyses
         Task<ZabotaResult<bool>> UpdateAnalysesTest(UpdateAnalysesTestForm form);
 
         Task<ZabotaResult<bool>> UpdateAnalysesTestValid(UpdateAnalysesTestValidForm form);
+
+        Task<ZabotaResult<bool>> UpdateAnalysesTestNumber(UpdateTestsNumberInOrderForm form);
 
         #endregion
     }

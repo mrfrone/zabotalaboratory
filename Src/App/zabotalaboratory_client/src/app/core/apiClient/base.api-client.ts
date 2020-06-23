@@ -3,7 +3,7 @@ import {Observable} from "rxjs";
 import {BaseZabotaResult} from "../../shared/models/zabota-result/base-zabota-result";
 import {DefaultUrls} from "../../shared/consts/defaultUrls";
 import {take} from "rxjs/operators";
-import {DownloadFileForm} from "../../shared/forms/download-file.form";
+import {DownloadFileForm} from "../../shared/forms/common/download-file.form";
 
 export class BaseApiClient {
   constructor(private readonly _httpClient: HttpClient) {

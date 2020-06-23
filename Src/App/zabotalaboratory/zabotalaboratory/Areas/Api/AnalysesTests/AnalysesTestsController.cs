@@ -9,6 +9,7 @@ using zabotalaboratory.Common.Consts;
 using zabotalaboratory.Common.Consts.Roles;
 using zabotalaboratory.Common.Result;
 using zabotalaboratory.Web.Common.Filters;
+using zabotalaboratory.Web.Common.Forms;
 
 namespace zabotalaboratory.Web.Areas.Api.AnalysesTests
 {
@@ -62,10 +63,22 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTests
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<bool>> UpdateAnalysesTestValid([FromBody] UpdateAnalysesTestValidForm form)
         {
-            return await _analysesService.UpdateAnalysesTestValid(new zabotalaboratory.Analyses.Forms.AnalysesTests.UpdateAnalysesTestValidForm
+            return await _analysesService.UpdateAnalysesTestValid(new Analyses.Forms.AnalysesTests.UpdateAnalysesTestValidForm
             {
                 Id = form.Id,
                 IsValid = form.IsValid
+            });
+        }
+
+        [ValidModelState]
+        [HttpPost(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<bool>> UpdateAnalysesTestNumber([FromBody] UpdateTestsNumberInOrderForm form)
+        {
+            return await _analysesService.UpdateAnalysesTestNumber(new Analyses.Forms.AnalysesTests.UpdateTestsNumberInOrderForm
+            {
+                NumberInOrder = form.NumberInOrder,
+                IsUp = form.IsUp,
+                TypeId = form.TypeId
             });
         }
     }

@@ -28,7 +28,7 @@ namespace zabotalaboratory.Common.ExcelReports.Analyses
             if (analyses.IsNotCorrect)
                 return ZabotaErrorCodes.EmptyResult;
 
-            var analysesTypes = await _analysesService.GetAnalysesTypesWithOnlyValidTests();
+            var analysesTypes = await _analysesService.GetAnalysesTypes(true, true);
             if (analyses.IsNotCorrect)
                 return ZabotaErrorCodes.EmptyResult;
 

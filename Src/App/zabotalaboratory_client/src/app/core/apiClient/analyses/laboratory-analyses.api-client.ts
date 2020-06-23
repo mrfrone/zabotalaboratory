@@ -7,9 +7,9 @@ import {LaboratoryAnalyses} from "../../../shared/models/analyses/laboratory-ana
 import {AddLaboratoryAnalysesForm} from "../../../shared/forms/laboratory-analyses/add-laboratory-analyses.form";
 import {Pager} from "../../../shared/models/pager/pager";
 import {SearchLaboratoryAnalysesForm} from "../../../shared/forms/laboratory-analyses/search-laboratory-analyses.form";
-import {DownloadFileForm} from "../../../shared/forms/download-file.form";
+import {DownloadFileForm} from "../../../shared/forms/common/download-file.form";
 import {GetLaboratoryAnalyseToNotAuthForm} from "../../../shared/forms/auth/get-laboratory-analyse-to-not-auth.form";
-import {DownloadFileByDateForm} from "../../../shared/forms/download-file-by-date.form";
+import {DownloadFileByDateForm} from "../../../shared/forms/common/download-file-by-date.form";
 import {Gender} from "../../../shared/models/analyses/gender";
 
 @Injectable({providedIn: 'root'})

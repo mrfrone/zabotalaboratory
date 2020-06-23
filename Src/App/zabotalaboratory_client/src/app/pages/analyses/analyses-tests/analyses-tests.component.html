@@ -4,6 +4,7 @@
       <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">Порядок</th>
         <th scope="col">Название</th>
         <th scope="col">Номер 1С</th>
         <th scope="col">Статус</th>
@@ -13,9 +14,13 @@
       <tr>
          <td colspan="6" class="type-name-center">{{type.name}}</td>
       </tr>
-      <tr *ngFor="let test of type.laboratoryAnalysesTests;" (click)="onTableElementClick(test.id)">
+      <tr *ngFor="let test of type.laboratoryAnalysesTests;">
         <th class="row-center">{{ test.id }}</th>
-        <td>{{ test.name }}</td>
+        <td class="row-center">
+          <mat-icon aria-hidden="false" aria-label="Up" (click)="changeNumberInOrder(test.numberInOrder, true, type.id)">arrow_circle_up</mat-icon>
+          <mat-icon aria-hidden="false" aria-label="Down" (click)="changeNumberInOrder(test.numberInOrder, false, type.id)">arrow_circle_down</mat-icon>
+        </td>
+        <td (click)="onTableElementClick(test.id)">{{ test.name }}</td>
         <td class="row-center">{{ test.number1C }}</td>
         <td class="row-center" *ngIf="test.isValid"><font color="green">Действителен</font></td>
         <td class="row-center" *ngIf="!test.isValid"><font color="red">Недействителен</font></td>

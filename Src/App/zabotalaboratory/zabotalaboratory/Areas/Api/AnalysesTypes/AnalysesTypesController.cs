@@ -54,7 +54,7 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTypes
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<bool>> AddAnalysesType([FromBody] NewAnalysesTypeForm form)
         {
-            return await _analysesService.AddNewAnalysesType(new zabotalaboratory.Analyses.Forms.AnalysesTypes.NewAnalysesTypeForm
+            return await _analysesService.AddNewAnalysesType(new Analyses.Forms.AnalysesTypes.NewAnalysesTypeForm
             {
                 Name = form.Name,
                 ExcelName = form.ExcelName,
@@ -69,7 +69,7 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTypes
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<bool>> UpdateAnalysesType([FromBody] UpdateAnalysesTypeForm form)
         {
-            return await _analysesService.UpdateAnalysesType(new zabotalaboratory.Analyses.Forms.AnalysesTypes.UpdateAnalysesTypeForm
+            return await _analysesService.UpdateAnalysesType(new Analyses.Forms.AnalysesTypes.UpdateAnalysesTypeForm
             {
                 Id = form.Id,
                 Name = form.Name,
@@ -85,10 +85,21 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTypes
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<bool>> UpdateAnalysesTypeValid([FromBody] UpdateAnalysesTypeValidForm form)
         {
-            return await _analysesService.UpdateAnalysesTypeValid(new zabotalaboratory.Analyses.Forms.AnalysesTypes.UpdateAnalysesTypeValidForm
+            return await _analysesService.UpdateAnalysesTypeValid(new Analyses.Forms.AnalysesTypes.UpdateAnalysesTypeValidForm
             {
                 Id = form.Id,
                 IsValid = form.IsValid
+            });
+        }
+
+        [ValidModelState]
+        [HttpPost(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<bool>> UpdateAnalysesTypeNumber([FromBody] UpdateTypesNumberInOrderForm form)
+        {
+            return await _analysesService.UpdateAnalysesTypeNumber(new Analyses.Forms.AnalysesTypes.UpdateTypesNumberInOrderForm
+            {
+                NumberInOrder = form.NumberInOrder,
+                IsUp = form.IsUp
             });
         }
     }

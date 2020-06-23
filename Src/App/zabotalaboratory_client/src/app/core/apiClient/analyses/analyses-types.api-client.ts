@@ -8,6 +8,7 @@ import {UpdateAnalysesTestValidForm} from "../../../shared/forms/analyses-tests/
 import {UpdateAnalysesTypeForm} from "../../../shared/forms/analyses-types/update-analyses-type.form";
 import {AddNewAnalysesTypeForm} from "../../../shared/forms/analyses-types/add-new-analyses-type.form";
 import {AnalysesTypesAddForm} from "../../../shared/models/analyses/add-form/analyses-types.add-form";
+import {UpdateAnalysesTypesNumberInOrderForm} from "../../../shared/forms/analyses-types/update-analyses-types-number-in-order.form";
 
 @Injectable({providedIn: 'root'})
 
@@ -42,5 +43,9 @@ export class AnalysesTypesApiClient extends BaseApiClient{
 
   public updateTypeValidation(form: UpdateAnalysesTestValidForm): Observable<ZabotaResult<boolean>>{
     return this.post<ZabotaResult<boolean>, UpdateAnalysesTestValidForm>('/api/AnalysesTypes/UpdateAnalysesTypeValid', form);
+  }
+
+  public updateTypeNumberInOrder(form: UpdateAnalysesTypesNumberInOrderForm): Observable<ZabotaResult<boolean>>{
+    return this.post<ZabotaResult<boolean>, UpdateAnalysesTypesNumberInOrderForm>('/api/AnalysesTypes/UpdateAnalysesTypeNumber', form);
   }
 }

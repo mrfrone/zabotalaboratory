@@ -9,7 +9,7 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
     public interface IAnalysesRepository
     {
         #region Types
-        Task<AnalysesTypes[]> GetAnalysesTypes(bool withTests, bool onlyValid = false, bool trackChanges = false);
+        Task<AnalysesTypes[]> GetAnalysesTypes(bool onlyValid = false, bool trackChanges = false);
 
         Task<AnalysesTypes> GetAnalysesTypeById(int id, bool trackChanges = false);
 
@@ -18,6 +18,8 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
         Task UpdateAnalysesType(UpdateAnalysesTypeForm form);
 
         Task UpdateAnalysesTypeValid(UpdateAnalysesTypeValidForm form);
+
+        Task UpdateAnalysesTypeNumber(UpdateTypesNumberInOrderForm form);
 
         #endregion
 
@@ -31,6 +33,8 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
         Task UpdateAnalysesTest(UpdateAnalysesTestForm form);
 
         Task UpdateAnalysesTestValid(UpdateAnalysesTestValidForm form);
+
+        Task UpdateAnalysesTestNumber(UpdateTestsNumberInOrderForm form);
         #endregion
     }
 }

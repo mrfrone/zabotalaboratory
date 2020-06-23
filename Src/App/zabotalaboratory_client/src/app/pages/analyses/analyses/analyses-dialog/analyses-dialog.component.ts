@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {LaboratoryAnalysesApiClient} from "../../../../core/apiClient/analyses/laboratory-analyses.api-client";
 import {LaboratoryAnalyses} from "../../../../shared/models/analyses/laboratory-analyses";
 import {MessageService} from "../../../../core/services/message.service";
-import {DownloadFileForm} from "../../../../shared/forms/download-file.form";
+import {DownloadFileForm} from "../../../../shared/forms/common/download-file.form";
 
 @Component({
   selector: 'app-analyses-dialog',

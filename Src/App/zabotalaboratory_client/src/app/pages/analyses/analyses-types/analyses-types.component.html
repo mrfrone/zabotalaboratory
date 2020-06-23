@@ -4,6 +4,7 @@
       <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">Порядок</th>
         <th scope="col">Название</th>
         <th scope="col">Номер 1С</th>
         <th scope="col">Биоматериал</th>
@@ -11,9 +12,13 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let type of types;" (click)="onTableElementClick(type.id)">
+      <tr *ngFor="let type of types;">
         <th class="row-center">{{ type.id }}</th>
-        <td>{{ type.name }}</td>
+        <td class="row-center">
+          <mat-icon aria-hidden="false" aria-label="Up" (click)="changeNumberInOrder(type.numberInOrder, true)">arrow_circle_up</mat-icon>
+          <mat-icon aria-hidden="false" aria-label="Down" (click)="changeNumberInOrder(type.numberInOrder, false)">arrow_circle_down</mat-icon>
+        </td>
+        <td (click)="onTableElementClick(type.id)">{{ type.name }}</td>
         <td class="row-center">{{ type.number1C }}</td>
         <td class="row-center">{{ type.bioMaterial }}</td>
         <td class="row-center" *ngIf="type.isValid"><font color="green">Действителен</font></td>

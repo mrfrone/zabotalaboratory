@@ -7,6 +7,7 @@ import {AnalysesTypesDialogComponent} from "./analyses-types-dialog/analyses-typ
 import {DefaultSuccessMessages} from "../../../shared/consts/defaultSuccessMessages";
 import {AddNewAnalysesTypeForm} from "../../../shared/forms/analyses-types/add-new-analyses-type.form";
 import {AnalysesTypesApiClient} from "../../../core/apiClient/analyses/analyses-types.api-client";
+import {UpdateAnalysesTypesNumberInOrderForm} from "../../../shared/forms/analyses-types/update-analyses-types-number-in-order.form";
 
 @Component({
   selector: 'app-analyses-types',
@@ -62,6 +63,17 @@ export class AnalysesTypesComponent implements OnInit {
       this._messages.showResult(res, DefaultSuccessMessages.onNewTypeAdded);
       this.typesForm.reset();
       this.updateData();
+    });
+  }
+
+  public changeNumberInOrder(number: number, isUp: boolean){
+    const form: UpdateAnalysesTypesNumberInOrderForm = {
+      numberInOrder: number,
+      isUp: isUp
+    };
+
+    this._analysesTypes.updateTypeNumberInOrder(form).subscribe(() => {
+      this.updateData()
     });
   }
 
