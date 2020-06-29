@@ -9,6 +9,7 @@ import {MessageService} from "../../../core/services/message.service";
 import {Router} from "@angular/router";
 import { StaticRoles } from "../../../shared/consts/staticRoles";
 import {UserProfileApiClient} from "../../../core/apiClient/users/user-profile.api-client";
+import {AvailableRoleService} from "../../../core/services/available-role.service";
 
 @Component({
   selector: 'app-header',
@@ -18,10 +19,6 @@ import {UserProfileApiClient} from "../../../core/apiClient/users/user-profile.a
 export class HeaderComponent implements OnInit {
   public currentRole: string = 'Загрузка...';
   public currentCompany: string = 'Загрузка...';
-  public admin: string = StaticRoles.admin;
-  public laborant: string = StaticRoles.laborant;
-  public clinic: string = StaticRoles.clinic;
-
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -34,7 +31,8 @@ export class HeaderComponent implements OnInit {
               private readonly _authCheckerService: AuthCheckerService,
               private readonly _userProfile: UserProfileApiClient,
               private readonly _messages: MessageService,
-              private readonly _router: Router) {
+              private readonly _router: Router,
+              private readonly _availableRole: AvailableRoleService) {
   }
 
   ngOnInit(): void {
@@ -55,8 +53,12 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  public isAvailableRoute(roles: string[]): boolean {
-    const currentRole: string = this._authCheckerService.getCurrentRole()
-    return roles.includes(currentRole);
+
+  public admin: string = StaticRoles.admin;
+  public laborant: string = StaticRoles.laborant;
+  public clinic: string = StaticRoles.clinic;
+
+  public isAvailable(roles: string[]): boolean {
+    return this._availableRole.isAvailable(roles);
   }
 }

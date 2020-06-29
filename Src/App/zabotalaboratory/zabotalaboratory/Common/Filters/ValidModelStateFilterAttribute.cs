@@ -9,11 +9,7 @@ namespace zabotalaboratory.Web.Common.Filters
     public class ValidModelStateAttribute : ActionFilterAttribute
     {
         public ZabotaErrorCodes ErrorCode = ZabotaErrorCodes.InvalidForm;
-
-        // TODO: move messages in separate place
         public string ErrorMessage { get; set; }
-
-        private const string DefaultErrorMessage = "Введены некорректные данные";
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {

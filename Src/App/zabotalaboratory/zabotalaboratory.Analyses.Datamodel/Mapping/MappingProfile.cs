@@ -22,7 +22,9 @@ namespace zabotalaboratory.Analyses.Datamodel.Mapping
                 .ForMember(u => u.Clinic, opts => opts.MapFrom(u => u.Clinic))
                 .ForMember(u => u.PickUpDate, opts => opts.MapFrom(u => u.PickUpDate))
                 .ForMember(u => u.Doctor, opts => opts.MapFrom(u => u.Doctor))
-                .ForMember(u => u.Talons, opts => opts.MapFrom(u => u.Talons));
+                .ForMember(u => u.Talons, opts => opts.MapFrom(u => u.Talons))
+                .ForMember(u => u.MedicalRecord, opts => opts.MapFrom(u => u.MedicalRecord))
+                .ForMember(u => u.IsValid, opts => opts.MapFrom(u => u.IsValid));
 
             CreateMap<Database.Entities.Talons, ZabotaTalons>()
                 .IgnoreOther()
@@ -95,6 +97,22 @@ namespace zabotalaboratory.Analyses.Datamodel.Mapping
                 .ForMember(u => u.Id, opts => opts.MapFrom(u => u.Id))
                 .ForMember(u => u.Name, opts => opts.MapFrom(u => u.Name))
                 .ForMember(u => u.ShortName, opts => opts.MapFrom(u => u.ShortName));
+
+            CreateMap<Database.Entities.MedicalRecord, ZabotaMedicalRecord>()
+                .IgnoreOther()
+                .ForMember(u => u.InsuranceName, opts => opts.MapFrom(u => u.InsuranceName))
+                .ForMember(u => u.PolicyNumber, opts => opts.MapFrom(u => u.PolicyNumber))
+                .ForMember(u => u.SnilsNumber, opts => opts.MapFrom(u => u.SnilsNumber))
+                .ForMember(u => u.PrivilegeCode, opts => opts.MapFrom(u => u.PrivilegeCode))
+                .ForMember(u => u.PermanentAddress, opts => opts.MapFrom(u => u.PermanentAddress))
+                .ForMember(u => u.ActualAddress, opts => opts.MapFrom(u => u.ActualAddress))
+                .ForMember(u => u.PhoneNumber, opts => opts.MapFrom(u => u.PhoneNumber))
+                .ForMember(u => u.PreferentialProvision, opts => opts.MapFrom(u => u.PreferentialProvision))
+                .ForMember(u => u.Disability, opts => opts.MapFrom(u => u.Disability))
+                .ForMember(u => u.PlaceOfWork, opts => opts.MapFrom(u => u.PlaceOfWork))
+                .ForMember(u => u.Profession, opts => opts.MapFrom(u => u.Profession))
+                .ForMember(u => u.Position, opts => opts.MapFrom(u => u.Position))
+                .ForMember(u => u.Dependent, opts => opts.MapFrom(u => u.Dependent));
         }
     }
 }

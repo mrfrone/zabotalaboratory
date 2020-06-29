@@ -74,7 +74,7 @@
     <div class="form-button">
       <button mat-stroked-button color="primary" type="button" (click)="onFormSubmit()" [disabled]="analysesForm.invalid">Отправить</button>
     </div>
-    <form class="example-form" [formGroup]="reportForm" style="margin-top: 20px">
+    <form class="example-form" [formGroup]="reportForm" style="margin-top: 20px" *ngIf="isAvailable([admin, laborant])">
       <div class="form-title">Отчет для работы</div>
       <hr>
       <mat-form-field>

@@ -26,6 +26,7 @@ import { ClinicsSettingsComponent } from './pages/analyses/clinics-settings/clin
 import { ClinicsSettingsDialogComponent } from './pages/analyses/clinics-settings/clinics-settings-dialog/clinics-settings-dialog.component';
 import { UserProfileComponent } from './pages/users/user-profile/user-profile.component';
 import { AnalysesDialogComponent } from './pages/analyses/analyses/analyses-dialog/analyses-dialog.component';
+import { AnalysesMedicalRecordDialogComponent } from './pages/analyses/analyses/analyses-medical-record-dialog/analyses-medical-record-dialog.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { AnalysesDialogComponent } from './pages/analyses/analyses/analyses-dial
     ClinicsSettingsComponent,
     ClinicsSettingsDialogComponent,
     UserProfileComponent,
-    AnalysesDialogComponent
+    AnalysesDialogComponent,
+    AnalysesMedicalRecordDialogComponent
   ],
   imports: [
     MaterialModule,

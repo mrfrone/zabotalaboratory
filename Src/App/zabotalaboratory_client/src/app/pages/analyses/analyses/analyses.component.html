@@ -27,28 +27,29 @@
         <th scope="col">Дата забора</th>
         <th scope="col">Отправитель</th>
         <th scope="col">Лечащий врач</th>
-        <th scope="col">Статус</th>
-        <th scope="col">Мед.карта</th>
+        <th scope="col" *ngIf="isAvailable([admin, laborant])">Мед.карта</th>
+        <th scope="col" *ngIf="isAvailable([admin, laborant])">Статус</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let data of laboratoryAnalyses.pageResult;" (click)="onTableElementClick(data.id)">
+      <tr *ngFor="let data of laboratoryAnalyses.pageResult;">
         <th scope="row" class="content-center">{{ data.id }}</th>
-        <td>{{ data.fullName }}</td>
+        <td (click)="onTableElementClick(data.id)">{{ data.fullName }}</td>
         <td class="content-center">{{ data.gender.name }}</td>
         <td class="content-center">{{ data.dateOfBirth | date: 'dd.MM.yyyy'}}</td>
         <td class="content-center">{{data.pickUpDate | date: 'dd.MM.yyyy'}}</td>
         <td class="content-center">{{data.clinic.name}}</td>
         <td class="content-center">{{data.doctor}}</td>
-        <td class="content-center"> В разработке... </td>
-        <td class="content-center"> В разработке... </td>
+        <td class="content-center" *ngIf="isAvailable([admin, laborant])"><button mat-stroked-button color="primary" (click)="onMedicalRecordButtonClick(data.id)">Открыть</button></td>
+        <td class="content-center" *ngIf="data.isValid && isAvailable([admin, laborant])"><font color="green">Действителен</font></td>
+        <td class="content-center"*ngIf="!data.isValid && isAvailable([admin, laborant])"><font color="red">Недействителен</font></td>
       </tr>
       </tbody>
     </table>
       <div class="paginator">
-        <button mat-stroked-button color="primary" (click)="changePage(laboratoryAnalyses.pageNumber - 1)" [disabled]="!laboratoryAnalyses.hasPreviousPage"> Предыдущая </button>
+        <button mat-stroked-button color="primary" (click)="updateData(laboratoryAnalyses.pageNumber - 1)" [disabled]="!laboratoryAnalyses.hasPreviousPage"> Предыдущая </button>
         <span>{{ laboratoryAnalyses.pageNumber }}</span>
-        <button mat-stroked-button color="primary" (click)="changePage(laboratoryAnalyses.pageNumber + 1)" [disabled]="!laboratoryAnalyses.hasNextPage"> Следующая </button>
+        <button mat-stroked-button color="primary" (click)="updateData(laboratoryAnalyses.pageNumber + 1)" [disabled]="!laboratoryAnalyses.hasNextPage"> Следующая </button>
       </div>
     </div>
     <div class="center" *ngIf="mainTableIsProgress">

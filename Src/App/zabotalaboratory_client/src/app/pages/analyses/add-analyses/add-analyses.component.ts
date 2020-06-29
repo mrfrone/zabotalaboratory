@@ -13,6 +13,8 @@ import {DefaultSuccessMessages} from "../../../shared/consts/defaultSuccessMessa
 import {AuthCheckerService} from "../../../core/services/auth-checker.service";
 import {DownloadFileByDateForm} from "../../../shared/forms/common/download-file-by-date.form";
 import {Gender} from "../../../shared/models/analyses/gender";
+import {StaticRoles} from "../../../shared/consts/staticRoles";
+import {AvailableRoleService} from "../../../core/services/available-role.service";
 
 @Component({
   selector: 'app-add-analyses',
@@ -46,7 +48,8 @@ export class AddAnalysesComponent implements OnInit {
               private readonly _analyses: LaboratoryAnalysesApiClient,
               private readonly _clinics: ClinicsApiClient,
               private readonly _message: MessageService,
-              private readonly _auth: AuthCheckerService) {}
+              private readonly _auth: AuthCheckerService,
+              private readonly _availableRole: AvailableRoleService) {}
 
   ngOnInit(): void {
     this._analyses.getGenders().subscribe(res => {
@@ -147,5 +150,13 @@ export class AddAnalysesComponent implements OnInit {
     this._clinics.getClinicsForCurrentUser().subscribe(res => {
       this.clinics = res.result;
     });
+  }
+
+  public admin: string = StaticRoles.admin;
+  public laborant: string = StaticRoles.laborant;
+  public clinic: string = StaticRoles.clinic;
+
+  public isAvailable(roles: string[]): boolean {
+    return this._availableRole.isAvailable(roles);
   }
 }

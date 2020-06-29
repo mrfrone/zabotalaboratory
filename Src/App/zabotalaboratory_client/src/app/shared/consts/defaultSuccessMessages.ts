@@ -21,4 +21,6 @@ export class DefaultSuccessMessages {
   public static onUpdateUserProfile: string = 'Профиль успешно обновлен';
 
   public static onLaboratoryAnalyseAdded: string = 'Исследование добавлено успешно';
+  public static onUpdateLaboratoryAnalyseValid: string = 'Статус исследования успешно изменен';
+  public static onUpdateMedicalRecord: string = 'Медицинская карта успешно изменена';
 }

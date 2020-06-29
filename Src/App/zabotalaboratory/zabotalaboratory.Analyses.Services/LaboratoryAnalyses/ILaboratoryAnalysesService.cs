@@ -20,6 +20,12 @@ namespace zabotalaboratory.Analyses.Services.LaboratoryAnalyses
 
         Task<ZabotaResult<bool>> AddLaboratoryAnalyse(AddLaboratoryAnalysesForm form);
 
+        Task<ZabotaResult<bool>> UpdateLaboratoryAnalyseValid(UpdateLaboratoryAnalysesValidForm form);
+
         Task<ZabotaResult<IEnumerable<ZabotaGender>>> GetGender();
+
+        Task<ZabotaResult<ZabotaLaboratoryAnalyses>> GetLaboratoryAnalyseWithMedicalRecordById(int id);
+
+        Task<ZabotaResult<bool>> UpdateMedicalRecord(UpdateMedicalRecordForm form);
     }
 }

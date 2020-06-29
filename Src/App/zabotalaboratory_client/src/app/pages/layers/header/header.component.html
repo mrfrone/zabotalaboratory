@@ -6,18 +6,18 @@
     <mat-toolbar><img src="/assets/img/logo/logo-main.png"><span>Лаборатория</span></mat-toolbar>
       <button mat-button [matMenuTriggerFor]="analyses_router_list">Анализы</button>
       <button mat-button routerLink="/laboratory/profile/">Профиль</button>
-      <button mat-button [matMenuTriggerFor]="admin_router_list" *ngIf="isAvailableRoute([admin, laborant])">Администрирование</button>
+      <button mat-button [matMenuTriggerFor]="admin_router_list" *ngIf="isAvailable([admin, laborant])">Администрирование</button>
 
       <mat-menu #analyses_router_list="matMenu">
         <button mat-menu-item routerLink="/laboratory/analyses/">Просмотреть анализы</button>
-        <button mat-menu-item routerLink="/laboratory/analyses/add/" *ngIf="isAvailableRoute([admin, laborant])">Добавить анализ</button>
+        <button mat-menu-item routerLink="/laboratory/analyses/add/" *ngIf="isAvailable([admin, laborant])">Добавить анализ</button>
       </mat-menu>
 
       <mat-menu #admin_router_list="matMenu">
-        <button mat-menu-item routerLink="/laboratory/analyses/types/" *ngIf="isAvailableRoute([admin, laborant])">Настройки типов тестов</button>
-        <button mat-menu-item routerLink="/laboratory/analyses/tests/" *ngIf="isAvailableRoute([admin, laborant])">Настройки тестов</button>
-        <button mat-menu-item routerLink="/laboratory/analyses/clinics/" *ngIf="isAvailableRoute([admin, laborant])">Настройки поликлиник</button>
-        <button mat-menu-item routerLink="/laboratory/users/" *ngIf="isAvailableRoute([admin])">Пользователи</button>
+        <button mat-menu-item routerLink="/laboratory/analyses/types/" *ngIf="isAvailable([admin, laborant])">Настройки типов тестов</button>
+        <button mat-menu-item routerLink="/laboratory/analyses/tests/" *ngIf="isAvailable([admin, laborant])">Настройки тестов</button>
+        <button mat-menu-item routerLink="/laboratory/analyses/clinics/" *ngIf="isAvailable([admin, laborant])">Настройки поликлиник</button>
+        <button mat-menu-item routerLink="/laboratory/users/" *ngIf="isAvailable([admin])">Пользователи</button>
       </mat-menu>
   </mat-sidenav>
   <mat-sidenav-content>

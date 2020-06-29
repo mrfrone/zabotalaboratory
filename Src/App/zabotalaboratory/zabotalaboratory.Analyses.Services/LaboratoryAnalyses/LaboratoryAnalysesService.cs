@@ -24,7 +24,12 @@ namespace zabotalaboratory.Analyses.Services.LaboratoryAnalyses
 
         public async Task<ZabotaResult<ZabotaPager<IEnumerable<ZabotaLaboratoryAnalyses>>>> GetLaboratoryAnalyses(int page = 1, int? clinicId = null, LaboratoryAnalysesSearchForm form = null)
         {
-            var result = await _laboratoryAnalysesRepository.GetLaboratoryAnalysesWithPager(clinicId, form, page);
+            bool hasValid = false;
+
+            if (clinicId != null)
+                hasValid = true;
+
+            var result = await _laboratoryAnalysesRepository.GetLaboratoryAnalysesWithPager(clinicId, form, page, hasValid);
             if (result == null)
                 return ZabotaErrorCodes.EmptyResult;
 
@@ -62,16 +67,23 @@ namespace zabotalaboratory.Analyses.Services.LaboratoryAnalyses
 
         public async Task<ZabotaResult<int?>> GetLaboratoryAnalyseId(GetLaboratoryAnalyseIdForm form) 
         {
-            var result = await _laboratoryAnalysesRepository.GetLaboratoryAnalyseId(form);
-            if (result == null || result == 0)
+            var result = await _laboratoryAnalysesRepository.GetLaboratoryAnalyseByIdAndLastName(form);
+            if (result == null)
                 return ZabotaErrorCodes.EmptyResult;
 
-            return new ZabotaResult<int?>(result);
+            return new ZabotaResult<int?>(result.Id);
         }
 
         public async Task<ZabotaResult<bool>> AddLaboratoryAnalyse(AddLaboratoryAnalysesForm form)
         {
             await _laboratoryAnalysesRepository.AddLaboratoryAnalyse(form);
+
+            return new ZabotaResult<bool>(true);
+        }
+
+        public async Task<ZabotaResult<bool>> UpdateLaboratoryAnalyseValid(UpdateLaboratoryAnalysesValidForm form)
+        {
+            await _laboratoryAnalysesRepository.UpdateLaboratoryAnalysesValid(form);
 
             return new ZabotaResult<bool>(true);
         }
@@ -85,6 +97,23 @@ namespace zabotalaboratory.Analyses.Services.LaboratoryAnalyses
             var mappedModel = _mapper.Map<IEnumerable<ZabotaGender>>(result);
 
             return new ZabotaResult<IEnumerable<ZabotaGender>>(mappedModel);
+        }
+
+        public async Task<ZabotaResult<ZabotaLaboratoryAnalyses>> GetLaboratoryAnalyseWithMedicalRecordById(int id)
+        {
+            var result = await _laboratoryAnalysesRepository.GetLaboratoryAnalysesWithMedicalRecordById(id);
+            if (result == null)
+                return ZabotaErrorCodes.EmptyResult;
+
+            var mappedModel = _mapper.Map<ZabotaLaboratoryAnalyses>(result);
+
+            return new ZabotaResult<ZabotaLaboratoryAnalyses>(mappedModel);
+        }
+        public async Task<ZabotaResult<bool>> UpdateMedicalRecord(UpdateMedicalRecordForm form)
+        {
+            await _laboratoryAnalysesRepository.UpdateMedicalRecord(form);
+
+            return new ZabotaResult<bool>(true);
         }
     }
 }

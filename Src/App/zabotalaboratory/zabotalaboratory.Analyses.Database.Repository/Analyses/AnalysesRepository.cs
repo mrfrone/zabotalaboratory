@@ -40,13 +40,21 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
 
         public async Task AddAnalysesType(NewAnalysesTypeForm form)
         {
+            int number = 1;
+
+            try
+            {
+                number = _ac.AnalysesTypes.Max(t => t.NumberInOrder) + 1;
+            }
+            catch { }
+
             _ac.AnalysesTypes.Add(new AnalysesTypes
             {
                 Name = form.Name,
                 ExcelName = form.ExcelName,
                 PDFName = form.PDFName,
                 Number1C = form.Number1C,
-                NumberInOrder = _ac.AnalysesTypes.Max(t => t.NumberInOrder) + 1,
+                NumberInOrder = number,
                 IsValid = true,
                 BioMaterial = form.BioMaterial
             });
@@ -130,13 +138,21 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
 
         public async Task AddAnalysesTest(NewAnalysesTestForm form)
         {
+            int number = 1;
+
+            try
+            {
+                number = _ac.LaboratoryAnalysesTests.Where(t => t.AnalysesTypesId == form.AnalysesTypesId).Max(t => t.NumberInOrder) + 1;
+            }
+            catch { }
+
             _ac.LaboratoryAnalysesTests.Add(new LaboratoryAnalysesTests
             {
                 Name = form.Name,
                 ExcelName = form.ExcelName,
                 PDFName = form.PDFName,
                 Number1C = form.Number1C,
-                NumberInOrder = _ac.LaboratoryAnalysesTests.Where(t => t.AnalysesTypesId == form.AnalysesTypesId).Max(t => t.NumberInOrder) + 1,
+                NumberInOrder = number,
                 AnalysesTypesId = form.AnalysesTypesId,
                 IsValid = true
             });
@@ -152,7 +168,31 @@ namespace zabotalaboratory.Analyses.Database.Repository.Analyses
             result.ExcelName = form.ExcelName;
             result.PDFName = form.PDFName;
             result.Number1C = form.Number1C;
-            result.AnalysesTypesId = form.AnalysesTypesId;
+
+            if (result.AnalysesTypesId != form.AnalysesTypesId)
+            {
+                int number = 1;
+
+                try
+                {
+                    number = _ac.LaboratoryAnalysesTests.Where(t => t.AnalysesTypesId == form.AnalysesTypesId).Max(t => t.NumberInOrder) + 1;
+                }
+                catch { }
+
+                int oldTypeId = result.AnalysesTypesId;
+
+                result.NumberInOrder = number;
+                result.AnalysesTypesId = form.AnalysesTypesId;
+                _ac.SaveChanges();
+
+                var testsInOldType = await GetAnalysesTestsByTypeId(oldTypeId, false, true);
+
+                if(testsInOldType != null)
+                    for (int i = 0; i < testsInOldType.Count(); i++)
+                    {
+                        testsInOldType[i].NumberInOrder = i + 1;
+                    }
+            }
 
             await _ac.SaveChangesAsync();
         }

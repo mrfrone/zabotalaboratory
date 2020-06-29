@@ -11,6 +11,8 @@ import {DownloadFileForm} from "../../../shared/forms/common/download-file.form"
 import {GetLaboratoryAnalyseToNotAuthForm} from "../../../shared/forms/auth/get-laboratory-analyse-to-not-auth.form";
 import {DownloadFileByDateForm} from "../../../shared/forms/common/download-file-by-date.form";
 import {Gender} from "../../../shared/models/analyses/gender";
+import {UpdateMedicalRecordForm} from "../../../shared/forms/medical-records/update-medical-record.form";
+import {UpdateLaboratoryAnalysesValidForm} from "../../../shared/forms/laboratory-analyses/update-laboratory-analyses-valid.form";
 
 @Injectable({providedIn: 'root'})
 
@@ -49,5 +51,21 @@ export class LaboratoryAnalysesApiClient extends BaseApiClient{
 
   public addLaboratoryAnalyse(form: AddLaboratoryAnalysesForm): Observable<ZabotaResult<boolean>> {
     return this.post<ZabotaResult<boolean>, AddLaboratoryAnalysesForm>('/api/LaboratoryAnalyses/AddLaboratoryAnalyse', form);
+  }
+
+  public getLaboratoryAnalysesWithMedicalRecord(id: number): Observable<ZabotaResult<LaboratoryAnalyses>> {
+    return this.getWithId<ZabotaResult<LaboratoryAnalyses>>('/api/LaboratoryAnalyses/LaboratoryAnalyseWithMedicalRecordById', id);
+  }
+
+  public updateMedicalRecord(form: UpdateMedicalRecordForm): Observable<ZabotaResult<boolean>> {
+    return this.post<ZabotaResult<boolean>, UpdateMedicalRecordForm>('/api/LaboratoryAnalyses/UpdateMedicalRecord', form);
+  }
+
+  public updateLaboratoryAnalyseValid(form: UpdateLaboratoryAnalysesValidForm): Observable<ZabotaResult<boolean>> {
+    return this.post<ZabotaResult<boolean>, UpdateLaboratoryAnalysesValidForm>('/api/LaboratoryAnalyses/UpdateLaboratoryAnalyseValid', form);
+  }
+
+  public getMedicalRecordReport(form: DownloadFileForm): Observable<Blob> {
+    return this.getFile('/api/LaboratoryAnalyses/GetMedicalRecordReportById', form);
   }
 }

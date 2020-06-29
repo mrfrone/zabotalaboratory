@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using zabotalaboratory.Common.Datamodel.Abstractions;
 
 namespace zabotalaboratory.Analyses.Database.Entities
 {
-    public class LaboratoryAnalyses
+    public class LaboratoryAnalyses : IValidatable
     {
         public virtual int Id { get; set; }
 
@@ -36,12 +37,16 @@ namespace zabotalaboratory.Analyses.Database.Entities
 
         [Required]
         public virtual Clinics Clinic { get; set; }
-        
+
         [Required]
         public virtual DateTimeOffset PickUpDate { get; set; }
 
         public virtual string Doctor { get; set; }
 
         public virtual List<Talons> Talons { get; set; }
+
+        public virtual MedicalRecord MedicalRecord { get; set; }
+
+        public virtual bool IsValid { get; set; }
     }
 }

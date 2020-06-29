@@ -5,6 +5,9 @@ import {AnalysesDialogComponent} from "./analyses-dialog/analyses-dialog.compone
 import {MatDialog} from "@angular/material/dialog";
 import {Pager} from "../../../shared/models/pager/pager";
 import {SearchLaboratoryAnalysesForm} from "../../../shared/forms/laboratory-analyses/search-laboratory-analyses.form";
+import {AnalysesMedicalRecordDialogComponent} from "./analyses-medical-record-dialog/analyses-medical-record-dialog.component";
+import {AvailableRoleService} from "../../../core/services/available-role.service";
+import {StaticRoles} from "../../../shared/consts/staticRoles";
 
 @Component({
   selector: 'app-main',
@@ -23,10 +26,11 @@ export class AnalysesComponent implements OnInit {
   public laboratoryAnalyses: Pager<LaboratoryAnalyses[]>;
 
   constructor(private readonly _analyses: LaboratoryAnalysesApiClient,
-              private readonly _dialog: MatDialog) { }
+              private readonly _dialog: MatDialog,
+              private readonly _availableRole: AvailableRoleService) { }
 
   ngOnInit(): void {
-    this.Update();
+    this.updateData();
   }
 
   public onTableElementClick(id: number): void{
@@ -35,10 +39,20 @@ export class AnalysesComponent implements OnInit {
     });
   }
 
+  public onMedicalRecordButtonClick(id: number): void{
+    const dialog = this._dialog.open(AnalysesMedicalRecordDialogComponent,{
+      data: id
+    });
+
+    dialog.componentInstance.updateEvent.subscribe(() => {
+      this.updateData(this.laboratoryAnalyses.pageNumber);
+    });
+  }
+
   public onSearchButtonClick(): void {
     this.mainTableIsProgress = true;
     this.isSearchingData = true;
-    this.Update();
+    this.updateData();
   }
 
   public resetSearching(): void {
@@ -48,15 +62,10 @@ export class AnalysesComponent implements OnInit {
     this.firstName = "";
     this.patronymicName = "";
 
-    this.Update();
+    this.updateData();
   }
 
-  public changePage(page: number) {
-      this.mainTableIsProgress = true;
-      this.Update(page);
-  }
-
-  private Update(page: number = 1): void {
+  public updateData(page: number = 1): void {
     if(this.isSearchingData){
       const form: SearchLaboratoryAnalysesForm = {
         lastName: this.lastName,
@@ -80,6 +89,14 @@ export class AnalysesComponent implements OnInit {
           this.mainTableIsProgress = false;
         });
     }
+  }
+
+  public admin: string = StaticRoles.admin;
+  public laborant: string = StaticRoles.laborant;
+  public clinic: string = StaticRoles.clinic;
+
+  public isAvailable(roles: string[]): boolean {
+    return this._availableRole.isAvailable(roles);
   }
 }
 

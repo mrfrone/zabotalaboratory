@@ -13,7 +13,7 @@ namespace zabotalaboratory.Analyses.Services.Analyses
 
         Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypes>>> GetAnalysesTypes(bool withTests, bool onlyValidTests = false);
 
-        Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypesAddForm>>> GetAnalysesTypesWithOnlyValidTests();
+        Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypesAddForm>>> GetAnalysesTypesToAddForm();
 
         Task<ZabotaResult<ZabotaAnalysesTypes>> GetAnalysesTypeById(int id);
 

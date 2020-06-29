@@ -1,0 +1,35 @@
+mat-dialog-content{
+  min-width: 50vh;
+  min-height: 22vh;
+
+  .download-section{
+    button{
+      margin-top: 1vh;
+      margin-bottom: 1vh;
+      outline: none;
+    }
+    button:focus
+  }
+
+  form{
+    mat-form-field {
+      width: 100%;
+    }
+    .form-buttons{
+      display: flex;
+      justify-content: space-around;
+
+      button{
+        min-width: 30%;
+      }
+    }
+  }
+}
+.center{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 22vh;
+  width: 100%;
+}

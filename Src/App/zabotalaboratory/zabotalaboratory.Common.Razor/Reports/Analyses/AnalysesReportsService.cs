@@ -36,5 +36,17 @@ namespace zabotalaboratory.Common.RazorReports.Reports.Analyses
 
             return new ZabotaResult<byte[]>(pdf);
         }
+
+        public async Task<ZabotaResult<byte[]>> GetMedicalRecordReportById(int id)
+        {
+            var result = await _laboratoryAnalysesService.GetLaboratoryAnalyseWithMedicalRecordById(id);
+            if (result.IsNotCorrect)
+                return ZabotaErrorCodes.EmptyResult;
+
+            var html = await _razorRenderService.GetRenderedHtml(result.Result, DefaultTemplateNames.MedicalRecord);
+            var pdf = _htmlToPDFConverterService.GetConvertedPdf(html);
+
+            return new ZabotaResult<byte[]>(pdf);
+        }
     }
 }

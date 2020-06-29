@@ -41,6 +41,34 @@
         {
             switch (code)
             {
+                case(ZabotaErrorCodes.InvalidForm):
+                    return "Отправленные данные не корректны";
+                case (ZabotaErrorCodes.AuthorizeError):
+                    return "Ошибка авторизации";
+                case (ZabotaErrorCodes.CreateTokenError):
+                    return "Ошибка при создании токена";
+                case (ZabotaErrorCodes.CannotFindToken):
+                    return "Не удается найти токен";
+                case (ZabotaErrorCodes.CannotFindIdentityByTokenId):
+                    return "Не удается найти пользователя по номеру токена";
+                case (ZabotaErrorCodes.CannotFindUserProfileByIdentityId):
+                    return "Не удалось найти профиль пользователя, пожалуйста, проверьте заполненность профиля";
+                case (ZabotaErrorCodes.EmptyResult):
+                    return "Данные не найдены";
+                case (ZabotaErrorCodes.IdentityExists):
+                    return "Такой пользователь уже существует";
+                case (ZabotaErrorCodes.CannotFindIdentityById):
+                    return "Не удается найти пользователя";
+                case (ZabotaErrorCodes.UpdateIdentityOperationError):
+                    return "Ошибка при обновлении информации о пользователе";
+                case (ZabotaErrorCodes.CannotDeleteCurrentUser):
+                    return "Невозможно удалить текущего пользователя";
+                case (ZabotaErrorCodes.AddClinicOperationError):
+                    return "Ошибка при добавлении новой поликлиники";
+                case (ZabotaErrorCodes.UpdateClinicOperationError):
+                    return "Ошибка при обновлении информации о поликлинике";
+                case (ZabotaErrorCodes.CannotFindClinicById):
+                    return "Не удается найти поликлинику";
                 default:
                     return code.ToString();
             }

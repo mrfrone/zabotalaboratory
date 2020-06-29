@@ -40,7 +40,7 @@ namespace zabotalaboratory.Web.Areas.Api.AnalysesTypes
         [HttpGet(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<IEnumerable<ZabotaAnalysesTypesAddForm>>> GetAnalysesTypesToAddForm()
         {
-            return await _analysesService.GetAnalysesTypesWithOnlyValidTests();
+            return await _analysesService.GetAnalysesTypesToAddForm();
         }
 
         [HttpGet(HttpRouteConsts.DefaultAction)]

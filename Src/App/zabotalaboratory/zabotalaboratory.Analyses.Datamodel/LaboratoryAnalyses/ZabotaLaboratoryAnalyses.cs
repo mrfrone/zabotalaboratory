@@ -28,5 +28,9 @@ namespace zabotalaboratory.Analyses.Datamodel.LaboratoryAnalyses
         public string Doctor { get; set; }
 
         public IEnumerable<ZabotaTalons> Talons { get; set; }
+
+        public ZabotaMedicalRecord MedicalRecord { get; set; }
+
+        public bool IsValid { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 import { Clinic } from './clinic';
 import { Talons } from './talons';
 import {Gender} from "./gender";
+import {MedicalRecord} from "./medical-record";
 
 export class LaboratoryAnalyses{
   public id: number;
@@ -15,4 +16,6 @@ export class LaboratoryAnalyses{
   public pickUpDate: Date;
   public talons: Talons[];
   public doctor: string;
+  public medicalRecord: MedicalRecord;
+  public isValid: boolean;
 }

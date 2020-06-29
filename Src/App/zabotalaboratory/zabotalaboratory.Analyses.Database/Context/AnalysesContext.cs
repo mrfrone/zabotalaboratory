@@ -13,15 +13,6 @@ namespace zabotalaboratory.Analyses.Database.Context
         {
             modelBuilder.UseIdentityByDefaultColumns();
             modelBuilder.HasDefaultSchema(SchemaName);
-
-            modelBuilder.Entity<Gender>(e =>
-            {
-                e.HasData(new[]
-                {
-                    new Gender() { Id = 1, Name = "Мужской", ShortName = "M"},
-                    new Gender() { Id = 2, Name = "Женский", ShortName = "F" }
-                });
-            });
         }
 
         public DbSet<Clinics> Clinics { get; set; }
@@ -30,6 +21,8 @@ namespace zabotalaboratory.Analyses.Database.Context
 
         public DbSet<LaboratoryAnalyses> LaboratoryAnalyses { get; set; }
 
+        public DbSet<MedicalRecord> MedicalRecord { get; set; }
+
         public DbSet<Talons> Talons { get; set; }
 
         public DbSet<AnalysesResult> AnalysesResult { get; set; }
@@ -37,5 +30,6 @@ namespace zabotalaboratory.Analyses.Database.Context
         public DbSet<AnalysesTypes> AnalysesTypes { get; set; }
 
         public DbSet<LaboratoryAnalysesTests> LaboratoryAnalysesTests { get; set; }
+        
     }
 }

@@ -17,6 +17,8 @@
     <Compile Remove="Migrations\20200619134232_NotNullableGender.Designer.cs" />
     <Compile Remove="Migrations\20200622091223_GenderChanges.cs" />
     <Compile Remove="Migrations\20200622091223_GenderChanges.Designer.cs" />
+    <Compile Remove="Migrations\20200625122807_AddMedicalRecord.cs" />
+    <Compile Remove="Migrations\20200625122807_AddMedicalRecord.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

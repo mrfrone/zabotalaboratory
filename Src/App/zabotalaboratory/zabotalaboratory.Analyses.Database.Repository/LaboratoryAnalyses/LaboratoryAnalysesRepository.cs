@@ -31,7 +31,7 @@ namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
             _options = options;
         }
 
-        public async Task<Pager<Entities.LaboratoryAnalyses[]>> GetLaboratoryAnalysesWithPager(int? clinicId, LaboratoryAnalysesSearchForm form, int page, bool trackChanges = false)
+        public async Task<Pager<Entities.LaboratoryAnalyses[]>> GetLaboratoryAnalysesWithPager(int? clinicId, LaboratoryAnalysesSearchForm form, int page, bool hasValid = false, bool trackChanges = false)
         {
             if (form == null)
                 form = emptyForm;
@@ -39,6 +39,7 @@ namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
             var query = _ac.LaboratoryAnalyses
                            .HasTracking(trackChanges)
                            .HasClinic(clinicId)
+                           .HasValid(hasValid)
                            .Where(a => 
                                 EF.Functions.ILike(a.LastName, $"%{form.LastName}%") && 
                                 EF.Functions.ILike(a.FirstName, $"%{form.FirstName}%") && 
@@ -82,12 +83,11 @@ namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
 
-        public async Task<int?> GetLaboratoryAnalyseId(GetLaboratoryAnalyseIdForm form, bool trackChanges = false)
+        public async Task<Entities.LaboratoryAnalyses> GetLaboratoryAnalyseByIdAndLastName(GetLaboratoryAnalyseIdForm form, bool trackChanges = false)
         {
             return await _ac.LaboratoryAnalyses
                 .HasTracking(trackChanges)
                 .Where(a => a.Id == form.Id && a.LastName == form.LastName)
-                .Select(a => a.Id)
                 .FirstOrDefaultAsync();
         }
 
@@ -111,10 +111,10 @@ namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
                         AnalysesTypeId = talon.AnalysesTypeId,
                         AnalysesResult = results
                     });
-            }
-            
+            }                                  
 
-            _ac.LaboratoryAnalyses.Add(new Entities.LaboratoryAnalyses {
+            _ac.LaboratoryAnalyses.Add(new Entities.LaboratoryAnalyses
+            {
                 FirstName = form.FirstName,
                 LastName = form.LastName,
                 PatronymicName = form.PatronymicName,
@@ -123,9 +123,36 @@ namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
                 PickUpDate = DateTime.UtcNow,
                 ClinicId = form.ClinicId,
                 Doctor = form.Doctor,
-                Talons = talons
-
+                Talons = talons,
+                IsValid = true,
+                MedicalRecord = new MedicalRecord
+                {
+                    InsuranceName = "-",
+                    PolicyNumber = "-",
+                    SnilsNumber = "-",
+                    PrivilegeCode = "-",
+                    PermanentAddress = "-",
+                    ActualAddress = "-",
+                    PhoneNumber = "-",
+                    PreferentialProvision = "-",
+                    Disability = "-",
+                    PlaceOfWork = "не указано",
+                    Profession = "не указано",
+                    Position = "не указано",
+                    Dependent = "-"
+                }
             });
+
+            await _ac.SaveChangesAsync();
+        }
+
+        public async Task UpdateLaboratoryAnalysesValid(UpdateLaboratoryAnalysesValidForm form)
+        {
+            var result = await _ac.LaboratoryAnalyses.FirstOrDefaultAsync(a => a.Id == form.Id);
+            if (result == null)
+                return;
+
+            result.IsValid = form.IsValid;
 
             await _ac.SaveChangesAsync();
         }
@@ -135,6 +162,38 @@ namespace zabotalaboratory.Analyses.Database.Repository.LaboratoryAnalyses
             return await _ac.Gender
                 .HasTracking(trackChanges)
                 .ToArrayAsync();
+        }
+
+        public async Task<Entities.LaboratoryAnalyses> GetLaboratoryAnalysesWithMedicalRecordById(int id, bool trackChanges = false)
+        {
+            return await _ac.LaboratoryAnalyses
+                .HasTracking(trackChanges)
+                .Include(a => a.Gender)
+                .Include(a => a.MedicalRecord)
+                .FirstOrDefaultAsync(a => a.Id == id);
+        }
+
+        public async Task UpdateMedicalRecord(UpdateMedicalRecordForm form)
+        {
+            var record = await _ac.MedicalRecord
+                .HasTracking(true)
+                .FirstOrDefaultAsync(r => r.LaboratoryAnalysesId == form.Id);
+
+            record.InsuranceName = form.InsuranceName;
+            record.PolicyNumber = form.PolicyNumber;
+            record.SnilsNumber = form.SnilsNumber;
+            record.PrivilegeCode = form.PrivilegeCode;
+            record.PermanentAddress = form.PermanentAddress;
+            record.ActualAddress = form.ActualAddress;
+            record.PhoneNumber = form.PhoneNumber;
+            record.PreferentialProvision = form.PreferentialProvision;
+            record.Disability = form.Disability;
+            record.PlaceOfWork = form.PlaceOfWork;
+            record.Profession = form.Profession;
+            record.Position = form.Position;
+            record.Dependent = form.Dependent;
+
+            await _ac.SaveChangesAsync();
         }
     }
 }

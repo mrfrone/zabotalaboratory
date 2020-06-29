@@ -39,7 +39,7 @@ namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<ZabotaPager<IEnumerable<ZabotaLaboratoryAnalyses>>>> GetLaboratoryAnalyses([FromBody] LaboratoryAnalysesSearchForm form)
         {
-            return await _laboratoryAnalysesService.GetLaboratoryAnalyses(form.Page, CurrentIdentity.ClinicId, new Analyses.Forms.LaboratoryAnalyses.LaboratoryAnalysesSearchForm { 
+            return await _laboratoryAnalysesService.GetLaboratoryAnalyses(form.Page, CurrentIdentity.ClinicId, new Analyses.Forms.LaboratoryAnalyses.LaboratoryAnalysesSearchForm {
                 FirstName = form.FirstName,
                 LastName = form.LastName,
                 PatronymicName = form.PatronymicName,
@@ -59,9 +59,10 @@ namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
         {
             var result = await _analysesReportsService.GetAnalysesResultReportById(form.Id);
 
-            return File(result.Result, "application/pdf");
+            return File(result.Result, "application/pdf", "pdf-report");
         }
 
+        [Authorize]
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<IActionResult> GetLaboratoryAnalyseExcelReportByDate([FromBody] DownloadFileByDateForm form)
         {
@@ -73,7 +74,7 @@ namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
         [HttpPost(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<int?>> LaboratoryAnalyseId([FromBody] GetLaboratoryAnalyseIdForm form)
         {
-            return await _laboratoryAnalysesService.GetLaboratoryAnalyseId(new Analyses.Forms.LaboratoryAnalyses.GetLaboratoryAnalyseIdForm { 
+            return await _laboratoryAnalysesService.GetLaboratoryAnalyseId(new Analyses.Forms.LaboratoryAnalyses.GetLaboratoryAnalyseIdForm {
                 Id = form.Id,
                 LastName = form.LastName
             });
@@ -85,6 +86,46 @@ namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
             return await _laboratoryAnalysesService.GetLaboratoryAnalyseById(id);
         }
 
+        [Authorize]
+        [HttpGet(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<ZabotaLaboratoryAnalyses>> LaboratoryAnalyseWithMedicalRecordById(int id)
+        {
+            return await _laboratoryAnalysesService.GetLaboratoryAnalyseWithMedicalRecordById(id);
+        }
+
+        [Authorize]
+        [HttpPost(HttpRouteConsts.DefaultAction)]
+        public async Task<IActionResult> GetMedicalRecordReportById([FromBody] DownloadFileByIdForm form)
+        {
+            var result = await _analysesReportsService.GetMedicalRecordReportById(form.Id);
+
+            return File(result.Result, "application/pdf", "pdf-report");
+        }
+
+        [Authorize]
+        [ValidModelState]
+        [HttpPost(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<bool>> UpdateMedicalRecord([FromBody] UpdateMedicalRecordForm form)
+        {
+            return await _laboratoryAnalysesService.UpdateMedicalRecord(new Analyses.Forms.LaboratoryAnalyses.UpdateMedicalRecordForm { 
+                Id = form.Id,
+                InsuranceName = form.InsuranceName,
+                PolicyNumber = form.PolicyNumber,
+                SnilsNumber = form.SnilsNumber,
+                PrivilegeCode = form.PrivilegeCode,
+                PermanentAddress = form.PermanentAddress,
+                ActualAddress = form.ActualAddress,
+                PhoneNumber = form.PhoneNumber,
+                PreferentialProvision = form.PreferentialProvision,
+                Disability = form.Disability,
+                PlaceOfWork = form.PlaceOfWork,
+                Profession = form.Profession,
+                Position = form.Position,
+                Dependent = form.Dependent
+            });
+        }
+
+        [Authorize]
         [HttpGet(HttpRouteConsts.DefaultAction)]
         public async Task<ZabotaResult<IEnumerable<ZabotaGender>>> GetGenders()
         {
@@ -106,6 +147,18 @@ namespace zabotalaboratory.Web.Areas.Api.LaboratoryAnalyses
                 Doctor = form.Doctor,
                 Talons = Convert(form.Talons)
             }); 
+        }
+
+        [Authorize]
+        [ValidModelState]
+        [HttpPost(HttpRouteConsts.DefaultAction)]
+        public async Task<ZabotaResult<bool>> UpdateLaboratoryAnalyseValid([FromBody] UpdateLaboratoryAnalysesValidForm form)
+        {
+            return await _laboratoryAnalysesService.UpdateLaboratoryAnalyseValid(new Analyses.Forms.LaboratoryAnalyses.UpdateLaboratoryAnalysesValidForm
+            {
+                Id = form.Id,
+                IsValid = form.IsValid
+            });
         }
 
         private IEnumerable<Analyses.Forms.LaboratoryAnalyses.AddTalonsForm> Convert(IEnumerable<AddTalonsForm> source)
